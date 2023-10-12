@@ -1,0 +1,7 @@
+{
+  "name": "EcoMunch",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

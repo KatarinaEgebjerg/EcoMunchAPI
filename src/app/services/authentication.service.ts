@@ -104,13 +104,25 @@ export class AuthenticationService {
   async googleLogin() {
     try {
       const provider = new GoogleAuthProvider();
-      const user = await signInWithPopup(this.auth, provider);
+      const result = await signInWithPopup(this.auth, provider);
+      const user = result.user;
+      if (user) {
+        const { displayName: name, email } = user;
+        const db = getFirestore();
+        await setDoc(doc(db, 'users', user.uid), {
+          uid: user.uid,
+          name: name,
+          email: email,
+        });
+        this.currentUser.next({ name, email });
+      }
       return user;
     } catch (error) {
       console.log('Error during Google login: ', error); // Log the error
       throw new Error('Google login failed. Please try again.');
     }
   }
+  
 
   async forgotPassword({ email }: { email: string }) {
     try {

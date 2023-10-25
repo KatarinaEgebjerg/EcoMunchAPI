@@ -11,12 +11,12 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-grid>
-        <ion-row class="ion-justify-content-between">
-          <ion-col size="2">
-            <ion-icon size="large" name="arrow-back"></ion-icon>
+        <ion-row class="ion-justify-content-between" >
+          <ion-col size="2" class="ion-padding">
+            <ion-icon size="large" color="primary" name="arrow-back"></ion-icon>
           </ion-col>
-          <ion-col size="2">
-            <ion-icon size="large" name="Log-out-outline"></ion-icon>
+          <ion-col size="2" class="ion-padding">
+            <ion-icon size="large" color="primary" name="Log-out-outline"></ion-icon>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -26,19 +26,52 @@
 
   <ion-grid>
     <ion-row class="ion-justify-content-center">
-      <ion-col size="2">
+      <ion-col size="2" class="ion-padding">
         <ion-avatar>
           <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg"/>
         </ion-avatar>
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center" >
-      <ion-label>
+      <ion-label class="ion-padding">
         <h2>Hello Avatar!</h2>
       </ion-label>
     </ion-row>
   </ion-grid>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-around">
+      <ion-col size="2" class="ion-padding">
+        Email:
+      </ion-col>
+      <ion-col size="5" class="ion-padding">
+        Anna@gmail.com
+      </ion-col>
+      <ion-col size="2" class="ion-padding">
+        <ion-icon size="large" color="primary" name="pencil"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-padding">
+        Password: ****
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" class="ion-padding">
+        <ion-text color="secondary">
+          <h2>Favorite Dishes</h2>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

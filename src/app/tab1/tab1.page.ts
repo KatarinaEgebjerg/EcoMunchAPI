@@ -9,14 +9,15 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class Tab1Page {
 
-  currentUser: any;
+  user: any;
 
   constructor(private authService: AuthenticationService, private navCtrl: NavController) {}
 
-  ngOnInit(): void {
-    this.currentUser = this.authService.currentUser;
+  ngOnInit() {
+    this.authService.currentUser.subscribe(data => {
+      this.user = data;
+    });
   }
-
   async logout() {
     await this.authService.logout();
     this.navCtrl.navigateBack('/login');

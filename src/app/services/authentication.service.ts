@@ -10,12 +10,7 @@ import {
   signInWithPopup,
   signOut,
 } from '@angular/fire/auth';
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-} from '@angular/fire/firestore';
+import { getFirestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -24,11 +19,10 @@ export class AuthenticationService {
   public currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(private auth: Auth) {
-
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         // User is signed in, fetch their data
-        this.getUserData(user.uid).then(userData => {
+        this.getUserData(user.uid).then((userData) => {
           this.currentUser.next(userData);
         });
       } else {
@@ -122,7 +116,6 @@ export class AuthenticationService {
       throw new Error('Google login failed. Please try again.');
     }
   }
-  
 
   async forgotPassword({ email }: { email: string }) {
     try {
@@ -139,7 +132,7 @@ export class AuthenticationService {
     const db = getFirestore();
     const docRef = doc(db, 'users', uid);
     const docSnap = await getDoc(docRef);
-  
+
     if (docSnap.exists()) {
       const userData = docSnap.data();
       this.currentUser.next(userData);

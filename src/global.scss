@@ -24,3 +24,69 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+@import url('https://fonts.googleapis.com/css?family=Italiana|Jost&display=swap');
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Italiana', serif;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #3E6E39;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #CC5500;
+}
+
+p {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1.12px;
+}
+
+span {
+    font-weight: 600;
+    letter-spacing: 1.12px;
+}
+
+ion-button {
+    color: #FFF;
+    font-family: Italiana;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    --border-radius: 10px;
+    --padding-top: 20px;
+    --padding-bottom: 20px;
+}
+
+swiper-container {
+    --swiper-pagination-bullet-inactive-color: var(--ion-color-step-200, #cccccc);
+    --swiper-pagination-color: var(--ion-color-primary, #3880ff);
+    --swiper-pagination-progressbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.25);
+    --swiper-scrollbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
+    --swiper-scrollbar-drag-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5);
+}
+
+@font-face {
+    font-family: 'Jost';
+    src: url('https://fonts.googleapis.com/css?family=Italiana|Jost&display=swap');
+}
+
+:root,
+:root[mode="ios"],
+:root[mode="md"] {
+    --ion-font-family: 'Jost' !important;
+    font-family: 'Jost' !important;
+}

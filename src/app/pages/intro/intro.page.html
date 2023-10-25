@@ -1,0 +1,53 @@
+<ion-content class="ion-padding">
+
+    <swiper-container #swiper (afterinit)="swiperReady()" [pagination]="true">
+        <swiper-slide><ion-img src="../../../assets/icon/Cooking.svg"></ion-img>
+
+            <div class="slider-text">
+                <h1>Easy exchange!</h1>
+
+                <p>Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Nulla ultricies, erat vitae
+                    porta consequat.
+                </p>
+            </div>
+
+            <div class="navigator">
+                <ion-button color="primary" fill="clear" (click)="start()">SKIP</ion-button>
+                <ion-button color="primary" fill="clear" (click)="next()">NEXT</ion-button>
+            </div>
+        </swiper-slide>
+
+        <swiper-slide><ion-img src="../../../assets/icon/EatingTogether.svg"></ion-img>
+
+            <div class="slider-text">
+                <h1>Easy exchange!</h1>
+
+                <p>Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Nulla ultricies, erat vitae
+                    porta consequat.
+                </p>
+            </div>
+
+            <div class="navigator">
+                <ion-button color="primary" fill="clear" (click)="start()">SKIP</ion-button>
+                <ion-button color="primary" fill="clear" (click)="next()">NEXT</ion-button>
+            </div>
+        </swiper-slide>
+
+        <swiper-slide><ion-img src="../../../assets/icon/undraw_access_account_re_8spm.svg"></ion-img>
+
+            <div class="slider-text">
+                <h1>Easy exchange!</h1>
+
+                <p>Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Nulla ultricies, erat vitae
+                    porta consequat.
+                </p>
+            </div>
+
+
+            <ion-button class="get-started" expand="block" (click)="start()">GET STARTED</ion-button>
+        </swiper-slide>
+    </swiper-container>
+</ion-content>

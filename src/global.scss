@@ -79,6 +79,12 @@ swiper-container {
     --swiper-scrollbar-drag-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5);
 }
 
+.my-modal::part(content) {
+    width: 80%;
+    --border-radius: 10px;
+    --height: 35%;
+}
+
 @font-face {
     font-family: 'Jost', serif;
     src: url('https://fonts.googleapis.com/css?family=Italiana|Jost&display=swap');

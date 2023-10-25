@@ -87,6 +87,6 @@ swiper-container {
 :root,
 :root[mode="ios"],
 :root[mode="md"] {
-    --ion-font-family: 'Jost' !important;
-    font-family: 'Jost' !important;
+    --ion-font-family: 'Jost', serif !important;
+    font-family: 'Jost', serif !important;
 }

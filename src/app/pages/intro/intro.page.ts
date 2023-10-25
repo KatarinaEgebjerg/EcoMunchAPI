@@ -30,6 +30,6 @@ export class IntroPage {
 
   async start() {
     await Preferences.set({ key: INTRO_KEY, value: 'true' });
-    this.navCtrl.navigateRoot('/');
+    this.navCtrl.navigateRoot('/', { animationDirection: 'forward' });
   }
 }

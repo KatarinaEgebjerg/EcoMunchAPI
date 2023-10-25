@@ -62,7 +62,7 @@ span {
 
 ion-button {
     color: #FFF;
-    font-family: Italiana;
+    font-family: "Italiana", serif;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -80,13 +80,13 @@ swiper-container {
 }
 
 @font-face {
-    font-family: 'Jost';
+    font-family: 'Jost', serif;
     src: url('https://fonts.googleapis.com/css?family=Italiana|Jost&display=swap');
 }
 
 :root,
 :root[mode="ios"],
 :root[mode="md"] {
-    --ion-font-family: 'Jost' !important;
-    font-family: 'Jost' !important;
+    --ion-font-family: 'Jost', serif !important;
+    font-family: 'Jost', serif !important;
 }

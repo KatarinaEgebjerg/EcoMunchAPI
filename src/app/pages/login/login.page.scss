@@ -4,8 +4,6 @@ ion-content {
         padding: 20px;
     }
 
-
-
     ion-img {
         display: block;
         margin: 0 auto;
@@ -15,13 +13,7 @@ ion-content {
     .form-container {
         padding-top: 20px;
 
-        h1 {
-            font-size: 2.5rem;
-        }
-
         .input-container {
-
-
             width: 100%;
 
             ion-item {
@@ -30,7 +22,7 @@ ion-content {
                 }
 
                 ion-label {
-                    font-size: 20px;
+                    font-size: 18px;
                 }
             }
 
@@ -46,7 +38,6 @@ ion-content {
         ion-button {
             margin-top: 30px;
             margin-bottom: 15px;
-            --background: #CC5500;
         }
 
         .forgot-password-container {
@@ -55,10 +46,9 @@ ion-content {
             justify-content: flex-end;
 
             ion-text {
-                color: #CC5500;
+                color: var(--ion-color-primary);
                 font-size: 0.9rem;
                 font-weight: 600 !important;
-                margin-top: 8px;
             }
         }
     }
@@ -109,7 +99,7 @@ ion-content {
             font-weight: 400;
 
             .link {
-                color: #CC5500;
+                color: var(--ion-color-primary);
                 font-weight: 600 !important;
             }
         }

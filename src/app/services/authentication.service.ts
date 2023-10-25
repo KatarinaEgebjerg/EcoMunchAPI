@@ -15,6 +15,9 @@ import { getFirestore } from '@angular/fire/firestore';
   providedIn: 'root',
 })
 export class AuthenticationService {
+
+  public currentUser: any = null;
+
   constructor(private auth: Auth) {}
 
   async register({

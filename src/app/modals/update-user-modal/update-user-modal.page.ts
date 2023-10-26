@@ -51,6 +51,10 @@ export class UpdateUserModalPage {
     this.originalUser = { ...this.user }; // Create a copy of the user data
   }
 
+  ngOnInit() {
+    this.validators();
+  }
+
   closeModal() {
     this.modalCtrl.dismiss();
   }
@@ -98,10 +102,6 @@ export class UpdateUserModalPage {
     }
   }
 
-  ngOnInit() {
-    this.validators();
-  }
-
   get name() {
     return this.credentials?.get('name');
   }
@@ -123,8 +123,8 @@ export class UpdateUserModalPage {
       {
         name: [this.user.name, [Validators.required]],
         email: [this.user.email, [Validators.required, Validators.email]],
-        password: ['', [Validators.minLength(6)]], // Password is optional
-        rePassword: ['', [Validators.minLength(6)]], // Re-entered password is optional
+        password: ['', [Validators.minLength(6)]],
+        rePassword: ['', [Validators.minLength(6)]],
       },
       { validators: this.checkPasswords }
     );

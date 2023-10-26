@@ -6,8 +6,12 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
-import { AlertController, LoadingController, NavController } from '@ionic/angular';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import {
+  AlertController,
+  LoadingController,
+  NavController,
+} from '@ionic/angular';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -68,11 +72,11 @@ export class RegisterPage implements OnInit {
   async register() {
     const loading = await this.loadingController.create();
     await loading.present();
-  
+
     try {
       const user = await this.authService.register(this.credentials.value);
       await loading.dismiss();
-  
+
       if (user) {
         this.navCtrl.navigateBack('login', { replaceUrl: true });
       }
@@ -83,8 +87,8 @@ export class RegisterPage implements OnInit {
         message: error.message,
         buttons: ['OK'],
       });
-  
+
       await alert.present();
     }
-  }  
+  }
 }

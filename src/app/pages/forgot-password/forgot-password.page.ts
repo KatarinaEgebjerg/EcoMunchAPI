@@ -7,8 +7,9 @@ import {
   NavController,
 } from '@ionic/angular';
 import { ForgotPasswordModalPage } from 'src/app/modals/forgot-password-modal/forgot-password-modal.page';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
-import { AuthenticationService } from 'src/app/services/authentication.service';
+
 
 @Component({
   selector: 'app-forgot-password',

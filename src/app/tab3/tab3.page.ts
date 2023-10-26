@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  login: any = { username: 'Anna', password: '' };
+  login: any = { username: '', password: '' };
 
   
   constructor() {}

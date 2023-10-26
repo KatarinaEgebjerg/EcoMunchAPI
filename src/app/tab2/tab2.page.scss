@@ -1,3 +1,19 @@
 .ion-card {
     display: flex;
 }
+
+.ion-card img {
+    border-radius: 10em;
+    overflow: hidden;
+}
+
+.right{
+    float: right;
+    text-align: right;
+ }
+
+h2 {
+    box-shadow: none;
+    color: #3E6E39 !important;
+}
+

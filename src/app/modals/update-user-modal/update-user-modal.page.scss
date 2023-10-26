@@ -1,0 +1,31 @@
+.form-container {
+    padding-top: 20px;
+
+    .input-container {
+        width: 100%;
+
+        ion-item {
+            ion-icon {
+                margin-top: 40px;
+            }
+
+            ion-label {
+                font-size: 18px;
+            }
+
+        }
+
+        .error {
+            color: #f44336;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding-left: 41px;
+            padding-top: 5px;
+        }
+    }
+
+    ion-button {
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+}

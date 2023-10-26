@@ -5,10 +5,14 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateEmail,
+  updatePassword, 
+  updateProfile
 } from '@angular/fire/auth';
 import { getFirestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
 
@@ -141,6 +145,53 @@ export class AuthenticationService {
     } else {
       console.log('No such document!');
       return null;
+    }
+  }
+
+  //Not used because it required user to veriying new email before changing
+  async updateEmail(newEmail: string) {
+    try {
+      if (this.auth.currentUser) {
+        await updateEmail(this.auth.currentUser, newEmail);
+        await sendEmailVerification(this.auth.currentUser);
+        const db = getFirestore();
+        await setDoc(doc(db, 'users', this.auth.currentUser.uid), {
+          email: newEmail,
+        }, { merge: true });
+        const userData = await this.getUserData(this.auth.currentUser.uid);
+        this.currentUser.next(userData);
+      }
+    } catch (error) {
+      console.error('Error updating email:', error);
+      throw new Error('An error occurred while updating the email. Please try again.');
+    }
+  }
+
+  async updatePassword(newPassword: string) {
+    try {
+      if (this.auth.currentUser) {
+        await updatePassword(this.auth.currentUser, newPassword);
+      }
+    } catch (error) {
+      console.error('Error updating password:', error);
+      throw new Error('An error occurred while updating the password. Please try again.');
+    }
+  }
+
+  async updateName(newName: string) {
+    try {
+      if (this.auth.currentUser) {
+        const db = getFirestore();
+        await setDoc(doc(db, 'users', this.auth.currentUser.uid), {
+          name: newName,
+        }, { merge: true });
+        await updateProfile(this.auth.currentUser, { displayName: newName });
+        const userData = await this.getUserData(this.auth.currentUser.uid);
+        this.currentUser.next(userData);
+      }
+    } catch (error) {
+      console.error('Error updating name:', error);
+      throw new Error('An error occurred while updating the name. Please try again.');
     }
   }
 }

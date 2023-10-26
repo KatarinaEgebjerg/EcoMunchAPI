@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { ForgotPasswordModalPage } from 'src/app/modals/forgot-password-modal/forgot-password-modal.page';
 import { LogoutConfirmationModalPage } from '../modals/logout-confirmation-modal/logout-confirmation-modal.page';
 import { ApiService } from '../services/api/api.service';
+import { UpdateUserModalPage } from '../modals/update-user-modal/update-user-modal.page';
 
 @Component({
   selector: 'app-tab1',
@@ -39,4 +40,22 @@ export class Tab1Page {
     const ingredients = this.ingredientsInput.split(',');
     this.bestMatches = await this.apiService.getRecipieByIngredients(ingredients);
   }
+
+
+  async updateUser() {
+    const modal = await this.modalCtrl.create({
+      component: UpdateUserModalPage,
+      componentProps: { user: this.user }
+    });
+  
+    await modal.present();
+  
+    const { data } = await modal.onWillDismiss();
+    if (data) {
+      // The user data was updated. Refresh the user data.
+      this.user = data;
+    }
+  }
+
+  
 }

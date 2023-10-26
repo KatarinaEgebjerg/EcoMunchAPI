@@ -65,7 +65,9 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
-    const loading = await this.loadingController.create();
+    const loading = await this.loadingController.create({
+      message: 'Logging in...',
+    });
     await loading.present();
 
     this.authService.login(this.credentials.value).then(

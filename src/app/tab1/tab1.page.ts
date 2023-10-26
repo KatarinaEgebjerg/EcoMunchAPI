@@ -45,7 +45,10 @@ export class Tab1Page {
   async updateUser() {
     const modal = await this.modalCtrl.create({
       component: UpdateUserModalPage,
-      componentProps: { user: this.user }
+      breakpoints: [0, 0.3, 0.65, 0.8],
+      initialBreakpoint: 0.65,
+      componentProps: { user: this.user },
+      presentingElement: await this.modalCtrl.getTop() // This is necessary for the swipe to close feature to work correctly
     });
   
     await modal.present();

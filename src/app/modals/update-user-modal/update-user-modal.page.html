@@ -1,75 +1,81 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Update User Data</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="closeModal()">Close</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-toolbar color="white">
+  <ion-buttons slot="end">
+    <ion-button color="primary" (click)="closeModal()">
+      <ion-icon name="close-outline" size="large"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
 
 <ion-content>
-  <form class="form-container" [formGroup]="credentials">
+  <div class="page-container">
 
 
-    <div class="input-container">
-      <ion-item class="ion-no-padding">
-        <ion-icon name="person-outline" slot="start"></ion-icon>
-        <ion-label position="floating">Name</ion-label>
-        <ion-input type="text" placeholder="Enter name" required="true" clearInput="true"
-          formControlName="name"></ion-input>
-      </ion-item>
-      <div class="error">
-        <span *ngIf="name.errors?.required && name.touched">Name is required</span>
+    <ion-text>
+      <h1>Update User</h1>
+    </ion-text>
+    <form class="form-container" [formGroup]="credentials">
+
+
+      <div class="input-container">
+        <ion-item class="ion-no-padding">
+          <ion-icon name="person-outline" slot="start"></ion-icon>
+          <ion-label position="floating">Name</ion-label>
+          <ion-input type="text" placeholder="Enter name" required="true" clearInput="true"
+            formControlName="name"></ion-input>
+        </ion-item>
+        <div class="error">
+          <span *ngIf="name.errors?.required && name.touched">Name is required</span>
+        </div>
       </div>
-    </div>
 
-    <div class="input-container">
-      <ion-item class="ion-no-padding" [disabled]="true">
-        <ion-icon name="mail-outline" slot="start"></ion-icon>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input type="email" placeholder="Enter email" required="true" clearInput="true"
-          formControlName="email"></ion-input>
-      </ion-item>
-      <div class="error">
-        <span *ngIf="email.errors?.email && email.touched">Invalid email</span>
-        <span *ngIf="email.errors?.required && email.touched">Email is required</span>
+      <div class="input-container">
+        <ion-item class="ion-no-padding" [disabled]="true">
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" placeholder="Enter email" required="true" clearInput="true"
+            formControlName="email"></ion-input>
+        </ion-item>
+        <div class="error">
+          <span *ngIf="email.errors?.email && email.touched">Invalid email</span>
+          <span *ngIf="email.errors?.required && email.touched">Email is required</span>
+        </div>
       </div>
-    </div>
 
-    <div class="input-container">
-      <ion-item class="ion-no-padding">
-        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-        <ion-label position="floating">Password</ion-label>
-        <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Enter password" 
-          formControlName="password"></ion-input>
-        <ion-icon *ngIf="password.value && showPassword" name="eye-off-outline" slot="end"
-          (click)="showPassword = !showPassword"></ion-icon>
-        <ion-icon *ngIf="password.value && !showPassword" name="eye-outline" slot="end"
-          (click)="showPassword = !showPassword"></ion-icon>
-      </ion-item>
-      <div class="error">
-        <span *ngIf="password.errors?.minlength && password.touched">Password needs to be 6 characters</span>
+      <div class="input-container">
+        <ion-item class="ion-no-padding">
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          <ion-label position="floating">New Password</ion-label>
+          <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Enter password"
+            formControlName="password"></ion-input>
+          <ion-icon *ngIf="password.value && showPassword" name="eye-off-outline" slot="end"
+            (click)="showPassword = !showPassword"></ion-icon>
+          <ion-icon *ngIf="password.value && !showPassword" name="eye-outline" slot="end"
+            (click)="showPassword = !showPassword"></ion-icon>
+        </ion-item>
+        <div class="error">
+          <span *ngIf="password.errors?.minlength && isSubmitted">Password needs to be 6 characters</span>
+        </div>
       </div>
-    </div>
-    
 
-    <div class="input-container">
-      <ion-item class="ion-no-padding" *ngIf="password.value" [@fadeIn]>
-        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-        <ion-label position="floating">Re-enter password</ion-label>
-        <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Enter password"
-          formControlName="rePassword"></ion-input>
-        <ion-icon *ngIf="rePassword.value && showPassword" name="eye-off-outline" slot="end"
-          (click)="showPassword = !showPassword"></ion-icon>
-        <ion-icon *ngIf="rePassword.value && !showPassword" name="eye-outline" slot="end"
-          (click)="showPassword = !showPassword"></ion-icon>
-      </ion-item>
-      <div class="error">
-        <span *ngIf="rePassword.errors?.minlength && rePassword.touched">password needs to be 6 characters</span>
-        <span *ngIf="credentials.errors?.notSame && rePassword.touched">Passwords do not match</span>
+      <div class="input-container">
+        <ion-item class="ion-no-padding" *ngIf="password.value" [@fadeIn]>
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          <ion-label position="floating">Re-enter password</ion-label>
+          <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Enter password"
+            formControlName="rePassword"></ion-input>
+          <ion-icon *ngIf="rePassword.value && showPassword" name="eye-off-outline" slot="end"
+            (click)="showPassword = !showPassword"></ion-icon>
+          <ion-icon *ngIf="rePassword.value && !showPassword" name="eye-outline" slot="end"
+            (click)="showPassword = !showPassword"></ion-icon>
+        </ion-item>
+        <div class="error">
+          <span *ngIf="rePassword.errors?.minlength && isSubmitted">password needs to be 6 characters</span>
+          <span *ngIf="credentials.errors?.notSame && isSubmitted">Passwords do not match</span>
+        </div>
       </div>
-    </div>
 
-    <ion-button expand="full" (click)="onSumbit()">Save</ion-button>
-  </form>
+      <ion-button expand="block" (click)="onSumbit()">Save</ion-button>
+    </form>
+
+  </div>
 </ion-content>

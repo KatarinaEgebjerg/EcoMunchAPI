@@ -13,7 +13,7 @@ export class ApiService {
   // API returns ingredients as seperate properties therfor this function to loop through them
   getIngredients(meal: any) {
     let ingredients = [];
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 20; i++) {
       if (meal['strIngredient' + i]) {
         ingredients.push(meal['strIngredient' + i]);
       }
@@ -24,7 +24,7 @@ export class ApiService {
   // API returns measurements as seperate properties therfor this function to loop through them
   getMeasurements(meal: any) {
     let measurement = [];
-    for (let i = 1; i <= 15; i++) {
+    for (let i = 1; i <= 20; i++) {
       if (meal['strMeasure' + i]) {
         measurement.push(meal['strMeasure' + i]);
       }
@@ -32,7 +32,7 @@ export class ApiService {
     return measurement;
   }
 
-  async getRecipieByName(ingredients: string[]) {
+  async getRecipieByIngredients(ingredients: string[]) {
     try {
       const ingredientString = ingredients.join(',');
       const response$ = this.http.get(

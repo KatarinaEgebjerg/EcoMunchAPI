@@ -3,6 +3,7 @@ import { AuthenticationService } from '../services/authentication/authentication
 import { ModalController } from '@ionic/angular';
 import { ForgotPasswordModalPage } from 'src/app/modals/forgot-password-modal/forgot-password-modal.page';
 import { LogoutConfirmationModalPage } from '../modals/logout-confirmation-modal/logout-confirmation-modal.page';
+import { ApiService } from '../services/api/api.service';
 
 @Component({
   selector: 'app-tab1',
@@ -11,10 +12,13 @@ import { LogoutConfirmationModalPage } from '../modals/logout-confirmation-modal
 })
 export class Tab1Page {
   user: any;
+  ingredientsInput = '';
+  bestMatches: any[] = [];
 
   constructor(
     private authService: AuthenticationService,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private apiService: ApiService
   ) {}
 
   ngOnInit() {
@@ -29,5 +33,10 @@ export class Tab1Page {
       cssClass: 'my-modal',
     });
     await modal.present();
+  }
+
+  async getBestMatches() {
+    const ingredients = this.ingredientsInput.split(',');
+    this.bestMatches = await this.apiService.getRecipieByIngredients(ingredients);
   }
 }

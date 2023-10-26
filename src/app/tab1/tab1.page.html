@@ -25,6 +25,15 @@
   
 
 
+  <div>
+    <ion-searchbar [(ngModel)]="ingredientsInput" placeholder="Enter ingredients separated by comma"></ion-searchbar>
+    <ion-button (click)="getBestMatches()">Get Best Matches</ion-button>
+  </div>
 
+  <div *ngFor="let match of bestMatches">
+    <h2>{{ match.strMeal }}</h2>
+    <img [src]="match.strMealThumb" alt="{{ match.strMeal }}">
+    <p>Ingredients: {{ match.totalIngredients - match.missingIngredientsCount }}/{{ match.totalIngredients }}</p>
+  </div>
   
 </ion-content>

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { AuthenticationService } from '../services/authentication/authentication.service';
+import { ModalController } from '@ionic/angular';
+import { ForgotPasswordModalPage } from 'src/app/modals/forgot-password-modal/forgot-password-modal.page';
+import { LogoutConfirmationModalPage } from '../modals/logout-confirmation-modal/logout-confirmation-modal.page';
 
 @Component({
   selector: 'app-tab1',
@@ -12,7 +14,7 @@ export class Tab1Page {
 
   constructor(
     private authService: AuthenticationService,
-    private navCtrl: NavController
+    private modalCtrl: ModalController
   ) {}
 
   ngOnInit() {
@@ -20,8 +22,12 @@ export class Tab1Page {
       this.user = data;
     });
   }
+
   async logout() {
-    await this.authService.logout();
-    this.navCtrl.navigateBack('/login');
+    const modal = await this.modalCtrl.create({
+      component: LogoutConfirmationModalPage, // replace with your actual component
+      cssClass: 'my-modal',
+    });
+    await modal.present();
   }
 }

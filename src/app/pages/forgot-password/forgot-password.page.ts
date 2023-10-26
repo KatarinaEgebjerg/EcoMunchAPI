@@ -6,7 +6,7 @@ import {
   ModalController,
   NavController,
 } from '@ionic/angular';
-import { ForgotPasswordModalPage } from 'src/app/modals/forgot-password/forgot-password-modal.page';
+import { ForgotPasswordModalPage } from 'src/app/modals/forgot-password-modal/forgot-password-modal.page';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
@@ -41,7 +41,9 @@ export class ForgotPasswordPage implements OnInit {
   }
 
   async forgotPassword() {
-    const loading = await this.loadingController.create();
+    const loading = await this.loadingController.create({
+      message: 'Loading...',
+    });
     await loading.present();
 
     this.authService.forgotPassword(this.credentials.value).then(

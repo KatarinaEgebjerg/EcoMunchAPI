@@ -34,7 +34,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'tabs',
     pathMatch: 'full',
+  },  {
+    path: 'logout-confirmation-modal',
+    loadChildren: () => import('./modals/logout-confirmation-modal/logout-confirmation-modal.module').then( m => m.LogoutConfirmationModalPageModule)
   },
+
 ];
 
 @NgModule({

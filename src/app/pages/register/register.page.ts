@@ -70,7 +70,9 @@ export class RegisterPage implements OnInit {
   }
 
   async register() {
-    const loading = await this.loadingController.create();
+    const loading = await this.loadingController.create({
+      message: 'Creating account...',
+    });
     await loading.present();
 
     try {

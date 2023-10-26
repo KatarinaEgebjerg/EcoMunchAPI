@@ -41,7 +41,9 @@ export class LoginPage implements OnInit {
   }
 
   async googleLogin() {
-    const loading = await this.loadingController.create();
+    const loading = await this.loadingController.create({
+      message: 'Logging in...',
+    });
     await loading.present();
 
     this.authService.googleLogin().then(

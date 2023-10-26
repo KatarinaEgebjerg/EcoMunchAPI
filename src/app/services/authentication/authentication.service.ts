@@ -92,6 +92,7 @@ export class AuthenticationService {
       await signOut(this.auth);
     } catch (error) {
       console.error('Error signing out:', error);
+      throw new Error('An error occurred while signing out. Please try again.');
     }
   }
 

@@ -1,41 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title> Tab 3 </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
+<ion-content>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <div class="ion-padding" slot="start">
+      <div slot="start">
         <ion-button fill="clear">
           <ion-icon size="large" color="primary" name="arrow-back"></ion-icon>
         </ion-button>
       </div>
 
-      <ion-button fill="clear" slot="end" id="present-alert">
-        <div
-          slot="end"
-          class="ion-padding"
-          style="display: flex; align-items: center"
-        >
+      <ion-button fill="clear" slot="end" (click)="logout()">
+        <div slot="end" style="display: flex; align-items: center">
           <ion-text slot="center">
             <h2>Logout</h2>
           </ion-text>
           &nbsp;
-          <ion-icon
-            size="large"
-            color="primary"
-            name="Log-out-outline"
-            text="Logout"
-            slot="end"
-          ></ion-icon>
+          <ion-icon size="large" color="primary" name="Log-out-outline" text="Logout" slot="end"></ion-icon>
         </div>
-        <ion-alert
-          trigger="present-alert"
-          header="Are you sure?"
-          [buttons]="alertButtons"
-        ></ion-alert>
       </ion-button>
     </ion-toolbar>
   </ion-header>
@@ -44,40 +23,31 @@
     <ion-row class="ion-justify-content-center">
       <ion-col size="3" class="ion-padding">
         <ion-avatar>
-          <img
-            alt="Silhouette of a person's head"
-            src="https://ionicframework.com/docs/img/demos/avatar.svg"
-          />
+          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
         </ion-avatar>
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-center">
       <ion-label class="ion-padding">
-        <h1>Hello {{login.username}}</h1>
+        <h1>Hello {{user.name}}</h1>
       </ion-label>
     </ion-row>
+
   </ion-grid>
 
-  <ion-grid>
-    <ion-row class="ion-justify-content-around">
-      <ion-col size="3" class="ion-padding"> Email: </ion-col>
-      <ion-col size="5" class="ion-padding"> Anna@gmail.com </ion-col>
-      <ion-col size="3" class="ion-padding">
-        <ion-button fill="clear" (click)="openIonModal()">
-          <ion-icon size="large" color="primary" name="pencil"></ion-icon>
-          <strong *ngIf="modelData">{{modelData}}</strong>
+  <ion-grid class="ion-padding" >
+    <ion-row>
+      <ion-col size="12"> Email: {{user.email}}
+        <ion-button fill="clear" (click)="updateUser()">
+          <ion-icon size="medium" color="primary" name="pencil"></ion-icon>
         </ion-button>
       </ion-col>
-    </ion-row>
-    <ion-row class="ion-justify-content-between">
-      <ion-col class="ion-padding" size="4"> Password: </ion-col>
-      <ion-col class="ion-padding-vertical" size="8"> ********* </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-grid>
     <ion-row class="ion-justify-content-center">
-      <ion-col size="12" class="ion-padding">
+      <ion-col size="12" class="ion-padding-start">
         <ion-text color="secondary">
           <h2>Favorite Dishes</h2>
         </ion-text>

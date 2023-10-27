@@ -34,8 +34,8 @@ const routes: Routes = [
     path: '',
     redirectTo: 'tabs',
     pathMatch: 'full',
-  },  {
-<<<<<<< HEAD
+  },
+  {
     path: 'logout-confirmation-modal',
     loadChildren: () => import('./modals/logout-confirmation-modal/logout-confirmation-modal.module').then( m => m.LogoutConfirmationModalPageModule)
   },
@@ -43,12 +43,10 @@ const routes: Routes = [
     path: 'update-user-modal',
     loadChildren: () => import('./modals/update-user-modal/update-user-modal.module').then( m => m.UpdateUserModalPageModule)
   },
-=======
+  {
     path: 'modal-popup',
     loadChildren: () => import('./modal-popup/modal-popup.module').then( m => m.ModalPopupPageModule)
-  },
->>>>>>> profile
-
+  }
 ];
 
 @NgModule({

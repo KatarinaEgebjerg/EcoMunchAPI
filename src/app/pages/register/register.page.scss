@@ -1,51 +1,30 @@
 ion-content {
-    --background: #fff;
 
     .page-container {
         padding: 20px;
     }
 
-    .image-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 200px;
+    ion-img {
+        display: block;
+        margin: 0 auto;
+        width: 60%;
     }
 
     .form-container {
         padding-top: 20px;
-
-        ion-text {
-            
-            h1 {
-                font-size: 2.5rem;
-                font-weight: 700;
-            }
-    
-            h3 {
-                margin-top: 0%;
-                font-size: 1.0rem;
-                font-weight: 600;
-            }
-        }
-    
 
         .input-container {
             width: 100%;
 
             ion-item {
                 ion-icon {
-                    color: #666;
-                    margin-top: 35px;
+                    margin-top: 40px;
                 }
 
                 ion-label {
-                    color: #666;
+                    font-size: 18px;
                 }
 
-                ion-input {
-                    color: #666;
-                }
             }
 
             .error {
@@ -58,14 +37,8 @@ ion-content {
         }
 
         ion-button {
-            margin-top: 40px;
+            margin-top: 30px;
             margin-bottom: 15px;
-            text-transform: capitalize;
-            --box-shadow: none;
-            --background: #2467f6;
-            --border-radius: 10px;
-            --padding-top: 25px;
-            --padding-bottom: 25px;
         }
     }
 }

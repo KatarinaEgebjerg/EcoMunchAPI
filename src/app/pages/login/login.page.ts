@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -18,11 +18,11 @@ export class LoginPage implements OnInit {
     private authService: AuthenticationService,
     private alertController: AlertController,
     private router: Router,
-    private loadingController: LoadingController,
+    private loadingController: LoadingController
   ) {}
 
   ngOnInit() {
-   this.validators();
+    this.validators();
   }
 
   get email() {
@@ -41,9 +41,11 @@ export class LoginPage implements OnInit {
   }
 
   async googleLogin() {
-    const loading = await this.loadingController.create();
+    const loading = await this.loadingController.create({
+      message: 'Logging in...',
+    });
     await loading.present();
-  
+
     this.authService.googleLogin().then(
       async (res: any) => {
         await loading.dismiss();
@@ -56,16 +58,18 @@ export class LoginPage implements OnInit {
           message: err.message,
           buttons: ['OK'],
         });
-  
+
         await alert.present();
       }
     );
   }
-  
+
   async login() {
-    const loading = await this.loadingController.create();
+    const loading = await this.loadingController.create({
+      message: 'Logging in...',
+    });
     await loading.present();
-  
+
     this.authService.login(this.credentials.value).then(
       async (res: any) => {
         await loading.dismiss();
@@ -78,9 +82,9 @@ export class LoginPage implements OnInit {
           message: err.message,
           buttons: ['OK'],
         });
-  
+
         await alert.present();
       }
     );
-  }  
+  }
 }

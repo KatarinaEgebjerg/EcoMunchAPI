@@ -52,7 +52,7 @@ h2 {
 }
 
 p {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     letter-spacing: 1.12px;
 }
@@ -64,7 +64,7 @@ span {
 
 ion-button {
     color: #FFF;
-    font-family: Italiana;
+    font-family: "Italiana", serif;
     font-size: 20px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -81,8 +81,14 @@ swiper-container {
     --swiper-scrollbar-drag-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5);
 }
 
+.my-modal::part(content) {
+    width: 80%;
+    --border-radius: 10px;
+    --height: 35%;
+}
+
 @font-face {
-    font-family: 'Jost';
+    font-family: 'Jost', serif;
     src: url('https://fonts.googleapis.com/css?family=Italiana|Jost&display=swap');
 }
 

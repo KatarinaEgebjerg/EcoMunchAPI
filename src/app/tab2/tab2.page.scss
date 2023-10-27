@@ -1,11 +1,13 @@
 .ion-card {
     display: flex;
+    justify-self: flex-end;
+    border-radius: 5px;
 }
 
-.ion-card img {
-    border-radius: 10em;
-    overflow: hidden;
+.ion-img {
+overflow: hidden;
 }
+    
 
 .right{
     float: right;

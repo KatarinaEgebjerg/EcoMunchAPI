@@ -34,6 +34,7 @@ export class Tab3Page {
     this.authService.currentUser.subscribe((data) => {
       this.user = data;
     });
+    console.log(this.user)
   }
 
   async logout() {

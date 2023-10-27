@@ -14,10 +14,10 @@
   </ion-header>
 
   <div class="center-button">
-    <button>Show More</button>
+    <button (click)="showMore()" [ngClass]="{'clicked': isClicked}">Show More</button>
   </div>
   
-  <!--(click)="showMore()" [ngClass]="{'clicked': isClicked"-->
+  <!---->
 
 </ion-content>
 

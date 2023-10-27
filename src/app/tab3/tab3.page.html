@@ -13,7 +13,7 @@
         </ion-button>
       </div>
 
-      <ion-button fill="clear" slot="end">
+      <ion-button fill="clear" slot="end" id="present-alert">
         <div
           slot="end"
           class="ion-padding"
@@ -31,6 +31,11 @@
             slot="end"
           ></ion-icon>
         </div>
+        <ion-alert
+          trigger="present-alert"
+          header="Are you sure?"
+          [buttons]="alertButtons"
+        ></ion-alert>
       </ion-button>
     </ion-toolbar>
   </ion-header>

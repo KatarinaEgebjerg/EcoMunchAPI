@@ -39,4 +39,6 @@ export class Tab3Page {
     });
     return await modal.present();
   }
+
+  public alertButtons = ['Logout'];
 }

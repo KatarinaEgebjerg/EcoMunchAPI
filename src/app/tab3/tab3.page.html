@@ -7,7 +7,7 @@
         </ion-button>
       </div>
 
-      <ion-button fill="clear" slot="end" id="present-alert">
+      <ion-button fill="clear" slot="end" (click)="logout()">
         <div slot="end" class="ion-padding" style="display: flex; align-items: center">
           <ion-text slot="center">
             <h2>Logout</h2>
@@ -15,7 +15,6 @@
           &nbsp;
           <ion-icon size="large" color="primary" name="Log-out-outline" text="Logout" slot="end"></ion-icon>
         </div>
-        <ion-alert trigger="present-alert" header="Are you sure?" [buttons]="alertButtons"></ion-alert>
       </ion-button>
     </ion-toolbar>
   </ion-header>
@@ -40,9 +39,8 @@
       <ion-col size="3" class="ion-padding"> Email: </ion-col>
       <ion-col size="5" class="ion-padding"> Anna@gmail.com </ion-col>
       <ion-col size="3" class="ion-padding">
-        <ion-button fill="clear" (click)="openIonModal()">
+        <ion-button fill="clear" (click)="updateUser()">
           <ion-icon size="large" color="primary" name="pencil"></ion-icon>
-          <strong *ngIf="modelData">{{modelData}}</strong>
         </ion-button>
       </ion-col>
     </ion-row>

@@ -34,7 +34,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'tabs',
     pathMatch: 'full',
+  },  {
+    path: 'modal-popup',
+    loadChildren: () => import('./modal-popup/modal-popup.module').then( m => m.ModalPopupPageModule)
   },
+
 ];
 
 @NgModule({

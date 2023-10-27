@@ -8,26 +8,30 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <div class="ion-padding" slot="start">
-        <ion-icon size="large" color="primary" name="arrow-back"></ion-icon>
+        <ion-button fill="clear">
+          <ion-icon size="large" color="primary" name="arrow-back"></ion-icon>
+        </ion-button>
       </div>
 
-      <div
-        slot="end"
-        class="ion-padding"
-        style="display: flex; align-items: center"
-      >
-        <ion-text slot="center">
-          <h2>Logout</h2>
-        </ion-text>
-        &nbsp;
-        <ion-icon
-          size="large"
-          color="primary"
-          name="Log-out-outline"
-          text="Logout"
+      <ion-button fill="clear" slot="end">
+        <div
           slot="end"
-        ></ion-icon>
-      </div>
+          class="ion-padding"
+          style="display: flex; align-items: center"
+        >
+          <ion-text slot="center">
+            <h2>Logout</h2>
+          </ion-text>
+          &nbsp;
+          <ion-icon
+            size="large"
+            color="primary"
+            name="Log-out-outline"
+            text="Logout"
+            slot="end"
+          ></ion-icon>
+        </div>
+      </ion-button>
     </ion-toolbar>
   </ion-header>
 
@@ -54,7 +58,10 @@
       <ion-col size="3" class="ion-padding"> Email: </ion-col>
       <ion-col size="5" class="ion-padding"> Anna@gmail.com </ion-col>
       <ion-col size="3" class="ion-padding">
-        <ion-icon size="large" color="primary" name="pencil"></ion-icon>
+        <ion-button fill="clear" (click)="openIonModal()">
+          <ion-icon size="large" color="primary" name="pencil"></ion-icon>
+          <strong *ngIf="modelData">{{modelData}}</strong>
+        </ion-button>
       </ion-col>
     </ion-row>
     <ion-row class="ion-justify-content-between">
@@ -62,8 +69,6 @@
       <ion-col class="ion-padding-vertical" size="8"> ********* </ion-col>
     </ion-row>
   </ion-grid>
-
-  
 
   <ion-grid>
     <ion-row class="ion-justify-content-center">

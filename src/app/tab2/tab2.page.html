@@ -1,26 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      <!-- 
-      <ion-img href="..." src="..." alt="Eco munch logo"></ion-img>
-        -->
-    
-    <ion-icon class="right" name="person-circle-outline" color="primary"></ion-icon>
-    
-  </ion-title>
+    <span>
+      <ion-row>
+        <ion-img
+          href="tab2.page.html"
+          src="/src/assets/images/Logo.png"
+          alt="Eco munch logo"
+          slot="left"
+        ></ion-img>
+
+        <ion-icon
+          class="right"
+          size="large"
+          name="person-circle"
+          color="primary"
+        ></ion-icon>
+      </ion-row>
+    </span>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
-<h2>Dish of the day!</h2>
+  <h2>Dish of the day!</h2>
 
-  <ion-card style="border-radius: 5px;">
-    <ion-row style="background-color: #f4f4f4;">
+  <ion-card style="border-radius: 5px">
+    <ion-row style="background-color: #f4f4f4">
       <ion-col>
         <img
           alt="Silhouette of mountains"
-          src="https://newyorkerbyheart.dk/wp-content/uploads/2023/01/billede-til-nem-aftensmad.jpg" style="border-radius: 50%; overflow: hidden;"
+          src="https://newyorkerbyheart.dk/wp-content/uploads/2023/01/billede-til-nem-aftensmad.jpg"
+          style="border-radius: 50%; overflow: hidden"
         />
       </ion-col>
 
@@ -29,19 +38,28 @@
           <ion-card-title>Mad title</ion-card-title>
         </ion-card-header>
 
-        <ion-card-content><ion-icon class="right" name="heart-outline" size="large" color="primary" style="justify-self: flex-end;"></ion-icon></ion-card-content>
+        <ion-card-content
+          ><ion-icon
+            class="right"
+            name="heart-outline"
+            size="large"
+            color="primary"
+            style="justify-self: flex-end"
+          ></ion-icon
+        ></ion-card-content>
       </ion-col>
     </ion-row>
   </ion-card>
 
   <h2>Popular dishes</h2>
 
-  <ion-card style="border-radius: 5px;">
-    <ion-row style="background-color: #E0F7DE;">
+  <ion-card style="border-radius: 5px">
+    <ion-row style="background-color: #e0f7de">
       <ion-col>
         <img
           alt="Silhouette of mountains"
-          src="https://ionicframework.com/docs/img/demos/card-media.png" style="border-radius: 50%; overflow: hidden;"
+          src="https://ionicframework.com/docs/img/demos/card-media.png"
+          style="border-radius: 50%; overflow: hidden"
         />
       </ion-col>
 
@@ -50,9 +68,15 @@
           <ion-card-title>Mad title</ion-card-title>
         </ion-card-header>
 
-        <ion-card-content><ion-icon class="right" name="heart-outline" size="large" color="primary"></ion-icon></ion-card-content>
+        <ion-card-content
+          ><ion-icon
+            class="right"
+            name="heart-outline"
+            size="large"
+            color="primary"
+          ></ion-icon
+        ></ion-card-content>
       </ion-col>
     </ion-row>
   </ion-card>
-
 </ion-content>

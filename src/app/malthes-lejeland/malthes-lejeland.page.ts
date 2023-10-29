@@ -45,7 +45,7 @@ export class MalthesLejelandPage implements OnInit {
     });
   }
 
-  async logout() {
+  async logoutModal() {
     const modal = await this.modalCtrl.create({
       component: LogoutConfirmationModalPage,
       cssClass: 'my-modal',

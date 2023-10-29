@@ -7,7 +7,7 @@ import {
   NavController,
 } from '@ionic/angular';
 import { ForgotPasswordModalPage } from 'src/app/modals/forgot-password-modal/forgot-password-modal.page';
-import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -19,7 +19,7 @@ export class ForgotPasswordPage implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthenticationService,
+    private authService: AuthService,
     private alertController: AlertController,
     private loadingController: LoadingController,
     private modalCtrl: ModalController,

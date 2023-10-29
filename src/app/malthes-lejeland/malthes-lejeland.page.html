@@ -37,5 +37,15 @@
     <img [src]="match.strMealThumb" alt="{{ match.strMeal }}">
     <p>Ingredients: {{ match.totalIngredients - match.missingIngredientsCount }}/{{ match.totalIngredients }}</p>
   </div>
+
+  <ion-button (click)="testGetFavorites()">Get Favorites</ion-button>
+
+  <div *ngFor="let favorite of favorites">
+    <h2>{{ favorite.strMeal }}</h2>
+    <img [src]="favorite.strMealThumb" alt="{{ favorite.strMeal }}">
+    <ng-container *ngFor="let ingredient of getIngredients(favorite); let i = index">
+      <p> ingredients: {{ i + 1 }}. {{ ingredient }}</p>
+    </ng-container>
+  </div>
   
 </ion-content>

@@ -19,7 +19,7 @@ import {
   NavParams,
   ToastController,
 } from '@ionic/angular';
-import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-update-user-modal',
@@ -42,7 +42,7 @@ export class UpdateUserModalPage {
   constructor(
     private modalCtrl: ModalController,
     private navParams: NavParams,
-    private authService: AuthenticationService,
+    private authService: AuthService,
     private fb: FormBuilder,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController
@@ -82,7 +82,7 @@ export class UpdateUserModalPage {
     } finally {
       await loading.dismiss();
     }
-    
+
     this.modalCtrl.dismiss(this.credentials.value);
 
     const toast = await this.toastCtrl.create({

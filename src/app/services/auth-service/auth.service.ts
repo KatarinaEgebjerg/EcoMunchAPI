@@ -11,18 +11,19 @@ import {
   signInWithPopup,
   signOut,
   updateEmail,
-  updatePassword, 
-  updateProfile
+  updatePassword,
+  updateProfile,
 } from '@angular/fire/auth';
 import { getFirestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
+import { MealService } from '../meal-service/meal.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticationService {
+export class AuthService {
   public currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  constructor(private auth: Auth) {
+  constructor(private auth: Auth, private MealService: MealService) {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         // User is signed in, fetch their data
@@ -155,15 +156,21 @@ export class AuthenticationService {
         await updateEmail(this.auth.currentUser, newEmail);
         await sendEmailVerification(this.auth.currentUser);
         const db = getFirestore();
-        await setDoc(doc(db, 'users', this.auth.currentUser.uid), {
-          email: newEmail,
-        }, { merge: true });
+        await setDoc(
+          doc(db, 'users', this.auth.currentUser.uid),
+          {
+            email: newEmail,
+          },
+          { merge: true }
+        );
         const userData = await this.getUserData(this.auth.currentUser.uid);
         this.currentUser.next(userData);
       }
     } catch (error) {
       console.error('Error updating email:', error);
-      throw new Error('An error occurred while updating the email. Please try again.');
+      throw new Error(
+        'An error occurred while updating the email. Please try again.'
+      );
     }
   }
 
@@ -174,7 +181,9 @@ export class AuthenticationService {
       }
     } catch (error) {
       console.error('Error updating password:', error);
-      throw new Error('An error occurred while updating the password. Please try again.');
+      throw new Error(
+        'An error occurred while updating the password. Please try again.'
+      );
     }
   }
 
@@ -182,16 +191,22 @@ export class AuthenticationService {
     try {
       if (this.auth.currentUser) {
         const db = getFirestore();
-        await setDoc(doc(db, 'users', this.auth.currentUser.uid), {
-          name: newName,
-        }, { merge: true });
+        await setDoc(
+          doc(db, 'users', this.auth.currentUser.uid),
+          {
+            name: newName,
+          },
+          { merge: true }
+        );
         await updateProfile(this.auth.currentUser, { displayName: newName });
         const userData = await this.getUserData(this.auth.currentUser.uid);
         this.currentUser.next(userData);
       }
     } catch (error) {
       console.error('Error updating name:', error);
-      throw new Error('An error occurred while updating the name. Please try again.');
+      throw new Error(
+        'An error occurred while updating the name. Please try again.'
+      );
     }
   }
 }

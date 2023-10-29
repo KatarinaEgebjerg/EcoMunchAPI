@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, LoadingController, AlertController, ModalController } from '@ionic/angular';
-import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import {
+  NavController,
+  LoadingController,
+  AlertController,
+  ModalController,
+} from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-logout-confirmation-modal',
@@ -9,7 +14,7 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
 })
 export class LogoutConfirmationModalPage implements OnInit {
   constructor(
-    private authService: AuthenticationService,
+    private authService: AuthService,
     private navCtrl: NavController,
     private loadingController: LoadingController,
     private alertController: AlertController,
@@ -23,7 +28,7 @@ export class LogoutConfirmationModalPage implements OnInit {
       message: 'Logging out...',
     });
     await loading.present();
-  
+
     try {
       await this.authService.logout();
       await this.modalCtrl.dismiss();
@@ -32,7 +37,7 @@ export class LogoutConfirmationModalPage implements OnInit {
       const alert = await this.alertController.create({
         header: 'Logout failed',
         message: error.message,
-        buttons: ['OK']
+        buttons: ['OK'],
       });
       await alert.present();
     } finally {

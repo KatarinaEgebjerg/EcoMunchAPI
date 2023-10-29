@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs';
 import {
   getFirestore,
   doc,
-  getDoc,
   setDoc,
   getDocs,
   collection,
@@ -17,21 +16,6 @@ export class UserService {
   public currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
   constructor(private mealService: MealService) { 
   }
-
-async getUserData(uid: string) {
-  const db = getFirestore();
-  const docRef = doc(db, 'users', uid);
-  const docSnap = await getDoc(docRef);
-
-  if (docSnap.exists()) {
-    const userData = docSnap.data();
-    this.currentUser.next(userData);
-    return userData;
-  } else {
-    console.log('No such document!');
-    return null;
-  }
-}
 
 async addToFavorites(userId: string, mealId: string) {
   try {

@@ -27,7 +27,7 @@ export class AuthService {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         // User is signed in, fetch their data
-        this.getUserData(user.uid).then((userData) => {
+        this.getUser(user.uid).then((userData) => {
           this.currentUser.next(userData);
         });
       } else {
@@ -134,7 +134,7 @@ export class AuthService {
     }
   }
 
-  async getUserData(uid: string) {
+  async getUser(uid: string) {
     const db = getFirestore();
     const docRef = doc(db, 'users', uid);
     const docSnap = await getDoc(docRef);
@@ -163,7 +163,7 @@ export class AuthService {
           },
           { merge: true }
         );
-        const userData = await this.getUserData(this.auth.currentUser.uid);
+        const userData = await this.getUser(this.auth.currentUser.uid);
         this.currentUser.next(userData);
       }
     } catch (error) {
@@ -199,7 +199,7 @@ export class AuthService {
           { merge: true }
         );
         await updateProfile(this.auth.currentUser, { displayName: newName });
-        const userData = await this.getUserData(this.auth.currentUser.uid);
+        const userData = await this.getUser(this.auth.currentUser.uid);
         this.currentUser.next(userData);
       }
     } catch (error) {

@@ -16,7 +16,6 @@ export class MalthesLejelandPage implements OnInit {
   ingredientsInput = '';
   bestMatches: any[] = [];
   favorites: any[] = [];
-  currentUserSubscription: any;
 
   constructor(
     private authService: AuthService,
@@ -26,12 +25,22 @@ export class MalthesLejelandPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.getUser();
+    this.getFavorites();
+  }
+
+  getUser() {
     this.authService.currentUser.subscribe((data) => {
       this.user = data;
     });
-    this.currentUserSubscription = this.authService.currentUser.subscribe(async (user) => {
+  }
+
+  getFavorites() {
+    this.authService.currentUser.subscribe((user) => {
       if (user) {
-        this.favorites = await this.userService.getFavorites(user.uid);
+        this.userService.getFavorites(user.uid).then((favorites) => {
+          this.favorites = favorites;
+        });
       }
     });
   }
@@ -66,23 +75,6 @@ export class MalthesLejelandPage implements OnInit {
     if (data) {
       this.user = data;
     }
-  }
-
-  async testFavorites() {
-    const testMealId = '52855'; // replace with an actual meal id for testing
-
-    // Test adding a favorite meal
-    await this.userService.addToFavorites(this.user.uid, testMealId);
-
-    // Test retrieving favorite meals
-    const favorites = await this.userService.getFavorites(this.user.uid);
-    console.log('Favorites:', favorites);
-  }
-
-  async testGetFavorites() {
-    // Test retrieving favorite meals
-    this.favorites = await this.userService.getFavorites(this.user.uid);
-    console.log('Favorites:', this.favorites);
   }
 
   getIngredients(cocktail: any) {

@@ -38,7 +38,7 @@
     <p>Ingredients: {{ match.totalIngredients - match.missingIngredientsCount }}/{{ match.totalIngredients }}</p>
   </div>
 
-  <ion-button (click)="testGetFavorites()">Get Favorites</ion-button>
+  <ion-button (click)="getFavorites()">Get Favorites</ion-button>
 
   <div *ngFor="let favorite of favorites">
     <h2>{{ favorite.strMeal }}</h2>

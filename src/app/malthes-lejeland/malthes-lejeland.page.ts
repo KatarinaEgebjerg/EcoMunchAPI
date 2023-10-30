@@ -45,6 +45,13 @@ export class MalthesLejelandPage implements OnInit {
     });
   }
 
+  async addFavorite() {
+    const mealId = '52855'; // replace with your static meal id
+
+    await this.userService.addToFavorites(this.user.uid, mealId);
+    console.log('Meal added to favorites successfully');
+  }
+
   async logoutModal() {
     const modal = await this.modalCtrl.create({
       component: LogoutConfirmationModalPage,

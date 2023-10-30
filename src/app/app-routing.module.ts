@@ -43,10 +43,6 @@ const routes: Routes = [
     path: 'update-user-modal',
     loadChildren: () => import('./modals/update-user-modal/update-user-modal.module').then( m => m.UpdateUserModalPageModule)
   },
-  {
-    path: 'modal-popup',
-    loadChildren: () => import('./modal-popup/modal-popup.module').then( m => m.ModalPopupPageModule)
-  }
 ];
 
 @NgModule({

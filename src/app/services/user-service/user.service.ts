@@ -13,7 +13,6 @@ import { MealService } from '../meal-service/meal.service';
   providedIn: 'root',
 })
 export class UserService {
-  public currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
   constructor(private mealService: MealService) { 
   }
 

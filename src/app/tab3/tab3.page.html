@@ -56,26 +56,38 @@
         </ion-text>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col> </ion-col>
-    </ion-row>
+
     <ion-row>
       <div *ngFor="let favorite of favorites">
-        <h2>{{ favorite.strMeal }}</h2>
-        <img [src]="favorite.strMealThumb" alt="{{ favorite.strMeal }}" />
-        <ng-container
-          *ngFor="let ingredient of getIngredients(favorite); let i = index"
-        >
-          <p>ingredients: {{ i + 1 }}. {{ ingredient }}</p>
-        </ng-container>
-      </div>
-      <ion-button (click)="getFavorites()">Get Favorites</ion-button>
+        <ion-card>
+          <ion-row style="background-color: #f4f4f4">
+            <ion-col>
+              <ion-img
+                [src]="favorite.strMealThumb"
+                alt="{{ favorite.strMeal }}"
+                style="border-radius: 50%; overflow: hidden"
+              />
+            </ion-col>
 
-  
-  <ion-button (click)="addFavorite()" shape="round">
-    Add one favorite
-  </ion-button>
-        
+            <ion-col>
+              <ion-card-header>
+                <h2>{{ favorite.strMeal }}</h2>
+              </ion-card-header>
+
+              <ion-card-content>
+                <ion-button fill="clear" slot="end" (click)="addFavorite()">
+                  <ion-icon
+                    class="right"
+                    name="heart"
+                    size="large"
+                    color="primary"
+                  ></ion-icon
+                ></ion-button>
+              </ion-card-content>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </div>
     </ion-row>
   </ion-grid>
 </ion-content>

@@ -91,4 +91,15 @@ export class Tab3Page {
     await this.userService.addToFavorites(this.user.uid, mealId);
     console.log('Meal added to favorites successfully');
   }
+
+  async removeFavorite() {
+    const mealId = '52855'; // Replace with the meal ID you want to remove from favorites
+  
+    try {
+      await this.userService.removeFromFavorites(this.user.uid, mealId);
+      console.log('Meal removed from favorites successfully');
+    } catch (error) {
+      console.error('Error removing meal from favorites:', error);
+    }
+  }
 }

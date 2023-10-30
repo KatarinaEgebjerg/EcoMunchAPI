@@ -75,19 +75,30 @@
               </ion-card-header>
 
               <ion-card-content>
-                <ion-button fill="clear" slot="end" (click)="removeFavorite()">
-                  <ion-icon
-                    class="right"
-                    name="heart"
-                    size="large"
-                    color="primary"
-                  ></ion-icon
-                ></ion-button>
+                <ion-icon
+                  *ngIf="!favorite.value"
+                  class="right"
+                  name="heart"
+                  size="large"
+                  color="primary"
+                  (click)="removeFavorite()"
+                ></ion-icon>
+                <ion-icon
+                  *ngIf="favorite.value"
+                  class="right"
+                  name="heart-outline"
+                  size="large"
+                  color="primary"
+                  (click)="addFavorite()"
+                ></ion-icon>
               </ion-card-content>
             </ion-col>
           </ion-row>
         </ion-card>
       </div>
     </ion-row>
+    <ion-button (click)="addFavorite()" shape="round">
+      Add one favorite
+    </ion-button>
   </ion-grid>
 </ion-content>

@@ -63,4 +63,13 @@ export class Tab3Page {
     }
   }
   
+  getFavorites() {
+    this.authService.currentUser.subscribe((user) => {
+      if (user) {
+        this.userService.getFavorites(user.uid).then((favorites) => {
+          this.favorites = favorites;
+        });
+      }
+    });
+  }
 }

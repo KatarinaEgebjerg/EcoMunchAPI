@@ -5,7 +5,7 @@ import { lastValueFrom } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService {
+export class MealService {
   private apiKey = '9973533';
 
   constructor(private http: HttpClient) {}

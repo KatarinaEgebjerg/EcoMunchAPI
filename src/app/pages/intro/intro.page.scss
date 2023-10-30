@@ -15,11 +15,13 @@ ion-img {
 h3, h1, p {
     text-align: left;
     stroke: black;
-    size: 30em;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .slider-text {
     padding-top: 20%;
+    position: absolute;
 }
 
 .navigator {

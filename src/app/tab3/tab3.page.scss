@@ -3,18 +3,42 @@ ion-avatar {
     height: 80px;
 }
 
-.page-container {
-    padding: 20px;
-}
-
-.custom-padding {
-    padding-left: 15px;
-}
-
-.custom-card {
-    margin-top: 0px;
-}
-
 .gray-toolbar {
     --background: #f4f4f4 !important;
+}
+
+.favorite-dish-container {
+    .dish-title-padding {
+        padding-left: 15px;
+    }
+
+    .favorite-dish-card {
+        margin-top: 0px;
+        width: 308px;
+        height: 180px;
+    }
+
+    .favorite-dish-card-height {
+        height: 180px;
+    }
+
+    .dish-name-text {
+        color: black !important;
+    }
+
+    .rounded-dish-img {
+        overflow: hidden;
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+    }
+
+    .full-height {
+        height: 100%;
+    }
+
+    .favorite-icon-position {
+        position: absolute;
+        right: 0;
+    }
 }

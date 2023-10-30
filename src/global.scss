@@ -45,7 +45,13 @@ h1 {
 
 h2 {
     font-size: 25px;
-    font-weight: 600;
+    font-weight: 700;
+    color: #3E6E39;
+}
+
+h3 {
+    font-size: 25px;
+    font-weight: 700;
     color: #CC5500;
 }
 
@@ -81,6 +87,10 @@ swiper-container {
 
 ion-toolbar {
     --background: white !important;
+}
+
+.page-container {
+    padding: 20px;
 }
 
 .my-modal::part(content) {

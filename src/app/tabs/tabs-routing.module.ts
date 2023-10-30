@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
+        path: 'malthes-lejeland',
+        loadChildren: () => import('../malthes-lejeland/malthes-lejeland.module').then(m => m.MalthesLejelandPageModule)
+      },
+      {
         path: '',
         redirectTo: 'tab1',
         pathMatch: 'full',

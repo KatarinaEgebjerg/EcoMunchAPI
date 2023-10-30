@@ -11,7 +11,7 @@ import {
   LoadingController,
   NavController,
 } from '@ionic/angular';
-import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +24,7 @@ export class RegisterPage implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthenticationService,
+    private authService: AuthService,
     private alertController: AlertController,
     private loadingController: LoadingController,
     private navCtrl: NavController

@@ -40,6 +40,11 @@
 
   <ion-button (click)="getFavorites()">Get Favorites</ion-button>
 
+  
+  <ion-button (click)="addFavorite()" shape="round">
+    Add one favorite
+  </ion-button>
+
   <div *ngFor="let favorite of favorites">
     <h2>{{ favorite.strMeal }}</h2>
     <img [src]="favorite.strMealThumb" alt="{{ favorite.strMeal }}">

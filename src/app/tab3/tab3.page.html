@@ -1,19 +1,19 @@
 <ion-content>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <div slot="start">
-        <ion-button fill="clear">
-          <ion-icon size="large" color="primary" name="arrow-back"></ion-icon>
-        </ion-button>
-      </div>
-
       <ion-button fill="clear" slot="end" (click)="logout()">
         <div slot="end" style="display: flex; align-items: center">
           <ion-text slot="center">
             <h2>Logout</h2>
           </ion-text>
           &nbsp;
-          <ion-icon size="large" color="primary" name="Log-out-outline" text="Logout" slot="end"></ion-icon>
+          <ion-icon
+            size="large"
+            color="primary"
+            name="Log-out-outline"
+            text="Logout"
+            slot="end"
+          ></ion-icon>
         </div>
       </ion-button>
     </ion-toolbar>
@@ -23,7 +23,10 @@
     <ion-row class="ion-justify-content-center">
       <ion-col size="3" class="ion-padding">
         <ion-avatar>
-          <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          <img
+            alt="Silhouette of a person's head"
+            src="https://ionicframework.com/docs/img/demos/avatar.svg"
+          />
         </ion-avatar>
       </ion-col>
     </ion-row>
@@ -32,12 +35,12 @@
         <h1>Hello {{user.name}}</h1>
       </ion-label>
     </ion-row>
-
   </ion-grid>
 
-  <ion-grid class="ion-padding" >
+  <ion-grid class="ion-padding">
     <ion-row>
-      <ion-col size="12"> Email: {{user.email}}
+      <ion-col size="12">
+        Email: {{user.email}}
         <ion-button fill="clear" (click)="updateUser()">
           <ion-icon size="medium" color="primary" name="pencil"></ion-icon>
         </ion-button>
@@ -55,6 +58,17 @@
     </ion-row>
     <ion-row>
       <ion-col> </ion-col>
+    </ion-row>
+    <ion-row>
+      <div *ngFor="let favorite of favorites">
+        <h2>{{ favorite.strMeal }}</h2>
+        <img [src]="favorite.strMealThumb" alt="{{ favorite.strMeal }}" />
+        <ng-container
+          *ngFor="let ingredient of getIngredients(favorite); let i = index"
+        >
+          <p>ingredients: {{ i + 1 }}. {{ ingredient }}</p>
+        </ng-container>
+      </div>
     </ion-row>
   </ion-grid>
 </ion-content>

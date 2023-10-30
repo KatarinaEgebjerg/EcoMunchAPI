@@ -3,7 +3,9 @@ import { NgForm } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { LogoutConfirmationModalPage } from '../modals/logout-confirmation-modal/logout-confirmation-modal.page';
 import { UpdateUserModalPage } from '../modals/update-user-modal/update-user-modal.page';
-import { AuthenticationService } from '../services/authentication/authentication.service';
+import { AuthService } from '../services/auth-service/auth.service';
+import { MealService } from '../services/meal-service/meal.service';
+import { UserService } from '../services/user-service/user.service';
 
 
 
@@ -19,10 +21,15 @@ export class Tab3Page {
     console.log('user name:', this.login.username );
     console.log('user password', this.login.password );
   }
+  ingredientsInput = '';
+  bestMatches: any[] = [];
+  favorites: any[] = [];
 
   constructor(
-    private authService: AuthenticationService,
+    private authService: AuthService,
     private modalCtrl: ModalController,
+    private MealService: MealService,
+    private userService: UserService,
   ) {}
 
   setLoginData() {
@@ -35,6 +42,7 @@ export class Tab3Page {
       this.user = data;
     });
     console.log(this.user)
+    this.getFavorites();
   }
 
   async logout() {
@@ -71,5 +79,9 @@ export class Tab3Page {
         });
       }
     });
+  }
+
+  getIngredients(cocktail: any) {
+    return this.MealService.getIngredients(cocktail);
   }
 }

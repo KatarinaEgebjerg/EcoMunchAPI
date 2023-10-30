@@ -38,17 +38,15 @@ h6 {
 }
 
 h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 30px !important;    
+    font-weight: 700 !important;
     color: #3E6E39;
 }
 
 h2 {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 600;
     color: #CC5500;
-    padding: 4%;
-    margin-top: 20px;
 }
 
 p {
@@ -79,6 +77,10 @@ swiper-container {
     --swiper-pagination-progressbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.25);
     --swiper-scrollbar-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.1);
     --swiper-scrollbar-drag-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5);
+}
+
+ion-toolbar {
+    --background: white !important;
 }
 
 .my-modal::part(content) {

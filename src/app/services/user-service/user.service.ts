@@ -10,10 +10,12 @@ import {
 import { MealService } from '../meal-service/meal.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-  constructor(private mealService: MealService) {}
+  public currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
+  constructor(private mealService: MealService) { 
+  }
 
   async addToFavorites(userId: string, mealId: string) {
     try {

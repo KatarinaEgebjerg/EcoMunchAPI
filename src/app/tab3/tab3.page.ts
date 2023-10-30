@@ -84,4 +84,11 @@ export class Tab3Page {
   getIngredients(cocktail: any) {
     return this.MealService.getIngredients(cocktail);
   }
+
+  async addFavorite() {
+    const mealId = '52855'; // replace with your static meal id
+
+    await this.userService.addToFavorites(this.user.uid, mealId);
+    console.log('Meal added to favorites successfully');
+  }
 }

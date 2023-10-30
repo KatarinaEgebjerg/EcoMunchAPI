@@ -69,6 +69,13 @@
           <p>ingredients: {{ i + 1 }}. {{ ingredient }}</p>
         </ng-container>
       </div>
+      <ion-button (click)="getFavorites()">Get Favorites</ion-button>
+
+  
+  <ion-button (click)="addFavorite()" shape="round">
+    Add one favorite
+  </ion-button>
+        
     </ion-row>
   </ion-grid>
 </ion-content>

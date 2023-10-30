@@ -1,4 +1,20 @@
-ion-avatar  {     
+ion-avatar {
     width: 80px;
     height: 80px;
-    }
+}
+
+.page-container {
+    padding: 20px;
+}
+
+.custom-padding {
+    padding-left: 15px;
+}
+
+.custom-card {
+    margin-top: 0px;
+}
+
+.gray-toolbar {
+    --background: #f4f4f4 !important;
+}

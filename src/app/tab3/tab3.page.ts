@@ -86,7 +86,7 @@ export class Tab3Page {
   }
 
   async addFavorite() {
-    const mealId = '52855'; // replace with your static meal id
+    const mealId = '52854'; // replace with your static meal id
 
     await this.userService.addToFavorites(this.user.uid, mealId);
     console.log('Meal added to favorites successfully');

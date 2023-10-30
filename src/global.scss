@@ -79,6 +79,10 @@ swiper-container {
     --swiper-scrollbar-drag-bg-color: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.5);
 }
 
+ion-toolbar {
+    --background: white !important;
+}
+
 .my-modal::part(content) {
     width: 80%;
     --border-radius: 10px;

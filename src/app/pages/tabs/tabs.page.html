@@ -2,9 +2,10 @@
 
   <ion-tab-bar slot="bottom" >
     
-    <ion-tab-button tab="home" routerLink="/tabs/home">
+    <ion-tab-button [class.tab-selected]="activeTab === 'home'" tab="home" routerLink="/tabs/home">
       <ion-icon aria-hidden="true" name="home"></ion-icon>
     </ion-tab-button>
+    
 
     <!-- <ion-tab-button tab="malthes-lejeland" routerLink="/tabs/malthes-lejeland">
       <ion-icon aria-hidden="true" name="square"></ion-icon>

@@ -1,5 +1,16 @@
 ion-tab-bar {
-    --background: #ffffff; /* white background */
+    --background: transparent; /* white background */
     --border: none; /* no border */
+    --border-width: 0 !important; /* no border */
   }
+  
+  // ion-tab-bar {
+  //   --background: transparent; /* transparent background */
+  // }
+  
+  ion-tab-button {
+    --background: transparent; /* transparent background */
+    --background-selected: transparent;
+  }
+
   

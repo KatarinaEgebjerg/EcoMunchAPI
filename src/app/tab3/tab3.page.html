@@ -1,104 +1,109 @@
 <ion-content>
-  <ion-header collapse="condense">
+  <ion-header class="ion-no-border">
     <ion-toolbar>
-      <ion-button fill="clear" slot="end" (click)="logout()">
-        <div slot="end" style="display: flex; align-items: center">
-          <ion-text slot="center">
-            <h2>Logout</h2>
-          </ion-text>
-          &nbsp;
-          <ion-icon
-            size="large"
-            color="primary"
-            name="Log-out-outline"
-            text="Logout"
-            slot="end"
-          ></ion-icon>
-        </div>
-      </ion-button>
+      <ion-buttons slot="end" size="large">
+        <ion-button fill="clear" slot="end" (click)="logout()">
+          Logout
+          <ion-icon name="Log-out-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
-  <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="3" class="ion-padding">
-        <ion-avatar>
-          <img
-            alt="Silhouette of a person's head"
-            src="https://ionicframework.com/docs/img/demos/avatar.svg"
-          />
-        </ion-avatar>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-justify-content-center">
-      <ion-label class="ion-padding">
-        <h1>Hello {{user.name}}</h1>
-      </ion-label>
-    </ion-row>
-  </ion-grid>
+  <div class="page-container">
+    <ion-card style="background-color: #f4f4f4; position: relative">
+      <ion-toolbar class="gray-toolbar">
+        <ion-buttons slot="end">
+          <ion-button fill="clear" (click)="updateUser()">
+            <ion-icon
+              size="medium"
+              color="primary"
+              name="create-outline"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
 
-  <ion-grid class="ion-padding">
-    <ion-row>
-      <ion-col size="12">
-        Email: {{user.email}}
-        <ion-button fill="clear" (click)="updateUser()">
-          <ion-icon size="medium" color="primary" name="pencil"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
-  <ion-grid>
-    <ion-row class="ion-justify-content-center">
-      <ion-col size="12" class="ion-padding-start">
-        <ion-text color="secondary">
-          <h2>Favorite Dishes</h2>
-        </ion-text>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <div *ngFor="let favorite of favorites">
-        <ion-card>
-          <ion-row style="background-color: #f4f4f4">
-            <ion-col>
-              <ion-img
-                [src]="favorite.strMealThumb"
-                alt="{{ favorite.strMeal }}"
-                style="border-radius: 50%; overflow: hidden"
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="auto" class="ion-text-center">
+            <ion-avatar>
+              <img
+                alt="Silhouette of a person's head"
+                src="https://ionicframework.com/docs/img/demos/avatar.svg"
               />
-            </ion-col>
+            </ion-avatar>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-label class="ion-text-center ion-padding-top">
+            <h1>Hello {{user.name}}</h1>
+          </ion-label>
+        </ion-row>
+      </ion-grid>
 
-            <ion-col>
-              <ion-card-header>
-                <h2>{{ favorite.strMeal }}</h2>
-              </ion-card-header>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" class="ion-text-center">
+            <p>Email: {{user.email}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
 
-              <ion-card-content>
-                <ion-icon
-                  *ngIf="!favorite.value"
-                  class="right"
-                  name="heart"
-                  size="large"
-                  color="primary"
-                  (click)="removeFavorite()"
-                ></ion-icon>
-                <ion-icon
-                  *ngIf="favorite.value"
-                  class="right"
-                  name="heart-outline"
-                  size="large"
-                  color="primary"
-                  (click)="addFavorite()"
-                ></ion-icon>
-              </ion-card-content>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-      </div>
-    </ion-row>
-    <ion-button (click)="addFavorite()" shape="round">
-      Add one favorite
-    </ion-button>
-  </ion-grid>
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" class="custom-padding">
+          <ion-text color="secondary">
+            <h1>Favorite Dishes</h1>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <div *ngFor="let favorite of favorites">
+          <ion-card class="custom-card">
+            <ion-row style="background-color: #f4f4f4; position: relative">
+              <ion-col>
+                <ion-img
+                  [src]="favorite.strMealThumb"
+                  alt="{{ favorite.strMeal }}"
+                  style="border-radius: 50%; overflow: hidden"
+                />
+              </ion-col>
+
+              <ion-col class="ion-text-center">
+                <ion-card-header>
+                  <h2>{{ favorite.strMeal }}</h2>
+                </ion-card-header>
+
+                <ion-card-content>
+                  <div style="position: absolute; bottom: 0; right: 0">
+                    <ion-icon
+                      *ngIf="!favorite.value"
+                      name="heart"
+                      size="large"
+                      color="primary"
+                      (click)="removeFavorite()"
+                    ></ion-icon>
+                    <ion-icon
+                      *ngIf="favorite.value"
+                      name="heart-outline"
+                      size="large"
+                      color="primary"
+                      (click)="addFavorite()"
+                    ></ion-icon>
+                  </div>
+                </ion-card-content>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </div>
+      </ion-row>
+
+      <ion-button (click)="addFavorite()" shape="round">
+        Add one favorite
+      </ion-button>
+    </ion-grid>
+  </div>
 </ion-content>

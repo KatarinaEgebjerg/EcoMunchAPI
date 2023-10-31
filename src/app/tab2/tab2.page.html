@@ -21,6 +21,15 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+<h2>What I have in my Fridge</h2>
+
+<div>
+  <ion-searchbar placeholder="Enter ingredients separated by comma" class="custom"></ion-searchbar>
+  <!--[(ngModel)]="ingredientsInput"-->
+  <!--<ion-button (click)="getBestMatches()">Get Best Matches</ion-button>-->
+</div>
+
   <h2>Dish of the day!</h2>
 
   <ion-card>
@@ -78,4 +87,13 @@
       </ion-col>
     </ion-row>
   </ion-card>
+
+ <!-- <div class="center-button">
+    <button (click)="showMore()" [ngClass]="{'clicked': isClicked}">TEST More</button>
+  </div>-->
+
+  <div class="center-button">
+    <ion-button (click)="showMore()" [ngClass]="{'clicked': isClicked}">Show More</ion-button>
+  </div>
+
 </ion-content>

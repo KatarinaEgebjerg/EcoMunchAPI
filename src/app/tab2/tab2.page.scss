@@ -19,3 +19,20 @@ h2 {
     color: #3E6E39 !important;
 }
 
+ion-searchbar.custom input {
+    height: 40px;
+    
+}
+
+.center-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+
+.clicked {
+    background-color: #e59257; /* Change to your desired button color when clicked */
+    color: #fff; /* Button text color when clicked */
+    transition: background-color 0.1s ease; /* Add a smooth transition effect */
+  }

@@ -22,7 +22,7 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () =>
-      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+      import('./pages/tabs/tabs.module').then((m) => m.TabsPageModule),
       ...canActivate(redirectUnauthorizedToLogin)
   },
   {

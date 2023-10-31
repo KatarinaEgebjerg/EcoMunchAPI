@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LogoutConfirmationModalPage } from '../modals/logout-confirmation-modal/logout-confirmation-modal.page';
-import { AuthService } from '../services/auth-service/auth.service';
+import { LogoutConfirmationModalPage } from '../../modals/logout-confirmation-modal/logout-confirmation-modal.page';
+import { AuthService } from '../../services/auth-service/auth.service';
 import { ModalController } from '@ionic/angular';
-import { MealService } from '../services/meal-service/meal.service';
-import { UpdateUserModalPage } from '../modals/update-user-modal/update-user-modal.page';
-import { UserService } from '../services/user-service/user.service';
+import { MealService } from '../../services/meal-service/meal.service';
+import { UpdateUserModalPage } from '../../modals/update-user-modal/update-user-modal.page';
+import { UserService } from '../../services/user-service/user.service';
 
 @Component({
   selector: 'app-malthes-lejeland',

@@ -22,7 +22,25 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content>  
+
+  <div class="page-container">
+    <ion-grid class="dish-card-container">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" class="dish-title-padding">
+          <ion-text color="secondary">
+            <h2>What have I in my fridge</h2>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-searchbar placeholder="Enter ingredients separated by comma" class="custom"></ion-searchbar>
+          <!--[(ngModel)]="ingredientsInput"-->
+        </ion-row>
+       </ion-grid>
+      </div>
+
   <div class="page-container">
     <ion-grid class="dish-card-container">
       <ion-row class="ion-justify-content-center">
@@ -104,4 +122,9 @@
       </ion-row>
     </ion-grid>
   </div>
+
+  <div class="center-button">
+    <ion-button (click)="showMore()" [ngClass]="{'clicked': isClicked}">Show More</ion-button>
+  </div>
+
 </ion-content>

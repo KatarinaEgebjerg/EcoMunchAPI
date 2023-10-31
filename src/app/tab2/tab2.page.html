@@ -9,12 +9,24 @@
           slot="left"
         ></ion-img>
 
-        <ion-icon
-          class="right"
-          size="large"
-          name="person-circle"
-          color="primary"
-        ></ion-icon>
+        <ion-card-content>
+          <ion-icon
+            *ngIf="!favorites.values"
+            class="right"
+            name="heart"
+            size="large"
+            color="primary"
+            (click)="removeFavorite()"
+          ></ion-icon>
+          <ion-icon
+            *ngIf="favorites.values"
+            class="right"
+            name="heart-outline"
+            size="large"
+            color="primary"
+            (click)="addFavorite()"
+          ></ion-icon>
+        </ion-card-content>
       </ion-row>
     </span>
   </ion-toolbar>
@@ -38,14 +50,24 @@
           <ion-card-title>Mad title</ion-card-title>
         </ion-card-header>
 
-        <ion-card-content
-          ><ion-icon
+        <ion-card-content>
+          <ion-icon
+            *ngIf="!favorites.values"
+            class="right"
+            name="heart"
+            size="large"
+            color="primary"
+            (click)="removeFavorite()"
+          ></ion-icon>
+          <ion-icon
+            *ngIf="favorites.values"
             class="right"
             name="heart-outline"
             size="large"
             color="primary"
-          ></ion-icon
-        ></ion-card-content>
+            (click)="addFavorite()"
+          ></ion-icon>
+        </ion-card-content>
       </ion-col>
     </ion-row>
   </ion-card>

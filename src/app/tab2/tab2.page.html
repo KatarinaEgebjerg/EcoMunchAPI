@@ -9,24 +9,12 @@
           slot="left"
         ></ion-img>
 
-        <ion-card-content>
-          <ion-icon
-            *ngIf="!favorites.values"
-            class="right"
-            name="heart"
-            size="large"
-            color="primary"
-            (click)="removeFavorite()"
-          ></ion-icon>
-          <ion-icon
-            *ngIf="favorites.values"
-            class="right"
-            name="heart-outline"
-            size="large"
-            color="primary"
-            (click)="addFavorite()"
-          ></ion-icon>
-        </ion-card-content>
+        <ion-icon
+          class="right"
+          size="large"
+          name="person-circle"
+          color="primary"
+        ></ion-icon>
       </ion-row>
     </span>
   </ion-toolbar>
@@ -91,12 +79,22 @@
 
         <ion-card-content
           ><ion-icon
-            class="right"
-            name="heart-outline"
-            size="large"
-            color="primary"
-          ></ion-icon
-        ></ion-card-content>
+          *ngIf="!favorites.values"
+          class="right"
+          name="heart"
+          size="large"
+          color="primary"
+          (click)="removeFavorite()"
+        ></ion-icon>
+        <ion-icon
+          *ngIf="favorites.values"
+          class="right"
+          name="heart-outline"
+          size="large"
+          color="primary"
+          (click)="addFavorite()"
+        ></ion-icon>
+        </ion-card-content>
       </ion-col>
     </ion-row>
   </ion-card>

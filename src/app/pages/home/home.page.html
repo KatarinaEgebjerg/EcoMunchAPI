@@ -1,0 +1,107 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-img
+        src="assets/images/Logo.png"
+        alt="Eco munch logo"
+        class="logo"
+      ></ion-img>
+      <h2 class="logoText">Eco Munch</h2>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="navigateToProfile()">
+        <ion-icon
+          class="profileLogo"
+          size="large"
+          name="person-circle"
+          color="primary"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page-container">
+    <ion-grid class="dish-card-container">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" class="dish-title-padding">
+          <ion-text color="secondary">
+            <h2>Dish of the day</h2>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-card class="dish-card dish-card-height dish-green-bg-color">
+          <ion-row class="ion-align-items-center full-height">
+            <ion-col>
+              <ion-img
+                src="https:\/\/www.themealdb.com\/images\/media\/meals\/ryppsv1511815505.jpg"
+                alt="Silhouette of mountains"
+                class="rounded-dish-img"
+              />
+            </ion-col>
+
+            <ion-col class="ion-text-center">
+              <ion-card-header>
+                <h3 class="dish-name-text">Banana pie</h3>
+              </ion-card-header>
+
+              <ion-card-content>
+                <div class="favorite-icon-position">
+                  <ion-icon
+                    name="heart-outline"
+                    size="large"
+                    color="primary"
+                  ></ion-icon>
+                </div>
+              </ion-card-content>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="dish-card-container">
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" class="dish-title-padding">
+          <ion-text color="secondary">
+            <h2>Popular dishes</h2>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-card class="dish-card dish-card-height dish-bg-color">
+          <ion-row class="ion-align-items-center full-height">
+            <ion-col>
+              <ion-img
+                src="https:\/\/www.themealdb.com\/images\/media\/meals\/ryppsv1511815505.jpg"
+                alt="Silhouette of mountains"
+                class="rounded-dish-img"
+              />
+            </ion-col>
+
+            <ion-col class="ion-text-center">
+              <ion-card-header>
+                <h3 class="dish-name-text">Banana pie</h3>
+              </ion-card-header>
+
+              <ion-card-content>
+                <div class="favorite-icon-position">
+                  <ion-icon
+                    name="heart-outline"
+                    size="large"
+                    color="primary"
+                  ></ion-icon>
+                </div>
+              </ion-card-content>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

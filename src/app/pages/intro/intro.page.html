@@ -1,58 +1,75 @@
 <ion-content class="ion-padding">
+  <swiper-container #swiper (afterinit)="swiperReady()" [pagination]="true">
+    <swiper-slide class="slide-1">
 
-    <swiper-container #swiper (afterinit)="swiperReady()" [pagination]="true">
-        <swiper-slide>
+      <div class="slider-text">
+        <h3>Welcome to</h3>
+        <h1 style="font-size: xxx-large">Ecomunch</h1>
 
-            <ion-img
-            alt="Food cover"
-            src="/src/assets/images/foodCover.png"></ion-img>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+          ultricies, erat vitae porta consequat.
+        </p>
+      </div>
 
-            <div class="slider-text">
-                <h3>Welcome to</h3>
-                <h1 style="font-size: xxx-large;">Ecomunch</h1>
-
-                <p>Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Nulla ultricies, erat vitae
-                    porta consequat.
-                </p>
-            </div>
-
-            <div class="navigator">
-                <ion-button color="primary" fill="clear" (click)="start()">SKIP</ion-button>
-                <ion-button color="primary" fill="clear" (click)="next()">NEXT</ion-button>
-            </div>
-        </swiper-slide>
-
-        <swiper-slide><ion-img src="../../../assets/icon/EatingTogether.svg"></ion-img>
-
-            <div class="slider-text">
-                <h1>Benefits</h1>
-
-                <p>Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Nulla ultricies, erat vitae
-                    porta consequat.
-                </p>
-            </div>
-
-            <div class="navigator">
-                <ion-button color="primary" fill="clear" (click)="start()">SKIP</ion-button>
-                <ion-button color="primary" fill="clear" (click)="next()">NEXT</ion-button>
-            </div>
-        </swiper-slide>
-
-        <swiper-slide><ion-img src="../../../assets/icon/undraw_access_account_re_8spm.svg"></ion-img>
-
-            <div class="slider-text">
-                <h3>Get started</h3>
-
-                <p>Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Nulla ultricies, erat vitae
-                    porta consequat.
-                </p>
-            </div>
+      <div class="navigator">
+        <ion-button color="primary" fill="clear" (click)="start()"
+          >Skip</ion-button
+        >
+        <ion-button color="primary" fill="clear" (click)="next()"
+          >Next</ion-button
+        >
+      </div>
+    </swiper-slide>
 
 
-            <ion-button class="get-started" expand="block" (click)="start()">GET STARTED</ion-button>
-        </swiper-slide>
-    </swiper-container>
+
+    <swiper-slide class="slide-2"
+      ><ion-img src="..."></ion-img>
+
+      <div class="slider-text">
+        <h1>Benefits</h1>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+          ultricies, erat vitae porta consequat.
+        </p>
+      </div>
+
+      <div class="navigator">
+        <ion-button color="primary" fill="clear" (click)="start()"
+          >Skip</ion-button
+        >
+        <ion-button color="primary" fill="clear" (click)="next()"
+          >Next</ion-button
+        >
+      </div>
+    </swiper-slide>
+
+
+
+    <swiper-slide class="slide-3"
+      ><ion-img src="..."></ion-img>
+
+      
+
+      <div class="slider-text">
+        <h1>Get started</h1>
+
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+          ultricies, erat vitae porta consequat.
+        </p>
+      </div>
+
+<!--
+      <ion-content padding class="background"></ion-content>
+-->
+      
+
+      <ion-button class="get-started" expand="block" (click)="start()"
+        >GET STARTED</ion-button
+      >
+    </swiper-slide>
+  </swiper-container>
 </ion-content>

@@ -7,9 +7,14 @@ swiper-slide {
     text-align: center;
 }
 
+.slide-1 {
+    --background: url('/src/assets/images/foodCover.png') no-repeat center/cover fixed;
+}
+
+
 ion-img {
     padding: 15%;
-    position: relative;
+    position: absolute;
 }
 
 h3, h1, p {
@@ -17,6 +22,7 @@ h3, h1, p {
     stroke: black;
     margin-left: 10%;
     margin-right: 10%;
+    letter-spacing: 0.5mm;
 }
 
 .slider-text {
@@ -37,4 +43,23 @@ h3, h1, p {
     padding-top: 50px;
     font-size: 20px;
     font-weight: 700;
+    margin-left: 2em;
+    margin-right: 2em;
 }
+
+.get-started {
+transform: translateY(375%);
+}
+
+//ion-content.background{
+ //   --background: url(/src/assets/images/foodCover.png) 0 0/100% 100% no-repeat;
+//}
+
+//ion-content {
+  //  .background{
+    //      background-image: url('/src/assets/images/foodCover.png');
+      //    -webkit-background-size: cover;
+        //  -moz-background-size: cover;
+          //background-size: cover;
+    //}
+//}

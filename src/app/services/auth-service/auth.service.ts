@@ -105,12 +105,13 @@ export class AuthService {
       const result = await signInWithPopup(this.auth, provider);
       const user = result.user;
       if (user) {
-        const { displayName: name, email } = user;
+        const { displayName: name, email, photoURL } = user;
         const db = getFirestore();
         await setDoc(doc(db, 'users', user.uid), {
           uid: user.uid,
           name: name,
           email: email,
+          photoURL: photoURL,
         });
       }
       return user;
@@ -118,6 +119,7 @@ export class AuthService {
       console.log('Error during Google login: ', error); // Log the error
       throw new Error('Google login failed. Please try again.');
     }
+    
   }
 
   async forgotPassword({ email }: { email: string }) {

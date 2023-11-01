@@ -85,7 +85,6 @@ export class UpdateUserModalPage {
       const toast = await this.toastCtrl.create({
         message: 'User data updated successfully',
         duration: 2000,
-        position: 'top',
         color: 'success',
       });
       toast.present();
@@ -107,7 +106,6 @@ export class UpdateUserModalPage {
       this.modalCtrl.dismiss(this.credentials.value);
     }
   }
-  
 
   async onSumbit() {
     if (this.credentials.valid) {

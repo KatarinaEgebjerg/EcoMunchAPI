@@ -24,83 +24,114 @@
 
 <ion-content>
   <div class="page-container">
-    <ion-grid class="dish-card-container">
+    <h1>What i have in my fridge</h1>
+    <ion-searchbar
+      class="ion-no-padding"
+      placeholder="Filter by ingredients"
+      inputmode="decimal"
+      type="decimal"
+      [debounce]="250"
+    ></ion-searchbar>
+
+    <ion-grid class="meal-dish-container">
       <ion-row class="ion-justify-content-center">
         <ion-col size="12" class="dish-title-padding">
           <ion-text color="secondary">
-            <h2>Dish of the day</h2>
+            <h2>Latest meal</h2>
           </ion-text>
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-card class="dish-card dish-card-height dish-green-bg-color">
-          <ion-row class="ion-align-items-center full-height">
-            <ion-col>
-              <ion-img
-                src="https:\/\/www.themealdb.com\/images\/media\/meals\/ryppsv1511815505.jpg"
-                alt="Silhouette of mountains"
-                class="rounded-dish-img"
-              />
-            </ion-col>
-
-            <ion-col class="ion-text-center">
-              <ion-card-header>
-                <h3 class="dish-name-text">Banana pie</h3>
-              </ion-card-header>
-
-              <ion-card-content>
-                <div class="favorite-icon-position">
-                  <ion-icon
-                    name="heart-outline"
-                    size="large"
-                    color="primary"
-                  ></ion-icon>
-                </div>
-              </ion-card-content>
-            </ion-col>
-          </ion-row>
-        </ion-card>
+        <div *ngFor="let meal of latestMeals">
+          <ion-card class="meal-dish-card meal-dish-card-height dish-bg-color">
+            <ion-row class="ion-align-items-center full-height">
+              <ion-col>
+                <ion-img
+                  [src]="meal.strMealThumb"
+                  alt="{{ meal.strMeal }}"
+                  class="rounded-dish-img"
+                />
+              </ion-col>
+              <ion-col class="ion-text-center">
+                <ion-card-header>
+                  <h3 class="dish-name-text">{{ meal.strMeal }}</h3>
+                </ion-card-header>
+                <ion-toolbar class="gray-toolbar">
+                  <ion-buttons slot="end">
+                    <ion-button
+                      (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal)"
+                    >
+                      <ion-icon
+                        *ngIf="favoriteStatus[meal.idMeal]"
+                        name="heart"
+                        size="large"
+                        color="primary"
+                      ></ion-icon>
+                      <ion-icon
+                        *ngIf="!favoriteStatus[meal.idMeal]"
+                        name="heart-outline"
+                        size="large"
+                        color="primary"
+                      ></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </div>
       </ion-row>
     </ion-grid>
 
-    <ion-grid class="dish-card-container">
+    <ion-grid class="meal-dish-container">
       <ion-row class="ion-justify-content-center">
         <ion-col size="12" class="dish-title-padding">
           <ion-text color="secondary">
-            <h2>Popular dishes</h2>
+            <h2>Popular meals</h2>
           </ion-text>
         </ion-col>
       </ion-row>
 
       <ion-row>
-        <ion-card class="dish-card dish-card-height dish-bg-color">
-          <ion-row class="ion-align-items-center full-height">
-            <ion-col>
-              <ion-img
-                src="https:\/\/www.themealdb.com\/images\/media\/meals\/ryppsv1511815505.jpg"
-                alt="Silhouette of mountains"
-                class="rounded-dish-img"
-              />
-            </ion-col>
-
-            <ion-col class="ion-text-center">
-              <ion-card-header>
-                <h3 class="dish-name-text">Banana pie</h3>
-              </ion-card-header>
-
-              <ion-card-content>
-                <div class="favorite-icon-position">
-                  <ion-icon
-                    name="heart-outline"
-                    size="large"
-                    color="primary"
-                  ></ion-icon>
-                </div>
-              </ion-card-content>
-            </ion-col>
-          </ion-row>
-        </ion-card>
+        <div *ngFor="let meal of randomMeal">
+          <ion-card class="meal-dish-card meal-dish-card-height dish-bg-color">
+            <ion-row class="ion-align-items-center full-height">
+              <ion-col>
+                <ion-img
+                  [src]="meal.strMealThumb"
+                  alt="{{ meal.strMeal }}"
+                  class="rounded-dish-img"
+                />
+              </ion-col>
+              <ion-col class="ion-text-center">
+                <ion-card-header>
+                  <h3 class="dish-name-text">{{ meal.strMeal }}</h3>
+                </ion-card-header>
+                <ion-toolbar class="gray-toolbar">
+                  <ion-buttons slot="end">
+                    <ion-button
+                      (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal)"
+                    >
+                      <ion-icon
+                        *ngIf="favoriteStatus[meal.idMeal]"
+                        name="heart"
+                        size="large"
+                        color="primary"
+                      ></ion-icon>
+                      <ion-icon
+                        *ngIf="!favoriteStatus[meal.idMeal]"
+                        name="heart-outline"
+                        size="large"
+                        color="primary"
+                      ></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-col>
+            </ion-row>
+          </ion-card>
+        </div>
       </ion-row>
     </ion-grid>
   </div>

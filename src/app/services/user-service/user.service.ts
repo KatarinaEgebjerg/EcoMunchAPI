@@ -6,7 +6,7 @@ import {
   getDocs,
   getDoc,
   collection,
-  deleteDoc
+  deleteDoc,
 } from '@angular/fire/firestore';
 import { MealService } from '../meal-service/meal.service';
 
@@ -14,8 +14,7 @@ import { MealService } from '../meal-service/meal.service';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private mealService: MealService) { 
-  }
+  constructor(private mealService: MealService) {}
 
   async addToFavorites(userId: string, mealId: string) {
     try {
@@ -33,7 +32,9 @@ export class UserService {
       await deleteDoc(doc(db, 'users', userId, 'favorites', mealId));
     } catch (error) {
       console.log('Error during removeFromFavorites: ', error);
-      throw new Error('Failed to remove meal from favorites. Please try again.');
+      throw new Error(
+        'Failed to remove meal from favorites. Please try again.'
+      );
     }
   }
 
@@ -61,12 +62,11 @@ export class UserService {
       const db = getFirestore();
       const docRef = doc(db, 'users', userId, 'favorites', mealId);
       const docSnap = await getDoc(docRef);
-  
+
       return docSnap.exists();
     } catch (error) {
       console.log('Error during isFavorite: ', error);
       throw new Error('Failed to check favorite status. Please try again.');
     }
   }
-  
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 import { LogoutConfirmationModalPage } from '../../modals/logout-confirmation-modal/logout-confirmation-modal.page';
 import { UpdateUserModalPage } from '../../modals/update-user-modal/update-user-modal.page';
 import { AuthService } from '../../services/auth-service/auth.service';
@@ -33,7 +33,8 @@ export class ProfilePage {
     private authService: AuthService,
     private modalCtrl: ModalController,
     private MealService: MealService,
-    private userService: UserService
+    private userService: UserService,
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -80,6 +81,7 @@ export class ProfilePage {
   async addFavorite(meal: any) {
     await this.userService.addToFavorites(this.user.uid, meal.idMeal);
     this.favoriteStatus[meal.idMeal] = true;
+    this.presentToast('Removed from favorites');
   }
 
   async testAddFavorite() {
@@ -96,6 +98,7 @@ export class ProfilePage {
     setTimeout(() => {
       this.favorites = this.favorites.filter(favorite => favorite.idMeal !== meal.idMeal);
     }, 1000); 
+    this.presentToast('Removed from favorites');
   }
   
   isFavorite() {
@@ -103,6 +106,15 @@ export class ProfilePage {
       const isFavorite = await this.userService.isFavorite(this.user.uid, meal.idMeal);
       this.favoriteStatus[meal.idMeal] = isFavorite;
     });
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      color: 'success',
+    });
+    toast.present();
   }
 
 }

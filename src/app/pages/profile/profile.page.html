@@ -86,21 +86,22 @@
                   <h3 class="dish-name-text">{{ favorite.strMeal }}</h3>
                 </ion-card-header>
                 <ion-toolbar class="gray-toolbar">
-                  <ion-buttons slot="end">
-                    <ion-button fill="clear" (click)="removeFavorite(favorite)">
+                  <ion-buttons
+                    slot="end"
+                    (click)="favoriteStatus[favorite.idMeal] ? removeFavorite(favorite) : addFavorite(favorite)"
+                  >
+                    <ion-button>
                       <ion-icon
                         *ngIf="favoriteStatus[favorite.idMeal]"
                         name="heart"
                         size="large"
                         color="primary"
-                        (click)="removeFavorite(favorite)"
                       ></ion-icon>
                       <ion-icon
                         *ngIf="!favoriteStatus[favorite.idMeal]"
                         name="heart-outline"
                         size="large"
                         color="primary"
-                        (click)="addFavorite(favorite)"
                       ></ion-icon>
                     </ion-button>
                   </ion-buttons>
@@ -110,6 +111,7 @@
           </ion-card>
         </div>
       </ion-row>
+      <!-- TODO Add a text if there is no favorites added  -->
       <ion-button (click)="testAddFavorite()" shape="round">
         Add one test favorite
       </ion-button>

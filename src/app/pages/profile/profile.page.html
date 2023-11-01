@@ -62,7 +62,11 @@
 
       <ion-row>
         <div *ngFor="let favorite of favorites">
-          <ion-card class="favorite-dish-card favorite-dish-card-height dish-bg-color">
+          <ion-card
+            *ngIf="!favorite.removed"
+            class="favorite-dish-card favorite-dish-card-height dish-bg-color"
+            [@fadeOutIn]
+          >
             <ion-row class="ion-align-items-center full-height">
               <ion-col>
                 <ion-img
@@ -71,38 +75,37 @@
                   class="rounded-dish-img"
                 />
               </ion-col>
-
               <ion-col class="ion-text-center">
                 <ion-card-header>
                   <h3 class="dish-name-text">{{ favorite.strMeal }}</h3>
                 </ion-card-header>
-
-                <ion-card-content>
-                  <div class="favorite-icon-position">
-                    <ion-icon
-                      *ngIf="!favorite.value"
-                      name="heart"
-                      size="large"
-                      color="primary"
-                      (click)="removeFavorite()"
-                    ></ion-icon>
-                    <ion-icon
-                      *ngIf="favorite.value"
-                      name="heart-outline"
-                      size="large"
-                      color="primary"
-                      (click)="addFavorite()"
-                    ></ion-icon>
-                  </div>
-                </ion-card-content>
+                <ion-toolbar class="gray-toolbar">
+                  <ion-buttons slot="end">
+                    <ion-button fill="clear" (click)="removeFavorite(favorite)">
+                      <ion-icon
+                        *ngIf="favoriteStatus[favorite.idMeal]"
+                        name="heart"
+                        size="large"
+                        color="primary"
+                        (click)="removeFavorite(favorite)"
+                      ></ion-icon>
+                      <ion-icon
+                        *ngIf="!favoriteStatus[favorite.idMeal]"
+                        name="heart-outline"
+                        size="large"
+                        color="primary"
+                        (click)="addFavorite(favorite)"
+                      ></ion-icon>
+                    </ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
               </ion-col>
             </ion-row>
           </ion-card>
         </div>
       </ion-row>
-
-      <ion-button (click)="addFavorite()" shape="round">
-        Add one favorite
+      <ion-button (click)="testAddFavorite()" shape="round">
+        Add one test favorite
       </ion-button>
     </ion-grid>
   </div>

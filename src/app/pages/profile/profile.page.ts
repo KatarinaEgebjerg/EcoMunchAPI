@@ -5,16 +5,29 @@ import { UpdateUserModalPage } from '../../modals/update-user-modal/update-user-
 import { AuthService } from '../../services/auth-service/auth.service';
 import { MealService } from '../../services/meal-service/meal.service';
 import { UserService } from '../../services/user-service/user.service';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-profile',
   templateUrl: 'profile.page.html',
   styleUrls: ['profile.page.scss'],
+  animations: [
+    trigger('fadeOutIn', [
+      state('void', style({ opacity: 0 })),
+      transition('void <=> *', animate('1000ms ease-in-out')),
+    ]),
+  ],
 })
 export class ProfilePage {
   user: any;
-  bestMatches: any[] = [];
   favorites: any[] = [];
+  favoriteStatus: { [key: string]: boolean } = {}; 
 
   constructor(
     private authService: AuthService,
@@ -23,30 +36,35 @@ export class ProfilePage {
     private userService: UserService
   ) {}
 
-  ngOnInit() {
-    this.getUser();
-    this.getFavorites();
+  async ngOnInit() {
+    this.user = await this.getUser();
+    await this.getFavorites();
   }
 
   getUser() {
-    this.authService.currentUser.subscribe((data) => {
-      this.user = data;
+    return new Promise<any>((resolve) => {
+      this.authService.currentUser.subscribe((data) => {
+        this.user = data;
+        resolve(data);
+      });
     });
   }
 
-  getFavorites() {
-    this.authService.currentUser.subscribe((user) => {
-      if (user) {
-        this.userService.getFavorites(user.uid).then((favorites) => {
-          this.favorites = favorites;
-        });
-      }
+  async getFavorites() {
+    return new Promise<void>((resolve) => {
+      this.authService.currentUser.subscribe(async (user) => {
+        if (user) {
+          this.favorites = await this.userService.getFavorites(user.uid);
+          this.isFavorite();
+          resolve();
+        }
+      });
     });
   }
 
   async logout() {
     const modal = await this.modalCtrl.create({
-      component: LogoutConfirmationModalPage, // replace with your actual component
+      component: LogoutConfirmationModalPage, 
       cssClass: 'my-modal',
     });
     await modal.present();
@@ -70,25 +88,32 @@ export class ProfilePage {
     }
   }
 
-  getIngredients(cocktail: any) {
-    return this.MealService.getIngredients(cocktail);
+  async addFavorite(meal: any) {
+    await this.userService.addToFavorites(this.user.uid, meal.idMeal);
+    this.favoriteStatus[meal.idMeal] = true;
   }
 
-  async addFavorite() {
-    const mealId = '52854'; // replace with your static meal id
-
+  async testAddFavorite() {
+    const mealId = '52865'; // Just a test meal id
     await this.userService.addToFavorites(this.user.uid, mealId);
-    console.log('Meal added to favorites successfully');
+    this.favoriteStatus[mealId] = true; 
+    this.favorites.push(await this.MealService.getMealById(mealId));
+  }
+  
+  async removeFavorite(meal: any) {
+    await this.userService.removeFromFavorites(this.user.uid, meal.idMeal);
+    this.favoriteStatus[meal.idMeal] = false;
+    meal.removed = true; 
+    setTimeout(() => {
+      this.favorites = this.favorites.filter(favorite => favorite.idMeal !== meal.idMeal);
+    }, 1000); 
+  }
+  
+  isFavorite() {
+    this.favorites.forEach(async (meal) => {
+      const isFavorite = await this.userService.isFavorite(this.user.uid, meal.idMeal);
+      this.favoriteStatus[meal.idMeal] = isFavorite;
+    });
   }
 
-  async removeFavorite() {
-    const mealId = '52855'; // Replace with the meal ID you want to remove from favorites
-
-    try {
-      await this.userService.removeFromFavorites(this.user.uid, mealId);
-      console.log('Meal removed from favorites successfully');
-    } catch (error) {
-      console.error('Error removing meal from favorites:', error);
-    }
-  }
 }

@@ -4,6 +4,7 @@ import {
   doc,
   setDoc,
   getDocs,
+  getDoc,
   collection,
   deleteDoc
 } from '@angular/fire/firestore';
@@ -54,4 +55,18 @@ export class UserService {
       throw new Error('Failed to fetch favorites. Please try again.');
     }
   }
+
+  async isFavorite(userId: string, mealId: string) {
+    try {
+      const db = getFirestore();
+      const docRef = doc(db, 'users', userId, 'favorites', mealId);
+      const docSnap = await getDoc(docRef);
+  
+      return docSnap.exists();
+    } catch (error) {
+      console.log('Error during isFavorite: ', error);
+      throw new Error('Failed to check favorite status. Please try again.');
+    }
+  }
+  
 }

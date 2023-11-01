@@ -39,4 +39,8 @@ ion-avatar {
         position: absolute;
         right: 0;
     }
+
+    .truncate {
+        word-break: break-word;
+    }
 }

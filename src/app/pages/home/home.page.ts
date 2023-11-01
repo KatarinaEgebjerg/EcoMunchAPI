@@ -86,4 +86,13 @@ export class HomePage {
     });
     toast.present();
   }
+
+  truncateMealName(mealName: string, maxLength: number) {
+    if (mealName.length > maxLength) {
+      return mealName.substring(0, maxLength) + '...';
+    } else {
+      return mealName;
+    }
+  }
+  
 }

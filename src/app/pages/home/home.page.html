@@ -93,7 +93,7 @@
         </ion-col>
       </ion-row>
 
-      <swiper-container [pagination]="true">
+      <swiper-container [autoplay]="{ delay: 30000 }" [speed]="1000">
         <swiper-slide *ngFor="let meal of randomMeal">
           <ion-card class="meal-dish-card meal-dish-card-height dish-bg-color">
             <ion-row class="ion-align-items-center full-height">
@@ -106,7 +106,7 @@
               </ion-col>
               <ion-col class="ion-text-center">
                 <ion-card-header>
-                  <h3 class="dish-name-text dish-name-text truncate">{{ meal.strMeal }}</h3>
+                  <h3 class="dish-name-text truncate">{{ truncateMealName(meal.strMeal, 15) }}</h3>
                 </ion-card-header>
                 <ion-toolbar class="gray-toolbar">
                   <ion-buttons slot="end">

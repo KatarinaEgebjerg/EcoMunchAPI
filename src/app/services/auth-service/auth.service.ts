@@ -15,7 +15,6 @@ import {
   updateProfile,
 } from '@angular/fire/auth';
 import { getFirestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
-import { MealService } from '../meal-service/meal.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +22,7 @@ import { MealService } from '../meal-service/meal.service';
 export class AuthService {
   public currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  constructor(private auth: Auth, private MealService: MealService) {
+  constructor(private auth: Auth) {
     onAuthStateChanged(this.auth, (user) => {
       if (user) {
         // User is signed in, fetch their data
@@ -61,7 +60,6 @@ export class AuthService {
           email: email,
         });
       }
-      this.currentUser.next({ name, email, password });
       return user;
     } catch (error: any) {
       console.log('Error during registration: ', error); // Log the error
@@ -96,7 +94,7 @@ export class AuthService {
     try {
       await signOut(this.auth);
     } catch (error) {
-      console.error('Error signing out:', error);
+      console.error('Error signing out:', error); // Log the error
       throw new Error('An error occurred while signing out. Please try again.');
     }
   }
@@ -114,7 +112,6 @@ export class AuthService {
           name: name,
           email: email,
         });
-        this.currentUser.next({ name, email });
       }
       return user;
     } catch (error) {
@@ -144,7 +141,7 @@ export class AuthService {
       this.currentUser.next(userData);
       return userData;
     } else {
-      console.log('No such document!');
+      console.log('No such user!'); // Log the error
       return null;
     }
   }
@@ -167,7 +164,7 @@ export class AuthService {
         this.currentUser.next(userData);
       }
     } catch (error) {
-      console.error('Error updating email:', error);
+      console.error('Error updating email:', error); // Log the error
       throw new Error(
         'An error occurred while updating the email. Please try again.'
       );
@@ -180,7 +177,7 @@ export class AuthService {
         await updatePassword(this.auth.currentUser, newPassword);
       }
     } catch (error) {
-      console.error('Error updating password:', error);
+      console.error('Error updating password:', error); // Log the error
       throw new Error(
         'An error occurred while updating the password. Please try again.'
       );
@@ -198,7 +195,6 @@ export class AuthService {
           },
           { merge: true }
         );
-        await updateProfile(this.auth.currentUser, { displayName: newName });
         const userData = await this.getUser(this.auth.currentUser.uid);
         this.currentUser.next(userData);
       }

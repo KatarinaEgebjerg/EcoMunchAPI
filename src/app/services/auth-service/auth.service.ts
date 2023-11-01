@@ -12,7 +12,6 @@ import {
   signOut,
   updateEmail,
   updatePassword,
-  updateProfile,
 } from '@angular/fire/auth';
 import { getFirestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
 
@@ -20,10 +19,11 @@ import { getFirestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
   providedIn: 'root',
 })
 export class AuthService {
+
   public currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
 
   constructor(private auth: Auth) {
-    onAuthStateChanged(this.auth, (user) => {
+   onAuthStateChanged(this.auth, (user) => {
       if (user) {
         // User is signed in, fetch their data
         this.getUser(user.uid).then((userData) => {

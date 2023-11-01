@@ -30,13 +30,13 @@ export class MalthesLejelandPage implements OnInit {
   }
 
   getUser() {
-    this.authService.currentUser.subscribe((data) => {
+    this.authService.currentUser.subscribe((data: any) => {
       this.user = data;
     });
   }
 
   getFavorites() {
-    this.authService.currentUser.subscribe((user) => {
+    this.authService.currentUser.subscribe((user: any) => {
       if (user) {
         this.userService.getFavorites(user.uid).then((favorites) => {
           this.favorites = favorites;

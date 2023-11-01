@@ -36,30 +36,20 @@ export class ProfilePage {
     private userService: UserService
   ) {}
 
-  async ngOnInit() {
-    this.user = await this.getUser();
-    await this.getFavorites();
-  }
-
-  getUser() {
-    return new Promise<any>((resolve) => {
-      this.authService.currentUser.subscribe((data) => {
-        this.user = data;
-        resolve(data);
-      });
+  ngOnInit() {
+    this.authService.currentUser.subscribe(async (user) => {
+      this.user = user;
+      if (user) {
+        await this.getFavorites();
+      }
     });
   }
 
   async getFavorites() {
-    return new Promise<void>((resolve) => {
-      this.authService.currentUser.subscribe(async (user) => {
-        if (user) {
-          this.favorites = await this.userService.getFavorites(user.uid);
-          this.isFavorite();
-          resolve();
-        }
-      });
-    });
+    if (this.user) {
+      this.favorites = await this.userService.getFavorites(this.user.uid);
+      this.isFavorite();
+    }
   }
 
   async logout() {

@@ -199,12 +199,23 @@ export class AuthService {
         );
         const userData = await this.getUser(this.auth.currentUser.uid);
         this.currentUser.next(userData);
+        return userData;
       }
     } catch (error) {
       console.error('Error updating name:', error);
       throw new Error(
         'An error occurred while updating the name. Please try again.'
       );
+      
+    }
+    return null; // Add this line
+  }
+
+  async updateUserData() {
+    if (this.auth.currentUser) {
+      const userData = await this.getUser(this.auth.currentUser.uid);
+      this.currentUser.next(userData);
     }
   }
+  
 }

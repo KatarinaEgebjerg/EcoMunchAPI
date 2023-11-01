@@ -73,8 +73,7 @@ export class ProfilePage {
 
     const { data } = await modal.onWillDismiss();
     if (data) {
-      // The user data was updated. Refresh the user data.
-      this.user = data;
+      await this.authService.updateUserData();
     }
   }
 

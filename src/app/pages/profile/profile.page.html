@@ -28,9 +28,15 @@
         <ion-row class="ion-justify-content-center">
           <ion-col size="auto" class="ion-text-center">
             <ion-avatar>
-              <img
+              <ion-img
+                *ngIf="!user.photoURL"
                 alt="Silhouette of a person's head"
+                src="https://ionicframework.com/docs/img/demos/avatar.svg"
+              />
+              <ion-img
+                *ngIf="user.photoURL"
                 src="{{ user?.photoURL }}"
+                alt="{{ user?.name }}"
               />
             </ion-avatar>
           </ion-col>

@@ -11,7 +11,6 @@ import {
   trigger,
 } from '@angular/animations';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -22,11 +21,7 @@ import {
       transition('void <=> *', animate('400ms ease-in-out')),
     ]),
   ],
-  
 })
-
-
-
 export class HomePage {
   latestMeals: any[] = [];
   randomMeal: any[] = [];
@@ -34,19 +29,21 @@ export class HomePage {
   favorites: any[] = [];
   favoriteStatus: { [key: string]: boolean } = {};
   isSearchBarFocused = false;
+  newIngredient = '';
+  showSearchResults: boolean = false;
+  isLoading: boolean = false;
 
-  userIngredients: string[] = [];
+  userIngredients: any[] = [];
 
   // Array to store the ingredients of the found recipes
-  recipeIngredients: string[] = [];
- 
+  recipeIngredients: any[] = [];
 
   constructor(
     private navCtrl: NavController,
     private mealService: MealService,
     private userService: UserService,
     private authService: AuthService,
-    private toastController: ToastController,
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -61,22 +58,36 @@ export class HomePage {
   }
 
   async searchMeals() {
-    try {
-      // Get the best matches for the current ingredients
-      const bestMatches = await this.mealService.getRecipieByIngredients(this.userIngredients);
+    this.isLoading = true;
+    // Get the best matches for the current ingredients
+    const bestMatches = await this.mealService.getRecipieByIngredients(
+      this.userIngredients
+    );
+    // Update the recipeIngredients array with the found meals
+    this.recipeIngredients = bestMatches;
+    // Show the search results and hide the other cards
+    this.showSearchResults = true;
+    this.isLoading = false;
+  }
+  
+  
 
-      // Handle the results here
-      console.log(bestMatches);
-
-      // Update the recipeIngredients array with the ingredients of the found recipes
-      this.recipeIngredients = bestMatches.map(meal => this.mealService.getIngredients(meal));
-
-    } catch (error) {
-      console.error('Error during searchMeals: ', error);
+  // Function to add an ingredient to the userIngredients array
+  addUserIngredient(ingredient: string) {
+    if (ingredient) {
+      this.userIngredients.push(ingredient);
+      this.newIngredient = '';
     }
   }
 
-  
+  // Function to clear the userIngredients array
+  clearUserIngredients() {
+    this.userIngredients = [];
+  }
+
+  getIngredients(meal: any) {
+    return this.mealService.getIngredients(meal);
+  }
 
   onClickedOutside() {
     this.isSearchBarFocused = false;
@@ -94,22 +105,6 @@ export class HomePage {
   clearIngredients() {
     this.userIngredients = [];
   }
-
-  addIngredient() {
-    // if (this.userIngredients) {
-    //   this.userIngredients.push(this.userIngredients);
-    //   this.userIngredients = '';
-    // }
-  }
-
-  getIngredients(cocktail: any) {
-    return this.mealService.getIngredients(cocktail);
-  }
-
-
-
-
-
 
   async getFavorites() {
     if (this.user) {
@@ -170,5 +165,4 @@ export class HomePage {
       return mealName;
     }
   }
-  
 }

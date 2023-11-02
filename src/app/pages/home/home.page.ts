@@ -3,12 +3,31 @@ import { Component } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { MealService } from 'src/app/services/meal-service/meal.service';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
+import { Directive, ElementRef, Output, EventEmitter, HostListener } from '@angular/core';
+
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
+  animations: [
+    trigger('fadeOutIn', [
+      state('void', style({ opacity: 0 })),
+      transition('void <=> *', animate('500ms ease-in-out')),
+    ]),
+  ],
+  
 })
+
+
+
 export class HomePage {
   latestMeals: any[] = [];
   randomMeal: any[] = [];
@@ -16,12 +35,15 @@ export class HomePage {
   favorites: any[] = [];
   favoriteStatus: { [key: string]: boolean } = {};
 
+  isSearchBarFocused = false;
+  newIngredient = '';
+
   constructor(
     private navCtrl: NavController,
     private mealService: MealService,
     private userService: UserService,
     private authService: AuthService,
-    private toastController: ToastController
+    private toastController: ToastController,
   ) {}
 
   ngOnInit() {
@@ -34,6 +56,70 @@ export class HomePage {
     this.latestmeal();
     this.randomMeals();
   }
+
+  onClickedOutside() {
+    this.isSearchBarFocused = false;
+    console.log("🚀 ~ file: home.page.ts:62 ~ HomePage ~ onClickedOutside ~ this.isSearchBarFocused:", this.isSearchBarFocused)
+    
+  }
+
+  onSearchBarFocus() {
+    this.isSearchBarFocused = true;
+    console.log("🚀 ~ file: home.page.ts:57 ~ HomePage ~ onSearchBarFocus ~ this.isSearchBarFocused:", this.isSearchBarFocused)
+    
+  }
+
+  removeIngredient(index: number, event: Event) {
+    this.ingredients.splice(index, 1);
+    event.stopPropagation();
+  }
+  
+  
+
+  onSearchBarBlur() {
+    if (!this.buttonClicked) {
+      this.isSearchBarFocused = false;
+    }
+    this.buttonClicked = false;
+  }
+
+  clearIngredients() {
+    this.ingredients = [];
+  }
+  
+
+  addIngredient() {
+    if (this.newIngredient) {
+      this.ingredients.push(this.newIngredient);
+      this.newIngredient = '';
+    }
+    this.buttonClicked = true;
+  }
+
+  ingredientsInput = '';
+  bestMatches: any[] = [];
+  ingredients: string[] = [];
+  buttonClicked = false;
+
+
+
+
+
+  async getBestMatches() {
+    const ingredients = this.ingredientsInput.split(',');
+    this.bestMatches = await this.mealService.getRecipieByIngredients(
+      ingredients
+    );
+  }
+
+  getIngredients(cocktail: any) {
+    return this.mealService.getIngredients(cocktail);
+  }
+
+
+
+
+
 
   async getFavorites() {
     if (this.user) {

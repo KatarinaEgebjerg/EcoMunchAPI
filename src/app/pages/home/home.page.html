@@ -25,13 +25,64 @@
 <ion-content>
   <div class="page-container">
     <h1>What i have in my fridge</h1>
-    <ion-searchbar
-      class="ion-no-padding"
-      placeholder="Filter by ingredients"
-      inputmode="decimal"
-      type="decimal"
-      [debounce]="250"
-    ></ion-searchbar>
+
+    <div (clickOutside)="onClickedOutside()">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="10">
+            <ion-searchbar
+              class="ion-no-padding ion-no-margin ion-no-border"
+              placeholder="Filter by ingredients"
+              (ionFocus)="onSearchBarFocus()"
+              [(ngModel)]="newIngredient"
+            ></ion-searchbar>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button
+              class="add-button"
+              (click)="addIngredient(); $event.stopPropagation()"
+            >
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div *ngIf="isSearchBarFocused" [@fadeOutIn]>
+        <ion-card class="ion-no-margin gray-toolbar height">
+          <ion-card-content>
+            <div class="card-header-container">
+              <h2 class="card-header">Ingredients</h2>
+              <ion-chip
+                color="primary"
+                class="clear-button"
+                (click)="clearIngredients()"
+              >
+                Clear
+              </ion-chip>
+            </div>
+            <ion-chip
+              *ngFor="let ingredient of ingredients; let i = index"
+              [@fadeOutIn]
+            >
+              <ion-label>{{ingredient}}</ion-label>
+              <ion-icon
+                name="close"
+                (click)="removeIngredient(i, $event)"
+              ></ion-icon>
+            </ion-chip>
+            <br />
+            <ion-button
+              expand="block"
+              class="search-button"
+              [disabled]="ingredients.length === 0"
+            >
+              Search
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
 
     <ion-grid class="meal-dish-container">
       <ion-row class="ion-justify-content-center">

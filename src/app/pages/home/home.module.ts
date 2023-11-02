@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { ClickOutsideDirective } from 'src/app/util/click-outside.directive';
 
 @NgModule({
   imports: [IonicModule, CommonModule, FormsModule, HomePageRoutingModule],
-  declarations: [HomePage],
+  declarations: [HomePage, ClickOutsideDirective],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePageModule {}

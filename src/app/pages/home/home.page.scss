@@ -51,8 +51,9 @@ ion-searchbar {
     margin-right: auto;
     margin-top: 15px;
     --background: #27B718;
-  }
-  
+    --background-activated: #1E8A10;
+}
+
 
 .add-button {
     margin-top: 8px;
@@ -65,8 +66,8 @@ ion-searchbar {
 .card-header-container {
     display: flex;
     justify-content: space-between;
-  }
-  
+}
+
 
 .card-header {
     font-size: 20px;
@@ -105,6 +106,6 @@ ion-searchbar {
 
     .truncate {
         word-break: break-word;
-      }
-      
+    }
+
 }

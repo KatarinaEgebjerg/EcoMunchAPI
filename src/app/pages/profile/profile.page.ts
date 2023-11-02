@@ -3,7 +3,6 @@ import { ModalController, ToastController } from '@ionic/angular';
 import { LogoutConfirmationModalPage } from '../../modals/logout-confirmation-modal/logout-confirmation-modal.page';
 import { UpdateUserModalPage } from '../../modals/update-user-modal/update-user-modal.page';
 import { AuthService } from '../../services/auth-service/auth.service';
-import { MealService } from '../../services/meal-service/meal.service';
 import { UserService } from '../../services/user-service/user.service';
 import {
   animate,
@@ -20,7 +19,7 @@ import {
   animations: [
     trigger('fadeOutIn', [
       state('void', style({ opacity: 0 })),
-      transition('void <=> *', animate('1000ms ease-in-out')),
+      transition('void <=> *', animate('600ms ease-in-out')),
     ]),
   ],
 })
@@ -32,7 +31,6 @@ export class ProfilePage {
   constructor(
     private authService: AuthService,
     private modalCtrl: ModalController,
-    private MealService: MealService,
     private userService: UserService,
     private toastController: ToastController
   ) {}

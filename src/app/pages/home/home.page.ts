@@ -10,7 +10,6 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { Directive, ElementRef, Output, EventEmitter, HostListener } from '@angular/core';
 
 
 @Component({
@@ -20,7 +19,7 @@ import { Directive, ElementRef, Output, EventEmitter, HostListener } from '@angu
   animations: [
     trigger('fadeOutIn', [
       state('void', style({ opacity: 0 })),
-      transition('void <=> *', animate('500ms ease-in-out')),
+      transition('void <=> *', animate('400ms ease-in-out')),
     ]),
   ],
   
@@ -34,9 +33,13 @@ export class HomePage {
   user: any;
   favorites: any[] = [];
   favoriteStatus: { [key: string]: boolean } = {};
-
   isSearchBarFocused = false;
-  newIngredient = '';
+
+  userIngredients: string[] = [];
+
+  // Array to store the ingredients of the found recipes
+  recipeIngredients: string[] = [];
+ 
 
   constructor(
     private navCtrl: NavController,
@@ -57,59 +60,46 @@ export class HomePage {
     this.randomMeals();
   }
 
+  async searchMeals() {
+    try {
+      // Get the best matches for the current ingredients
+      const bestMatches = await this.mealService.getRecipieByIngredients(this.userIngredients);
+
+      // Handle the results here
+      console.log(bestMatches);
+
+      // Update the recipeIngredients array with the ingredients of the found recipes
+      this.recipeIngredients = bestMatches.map(meal => this.mealService.getIngredients(meal));
+
+    } catch (error) {
+      console.error('Error during searchMeals: ', error);
+    }
+  }
+
+  
+
   onClickedOutside() {
     this.isSearchBarFocused = false;
-    console.log("🚀 ~ file: home.page.ts:62 ~ HomePage ~ onClickedOutside ~ this.isSearchBarFocused:", this.isSearchBarFocused)
-    
   }
 
   onSearchBarFocus() {
     this.isSearchBarFocused = true;
-    console.log("🚀 ~ file: home.page.ts:57 ~ HomePage ~ onSearchBarFocus ~ this.isSearchBarFocused:", this.isSearchBarFocused)
-    
   }
 
   removeIngredient(index: number, event: Event) {
-    this.ingredients.splice(index, 1);
+    this.userIngredients.splice(index, 1);
     event.stopPropagation();
-  }
-  
-  
-
-  onSearchBarBlur() {
-    if (!this.buttonClicked) {
-      this.isSearchBarFocused = false;
-    }
-    this.buttonClicked = false;
   }
 
   clearIngredients() {
-    this.ingredients = [];
+    this.userIngredients = [];
   }
-  
 
   addIngredient() {
-    if (this.newIngredient) {
-      this.ingredients.push(this.newIngredient);
-      this.newIngredient = '';
-    }
-    this.buttonClicked = true;
-  }
-
-  ingredientsInput = '';
-  bestMatches: any[] = [];
-  ingredients: string[] = [];
-  buttonClicked = false;
-
-
-
-
-
-  async getBestMatches() {
-    const ingredients = this.ingredientsInput.split(',');
-    this.bestMatches = await this.mealService.getRecipieByIngredients(
-      ingredients
-    );
+    // if (this.userIngredients) {
+    //   this.userIngredients.push(this.userIngredients);
+    //   this.userIngredients = '';
+    // }
   }
 
   getIngredients(cocktail: any) {

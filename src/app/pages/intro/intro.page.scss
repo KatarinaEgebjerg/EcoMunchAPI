@@ -51,15 +51,15 @@ h3, h1, p {
 transform: translateY(375%);
 }
 
-//ion-content.background{
- //   --background: url(/src/assets/images/foodCover.png) 0 0/100% 100% no-repeat;
-//}
+ion-content.background{
+   --background: url(/src/assets/images/foodCover.png) 0 0/100% 100% no-repeat;
+}
 
-//ion-content {
-  //  .background{
-    //      background-image: url('/src/assets/images/foodCover.png');
-      //    -webkit-background-size: cover;
-        //  -moz-background-size: cover;
-          //background-size: cover;
-    //}
-//}
+ion-content {
+   .background{
+         background-image: url('/src/assets/images/foodCover.png');
+         -webkit-background-size: cover;
+         -moz-background-size: cover;
+          background-size: cover;
+    }
+}

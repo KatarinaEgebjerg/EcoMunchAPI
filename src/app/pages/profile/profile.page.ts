@@ -84,13 +84,6 @@ export class ProfilePage {
     this.presentToast('Removed from favorites');
   }
 
-  async testAddFavorite() {
-    const mealId = '52865'; // Just a test meal id
-    await this.userService.addToFavorites(this.user.uid, mealId);
-    this.favoriteStatus[mealId] = true; 
-    this.favorites.push(await this.MealService.getMealById(mealId));
-  }
-  
   async removeFavorite(meal: any) {
     await this.userService.removeFromFavorites(this.user.uid, meal.idMeal);
     this.favoriteStatus[meal.idMeal] = false;

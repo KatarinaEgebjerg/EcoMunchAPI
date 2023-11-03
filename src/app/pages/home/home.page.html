@@ -163,7 +163,7 @@
                     <h3 class="dish-name-text">{{ meal.strMeal }}</h3>
                   </ion-card-header>
                   <ion-card-content>
-                    <ion-icon *ngFor="let meal of categories" [name]="getCategoryIcon(meal.strCategory)" slot="start"></ion-icon>   
+                    <ion-icon [name]="getCategoryIcon(meal.strCategory)" slot="start"></ion-icon>   
                     <h3 class="dish-name-text">{{ meal.strCategory }}</h3>
                   </ion-card-content>
                   <ion-toolbar class="gray-toolbar">
@@ -222,7 +222,7 @@
                     </h3>
                   </ion-card-header>
                   <ion-card-content>
-                    <ion-icon *ngFor="let meal of categories" [name]="getCategoryIcon(meal.strCategory)" slot="start"></ion-icon>
+                    <ion-icon [name]="getCategoryIcon(meal.strCategory)" slot="start"></ion-icon>
                     <h3 class="dish-name-text">{{ meal.strCategory }}</h3>
                   </ion-card-content>
                   <ion-toolbar class="gray-toolbar">

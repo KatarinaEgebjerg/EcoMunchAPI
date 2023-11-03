@@ -59,6 +59,7 @@ export class HomePage {
     this.isLoading = true;
     this.showSearchResults = true;
     this.errorMessage = null;
+    this.recipeIngredients = [];
     try {
       const bestMatches = await this.mealService.getRecipieByIngredients(
         this.userIngredients

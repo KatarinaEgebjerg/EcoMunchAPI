@@ -109,3 +109,32 @@ ion-searchbar {
     }
 
 }
+
+.loadcard{
+    border-radius: 8%;
+    
+  }
+
+.skeleton-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    align-self: center; /* Vertically center the image */
+  }
+  
+  .skeleton-title {
+    width: 100%; /* Take up the entire space in the second column */
+    height: 30px;
+    margin-top: 8px;
+    border-radius: 3%;
+  }
+  
+  .skeleton-heart {
+    width: 30px;
+    height: 30px;
+    align-self: flex-end; /* Position the heart icon in the bottom right corner */
+    margin-left: auto; /* Push it to the right side */
+    margin-right: 10px;
+    margin-bottom: 10;
+    border-radius: 5%;
+  }

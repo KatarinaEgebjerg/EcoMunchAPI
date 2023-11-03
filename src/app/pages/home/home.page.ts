@@ -34,6 +34,8 @@ export class HomePage {
   isLoading: boolean = false;
 
   userIngredients: any[] = [];
+  
+  categories: any[] = [];
 
   // Array to store the ingredients of the found recipes
   recipeIngredients: any[] = [];
@@ -165,4 +167,17 @@ export class HomePage {
       return mealName;
     }
   }
+
+  getCategoryIcon(strCategory: string) {
+    if (strCategory === 'Beef') {
+      return 'pizza-outline';
+    } else if (strCategory === 'Breakfast') {
+      return 'restaurant-outline';
+    } else if (strCategory === 'Chicken') {
+      return 'restaurant-outline';
+    }
+   
+    return 'restaurant-outline';
+  }
 }
+

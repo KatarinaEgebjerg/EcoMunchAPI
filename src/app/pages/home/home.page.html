@@ -1,28 +1,26 @@
-<div class="page-container">
-  <ion-header class="ion-no-border">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-img
-          src="assets/images/ecoLogo.png"
-          alt="Eco munch logo"
-          class="logo"
-        ></ion-img>
-        <h2 class="logoText">Eco Munch</h2>
-      </ion-buttons>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-img
+        src="assets/images/ecoLogo.png"
+        alt="Eco munch logo"
+        class="logo"
+      ></ion-img>
+      <h2 class="logoText">Eco Munch</h2>
+    </ion-buttons>
 
-      <ion-buttons slot="end">
-        <ion-button (click)="navigateToProfile()">
-          <ion-icon
-            class="profileLogo"
-            size="large"
-            name="person-circle"
-            color="primary"
-          ></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-</div>
+    <ion-buttons slot="end">
+      <ion-button (click)="navigateToProfile()">
+        <ion-icon
+          class="profileLogo"
+          size="large"
+          name="person-circle"
+          color="primary"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
   <div class="page-container">
@@ -110,10 +108,33 @@
             </ion-col>
             <ion-col class="ion-text-center">
               <ion-card-header>
-                <h3 class="dish-name-text">{{ meal.strMeal }}</h3>
+                <h3 class="dish-name-text truncate">
+                  {{ truncateMealName(meal.strMeal, 15, 9) }}
+                </h3>
               </ion-card-header>
-              <ion-toolbar class="gray-toolbar">
-                <ion-buttons slot="end">
+            </ion-col>
+            <ion-toolbar class="gray-toolbar">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  width: 100%;
+                "
+              >
+                <p>
+                  Ingredients: {{ meal.totalIngredients -
+                  meal.missingIngredientsCount }}/{{ meal.totalIngredients }}
+                </p>
+                <div class="ion-text-center">
+                  <ion-icon
+                    [src]="getCategoryIcon(meal.strCategory)"
+                  ></ion-icon>
+                  <p style="margin-top: 0px" class="dish-name-text">
+                    {{ meal.strCategory }}
+                  </p>
+                </div>
+                <ion-buttons>
                   <ion-button
                     (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal)"
                   >
@@ -131,9 +152,8 @@
                     ></ion-icon>
                   </ion-button>
                 </ion-buttons>
-                <p slot="start">Ingredients: {{ meal.totalIngredients - meal.missingIngredientsCount }}/{{ meal.totalIngredients }}</p>
-              </ion-toolbar>
-            </ion-col>
+              </div>
+            </ion-toolbar>
           </ion-row>
         </ion-card>
       </div>
@@ -259,16 +279,20 @@
                 </ion-col>
                 <ion-col class="ion-text-center">
                   <ion-card-header>
-                    <h3 class="dish-name-text">{{ meal.strMeal }}</h3>
+                    <h3 class="dish-name-text truncate">
+                      {{ truncateMealName(meal.strMeal, 15, 9) }}
+                    </h3>
                   </ion-card-header>
-                  <ion-card-content>
-                    <ion-icon
-                      [src]="getCategoryIcon(meal.strCategory)"
-                      slot="start"
-                    ></ion-icon>
-                    <h3 class="dish-name-text">{{ meal.strCategory }}</h3>
-                  </ion-card-content>
                   <ion-toolbar class="gray-toolbar">
+                    <div>
+                      <ion-icon
+                        style="margin-top: 15px"
+                        [src]="getCategoryIcon(meal.strCategory)"
+                      ></ion-icon>
+                      <p class="dish-name-text" style="margin-top: 0px">
+                        {{ meal.strCategory }}
+                      </p>
+                    </div>
                     <ion-buttons slot="end">
                       <ion-button
                         (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal)"
@@ -320,17 +344,19 @@
                 <ion-col class="ion-text-center">
                   <ion-card-header>
                     <h3 class="dish-name-text truncate">
-                      {{ truncateMealName(meal.strMeal, 15) }}
+                      {{ truncateMealName(meal.strMeal, 15, 9) }}
                     </h3>
                   </ion-card-header>
-                  <ion-card-content>
-                    <ion-icon
-                      [src]="getCategoryIcon(meal.strCategory)"
-                      slot="start"
-                    ></ion-icon>
-                    <h3 class="dish-name-text">{{ meal.strCategory }}</h3>
-                  </ion-card-content>
                   <ion-toolbar class="gray-toolbar">
+                    <div>
+                      <ion-icon
+                        style="margin-top: 15px"
+                        [src]="getCategoryIcon(meal.strCategory)"
+                      ></ion-icon>
+                      <p class="dish-name-text" style="margin-top: 0px">
+                        {{ meal.strCategory }}
+                      </p>
+                    </div>
                     <ion-buttons slot="end">
                       <ion-button
                         (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal)"

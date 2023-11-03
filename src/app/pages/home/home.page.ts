@@ -157,13 +157,24 @@ export class HomePage {
     toast.present();
   }
 
-  truncateMealName(mealName: string, maxLength: number) {
-    if (mealName.length > maxLength) {
-      return mealName.substring(0, maxLength) + '...';
+  truncateMealName(mealName: string, maxNameLength: number, maxWordLength: number) {
+    let words = mealName.split(' ');
+    words = words.map(word => {
+      if (word.length > maxWordLength) {
+        return word.substring(0, maxWordLength) + '...';
+      } else {
+        return word;
+      }
+    });
+    let truncatedName = words.join(' ');
+    if (truncatedName.length > maxNameLength) {
+      return truncatedName.substring(0, maxNameLength) + '...';
     } else {
-      return mealName;
+      return truncatedName;
     }
   }
+  
+  
 
   getCategoryIcon(strCategory: string) {
     if (strCategory === 'Beef') {

@@ -84,17 +84,19 @@
               <ion-col class="ion-text-center">
                 <ion-card-header>
                   <h3 class="dish-name-text truncate">
-                    {{ truncateMealName(favorite.strMeal, 15) }}
+                    {{ truncateMealName(favorite.strMeal, 15, 9) }}
                   </h3>
                 </ion-card-header>
-                <ion-card-content>
-                  <ion-icon
-                    [src]="getCategoryIcon(favorite.strCategory)"
-                    slot="start"
-                  ></ion-icon>
-                  <h3 class="dish-name-text">{{ favorite.strCategory }}</h3>
-                </ion-card-content>
                 <ion-toolbar class="gray-toolbar">
+                  <div>
+                    <ion-icon
+                      style="margin-top: 15px"
+                      [src]="getCategoryIcon(favorite.strCategory)"
+                    ></ion-icon>
+                    <p class="dish-name-text" style="margin-top: 0px">
+                      {{ favorite.strCategory }}
+                    </p>
+                  </div>
                   <ion-buttons
                     slot="end"
                     (click)="favoriteStatus[favorite.idMeal] ? removeFavorite(favorite) : addFavorite(favorite)"

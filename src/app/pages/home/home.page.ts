@@ -170,7 +170,7 @@ export class HomePage {
 
   getCategoryIcon(strCategory: string) {
     if (strCategory === 'Beef') {
-      return 'assets/icon/cow.svg';
+      return '../../../assets/icon/cow.svg';
     } else if (strCategory === 'Breakfast') {
       return 'assets/icon/breakfast.svg';
     } else if (strCategory === 'Chicken') {

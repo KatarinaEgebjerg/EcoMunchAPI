@@ -170,7 +170,7 @@ export class HomePage {
 
   getCategoryIcon(strCategory: string) {
     if (strCategory === 'Beef') {
-      return '../../../assets/icon/cow.svg';
+      return 'assets/icon/cow.svg';
     } else if (strCategory === 'Breakfast') {
       return 'assets/icon/breakfast.svg';
     } else if (strCategory === 'Chicken') {
@@ -182,24 +182,24 @@ export class HomePage {
     }else if (strCategory === 'Lamb') {
       return 'assets/icon/lamb.svg';
     }else if (strCategory === 'Miscellaneous') {
-      return 'restaurant-outline';
+      return 'assets/icon/miscellaneous.svg';
     }else if (strCategory === 'Pasta') {
       return 'assets/icon/pasta.svg';
     }else if (strCategory === 'Pork') {
       return 'assets/icon/pig.svg';
     }else if (strCategory === 'Seafood') {
-      return 'fish-outline';
+      return 'assets/icon/seafood.svg';
     }else if (strCategory === 'Side') {
-      return 'restaurant-outline';
+      return 'assets/icon/miscellaneous.svg';
     }else if (strCategory === 'Starter') {
-      return 'restaurant-outline';
+      return 'assets/icon/miscellaneous.svg';
     }else if (strCategory === 'Vegan') {
-      return 'leaf-outline';
+      return 'assets/icon/leaf.svg';
     }else if (strCategory === 'Vegetarian') {
-      return 'leaf-outline';
+      return 'assets/icon/leaf.svg';
     }
    
-    return 'restaurant-outline';
+    return 'assets/icon/miscellaneous.svg';
   }
 }
 

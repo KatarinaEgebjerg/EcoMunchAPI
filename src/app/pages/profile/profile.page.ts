@@ -27,6 +27,7 @@ export class ProfilePage {
   user: any;
   favorites: any[] = [];
   favoriteStatus: { [key: string]: boolean } = {}; 
+  categories: any[] = [];
 
   constructor(
     private authService: AuthService,
@@ -114,5 +115,39 @@ export class ProfilePage {
     } else {
       return mealName;
     }
+  }
+
+  getCategoryIcon(strCategory: string) {
+    if (strCategory === 'Beef') {
+      return 'assets/icon/cow.svg';
+    } else if (strCategory === 'Breakfast') {
+      return 'assets/icon/breakfast.svg';
+    } else if (strCategory === 'Chicken') {
+      return 'assets/icon/chicken.svg';
+    } else if (strCategory === 'Dessert') {
+      return 'assets/icon/dessert.svg';
+    }else if (strCategory === 'Goat') {
+      return 'assets/icon/goat.svg';
+    }else if (strCategory === 'Lamb') {
+      return 'assets/icon/lamb.svg';
+    }else if (strCategory === 'Miscellaneous') {
+      return 'assets/icon/miscellaneous.svg';
+    }else if (strCategory === 'Pasta') {
+      return 'assets/icon/pasta.svg';
+    }else if (strCategory === 'Pork') {
+      return 'assets/icon/pig.svg';
+    }else if (strCategory === 'Seafood') {
+      return 'assets/icon/seafood.svg';
+    }else if (strCategory === 'Side') {
+      return 'assets/icon/miscellaneous.svg';
+    }else if (strCategory === 'Starter') {
+      return 'assets/icon/miscellaneous.svg';
+    }else if (strCategory === 'Vegan') {
+      return 'assets/icon/leaf.svg';
+    }else if (strCategory === 'Vegetarian') {
+      return 'assets/icon/leaf.svg';
+    }
+   
+    return 'assets/icon/miscellaneous.svg';
   }
 }

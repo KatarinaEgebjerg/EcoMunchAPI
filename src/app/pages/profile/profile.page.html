@@ -87,6 +87,13 @@
                     {{ truncateMealName(favorite.strMeal, 15) }}
                   </h3>
                 </ion-card-header>
+                <ion-card-content>
+                  <ion-icon
+                    [src]="getCategoryIcon(favorite.strCategory)"
+                    slot="start"
+                  ></ion-icon>
+                  <h3 class="dish-name-text">{{ favorite.strCategory }}</h3>
+                </ion-card-content>
                 <ion-toolbar class="gray-toolbar">
                   <ion-buttons
                     slot="end"

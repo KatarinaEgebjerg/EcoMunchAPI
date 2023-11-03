@@ -12,19 +12,18 @@ import {
   signOut,
   updateEmail,
   updatePassword,
-  updateProfile,
 } from '@angular/fire/auth';
 import { getFirestore, doc, getDoc, setDoc } from '@angular/fire/firestore';
-import { MealService } from '../meal-service/meal.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+
   public currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
 
-  constructor(private auth: Auth, private MealService: MealService) {
-    onAuthStateChanged(this.auth, (user) => {
+  constructor(private auth: Auth) {
+   onAuthStateChanged(this.auth, (user) => {
       if (user) {
         // User is signed in, fetch their data
         this.getUser(user.uid).then((userData) => {
@@ -61,7 +60,6 @@ export class AuthService {
           email: email,
         });
       }
-      this.currentUser.next({ name, email, password });
       return user;
     } catch (error: any) {
       console.log('Error during registration: ', error); // Log the error
@@ -96,7 +94,7 @@ export class AuthService {
     try {
       await signOut(this.auth);
     } catch (error) {
-      console.error('Error signing out:', error);
+      console.error('Error signing out:', error); // Log the error
       throw new Error('An error occurred while signing out. Please try again.');
     }
   }
@@ -107,20 +105,21 @@ export class AuthService {
       const result = await signInWithPopup(this.auth, provider);
       const user = result.user;
       if (user) {
-        const { displayName: name, email } = user;
+        const { displayName: name, email, photoURL } = user;
         const db = getFirestore();
         await setDoc(doc(db, 'users', user.uid), {
           uid: user.uid,
           name: name,
           email: email,
+          photoURL: photoURL,
         });
-        this.currentUser.next({ name, email });
       }
       return user;
     } catch (error) {
       console.log('Error during Google login: ', error); // Log the error
       throw new Error('Google login failed. Please try again.');
     }
+    
   }
 
   async forgotPassword({ email }: { email: string }) {
@@ -144,7 +143,7 @@ export class AuthService {
       this.currentUser.next(userData);
       return userData;
     } else {
-      console.log('No such document!');
+      console.log('No such user!'); // Log the error
       return null;
     }
   }
@@ -167,7 +166,7 @@ export class AuthService {
         this.currentUser.next(userData);
       }
     } catch (error) {
-      console.error('Error updating email:', error);
+      console.error('Error updating email:', error); // Log the error
       throw new Error(
         'An error occurred while updating the email. Please try again.'
       );
@@ -180,7 +179,7 @@ export class AuthService {
         await updatePassword(this.auth.currentUser, newPassword);
       }
     } catch (error) {
-      console.error('Error updating password:', error);
+      console.error('Error updating password:', error); // Log the error
       throw new Error(
         'An error occurred while updating the password. Please try again.'
       );
@@ -198,15 +197,25 @@ export class AuthService {
           },
           { merge: true }
         );
-        await updateProfile(this.auth.currentUser, { displayName: newName });
         const userData = await this.getUser(this.auth.currentUser.uid);
         this.currentUser.next(userData);
+        return userData;
       }
     } catch (error) {
       console.error('Error updating name:', error);
       throw new Error(
         'An error occurred while updating the name. Please try again.'
       );
+      
+    }
+    return null; // Add this line
+  }
+
+  async updateUserData() {
+    if (this.auth.currentUser) {
+      const userData = await this.getUser(this.auth.currentUser.uid);
+      this.currentUser.next(userData);
     }
   }
+  
 }

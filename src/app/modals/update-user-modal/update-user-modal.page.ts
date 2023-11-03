@@ -64,9 +64,9 @@ export class UpdateUserModalPage {
       message: 'Updating...',
     });
     await loading.present();
-
+  
     const { email, password, name } = this.credentials.value;
-
+  
     try {
       if (email !== this.user.email) {
         await this.authService.updateEmail(email);
@@ -77,21 +77,34 @@ export class UpdateUserModalPage {
       if (name !== this.user.name) {
         await this.authService.updateName(name);
       }
+  
+      // Dismiss the loading indicator
+      await loading.dismiss();
+  
+      // Show a success toast
+      const toast = await this.toastCtrl.create({
+        message: 'User data updated successfully',
+        duration: 2000,
+        color: 'success',
+      });
+      toast.present();
     } catch (err) {
       console.error(err);
-    } finally {
+  
+      // Dismiss the loading indicator
       await loading.dismiss();
+  
+      // Show an error toast
+      const toast = await this.toastCtrl.create({
+        message: 'An error occurred while updating user data',
+        duration: 2000,
+        position: 'top',
+        color: 'danger',
+      });
+      toast.present();
+    } finally {
+      this.modalCtrl.dismiss(this.credentials.value);
     }
-
-    this.modalCtrl.dismiss(this.credentials.value);
-
-    const toast = await this.toastCtrl.create({
-      message: 'User data updated successfully.',
-      duration: 2000,
-      position: 'top',
-      color: 'success',
-    });
-    toast.present();
   }
 
   async onSumbit() {

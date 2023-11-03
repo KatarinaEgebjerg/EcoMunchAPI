@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LogoutConfirmationModalPage } from '../modals/logout-confirmation-modal/logout-confirmation-modal.page';
-import { AuthService } from '../services/auth-service/auth.service';
+import { LogoutConfirmationModalPage } from '../../modals/logout-confirmation-modal/logout-confirmation-modal.page';
+import { AuthService } from '../../services/auth-service/auth.service';
 import { ModalController } from '@ionic/angular';
-import { MealService } from '../services/meal-service/meal.service';
-import { UpdateUserModalPage } from '../modals/update-user-modal/update-user-modal.page';
-import { UserService } from '../services/user-service/user.service';
+import { MealService } from '../../services/meal-service/meal.service';
+import { UpdateUserModalPage } from '../../modals/update-user-modal/update-user-modal.page';
+import { UserService } from '../../services/user-service/user.service';
 
 @Component({
   selector: 'app-malthes-lejeland',
@@ -30,13 +30,13 @@ export class MalthesLejelandPage implements OnInit {
   }
 
   getUser() {
-    this.authService.currentUser.subscribe((data) => {
+    this.authService.currentUser.subscribe((data: any) => {
       this.user = data;
     });
   }
 
   getFavorites() {
-    this.authService.currentUser.subscribe((user) => {
+    this.authService.currentUser.subscribe((user: any) => {
       if (user) {
         this.userService.getFavorites(user.uid).then((favorites) => {
           this.favorites = favorites;

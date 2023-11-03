@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import {
   getFirestore,
   doc,
   setDoc,
   getDocs,
+  getDoc,
   collection,
+  deleteDoc,
 } from '@angular/fire/firestore';
 import { MealService } from '../meal-service/meal.service';
 
@@ -13,7 +14,6 @@ import { MealService } from '../meal-service/meal.service';
   providedIn: 'root',
 })
 export class UserService {
-  public currentUser: BehaviorSubject<any> = new BehaviorSubject(null);
   constructor(private mealService: MealService) {}
 
   async addToFavorites(userId: string, mealId: string) {
@@ -23,6 +23,18 @@ export class UserService {
     } catch (error) {
       console.log('Error during addToFavorites: ', error);
       throw new Error('Failed to add meal to favorites. Please try again.');
+    }
+  }
+
+  async removeFromFavorites(userId: string, mealId: string) {
+    try {
+      const db = getFirestore();
+      await deleteDoc(doc(db, 'users', userId, 'favorites', mealId));
+    } catch (error) {
+      console.log('Error during removeFromFavorites: ', error);
+      throw new Error(
+        'Failed to remove meal from favorites. Please try again.'
+      );
     }
   }
 
@@ -42,6 +54,19 @@ export class UserService {
     } catch (error) {
       console.log('Error during getFavorites: ', error);
       throw new Error('Failed to fetch favorites. Please try again.');
+    }
+  }
+
+  async isFavorite(userId: string, mealId: string) {
+    try {
+      const db = getFirestore();
+      const docRef = doc(db, 'users', userId, 'favorites', mealId);
+      const docSnap = await getDoc(docRef);
+
+      return docSnap.exists();
+    } catch (error) {
+      console.log('Error during isFavorite: ', error);
+      throw new Error('Failed to check favorite status. Please try again.');
     }
   }
 }

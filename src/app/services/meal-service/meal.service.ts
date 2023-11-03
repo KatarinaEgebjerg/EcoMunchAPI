@@ -96,4 +96,31 @@ export class MealService {
       throw new Error('Failed to fetch meal. Please try again.');
     }
   }
+
+  async getLatestMeal() {
+    try {
+      const response$ = this.http.get(
+        `https://www.themealdb.com/api/json/v2/${this.apiKey}/latest.php`
+      );
+      const response: any = await lastValueFrom(response$);
+      return response.meals[0];
+    } catch (error) {
+      console.log('Error during getLatestMeal: ', error);
+      throw new Error('Failed to fetch meal. Please try again.');
+    }
+  }
+
+  async getRandomMeals() {
+    try {
+      const response$ = this.http.get(
+        `https://www.themealdb.com/api/json/v2/${this.apiKey}/randomselection.php`
+      );
+      const response: any = await lastValueFrom(response$);
+      return response.meals;
+    } catch (error) {
+      console.log('Error during randomMeals: ', error);
+      throw new Error('Failed to fetch meals. Please try again.');
+    }
+  }
+  
 }

@@ -1,0 +1,273 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-img
+        src="assets/images/Logo.png"
+        alt="Eco munch logo"
+        class="logo"
+      ></ion-img>
+      <h2 class="logoText">Eco Munch</h2>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="navigateToProfile()">
+        <ion-icon
+          class="profileLogo"
+          size="large"
+          name="person-circle"
+          color="primary"
+        ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page-container">
+    <h1>What i have in my fridge</h1>
+
+    <div (clickOutside)="onClickedOutside()">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="10">
+            <ion-searchbar
+              class="ion-no-padding ion-no-margin ion-no-border"
+              placeholder="Filter by ingredients"
+              (ionFocus)="onSearchBarFocus()"
+              [(ngModel)]="newIngredient"
+            ></ion-searchbar>
+          </ion-col>
+          <ion-col size="2">
+            <ion-button
+              class="add-button"
+              (click)="addUserIngredient(newIngredient); $event.stopPropagation()"
+            >
+              Add
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div *ngIf="isSearchBarFocused" [@fadeOutIn]>
+        <ion-card class="ion-no-margin gray-toolbar height">
+          <ion-card-content>
+            <div class="card-header-container">
+              <h2 class="card-header">Ingredients</h2>
+              <ion-chip
+                color="primary"
+                class="clear-button"
+                (click)="clearIngredients()"
+              >
+                Clear
+              </ion-chip>
+            </div>
+            <ion-chip
+              *ngFor="let ingredient of userIngredients; let i = index"
+              [@fadeOutIn]
+            >
+              <ion-label>{{ingredient}}</ion-label>
+              <ion-icon
+                name="close"
+                (click)="removeIngredient(i, $event)"
+              ></ion-icon>
+            </ion-chip>
+            <br />
+            <ion-button
+              expand="block"
+              class="search-button"
+              [disabled]="userIngredients.length === 0"
+              (click)="searchMeals()"
+            >
+              <span>Search</span>
+            </ion-button>
+
+            <div
+              *ngIf="isLoading"
+              class="ion-text-center"
+              style="padding-top: 10px"
+            >
+              <ion-spinner name="circular"></ion-spinner>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <!-- Display the search results if showSearchResults is true -->
+    <ion-row *ngIf="showSearchResults" class="meal-dish-container" [@fadeOutIn]>
+      <div *ngFor="let meal of recipeIngredients">
+        <ion-card class="meal-dish-card meal-dish-card-height dish-bg-color">
+          <ion-row class="ion-align-items-center full-height">
+            <ion-col>
+              <ion-img
+                [src]="meal.strMealThumb"
+                alt="{{ meal.strMeal }}"
+                class="rounded-dish-img"
+              />
+            </ion-col>
+            <ion-col class="ion-text-center">
+              <ion-card-header>
+                <h3 class="dish-name-text">{{ meal.strMeal }}</h3>
+              </ion-card-header>
+              <ion-toolbar class="gray-toolbar">
+                <ion-buttons slot="end">
+                  <ion-button
+                    (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal)"
+                  >
+                    <ion-icon
+                      *ngIf="favoriteStatus[meal.idMeal]"
+                      name="heart"
+                      size="large"
+                      color="primary"
+                    ></ion-icon>
+                    <ion-icon
+                      *ngIf="!favoriteStatus[meal.idMeal]"
+                      name="heart-outline"
+                      size="large"
+                      color="primary"
+                    ></ion-icon>
+                  </ion-button>
+                </ion-buttons>
+              </ion-toolbar>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </div>
+    </ion-row>
+
+    <!-- Siws awesome skeleton Loading! -->
+    <div *ngIf="isLoading">
+      <ion-list>
+        <ion-list-header>
+          <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
+        </ion-list-header>
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+          </ion-thumbnail>
+          <ion-label>
+            <h3>
+              <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
+            </h3>
+            <p>
+              <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
+            </p>
+            <p>
+              <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <div *ngIf="!showSearchResults && !isLoading">
+      <ion-grid class="meal-dish-container">
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12" class="dish-title-padding">
+            <ion-text color="secondary">
+              <h2>Latest meal</h2>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <div *ngFor="let meal of latestMeals">
+            <ion-card
+              class="meal-dish-card meal-dish-card-height dish-bg-color"
+            >
+              <ion-row class="ion-align-items-center full-height">
+                <ion-col>
+                  <ion-img
+                    [src]="meal.strMealThumb"
+                    alt="{{ meal.strMeal }}"
+                    class="rounded-dish-img"
+                  />
+                </ion-col>
+                <ion-col class="ion-text-center">
+                  <ion-card-header>
+                    <h3 class="dish-name-text">{{ meal.strMeal }}</h3>
+                  </ion-card-header>
+                  <ion-toolbar class="gray-toolbar">
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal)"
+                      >
+                        <ion-icon
+                          *ngIf="favoriteStatus[meal.idMeal]"
+                          name="heart"
+                          size="large"
+                          color="primary"
+                        ></ion-icon>
+                        <ion-icon
+                          *ngIf="!favoriteStatus[meal.idMeal]"
+                          name="heart-outline"
+                          size="large"
+                          color="primary"
+                        ></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </div>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid class="meal-dish-container">
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12" class="dish-title-padding">
+            <ion-text color="secondary">
+              <h2>Popular meals</h2>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <swiper-container [autoplay]="{ delay: 30000 }" [speed]="1000">
+          <swiper-slide *ngFor="let meal of randomMeal">
+            <ion-card
+              class="meal-dish-card meal-dish-card-height dish-bg-color"
+            >
+              <ion-row class="ion-align-items-center full-height">
+                <ion-col>
+                  <ion-img
+                    [src]="meal.strMealThumb"
+                    alt="{{ meal.strMeal }}"
+                    class="rounded-dish-img"
+                  />
+                </ion-col>
+                <ion-col class="ion-text-center">
+                  <ion-card-header>
+                    <h3 class="dish-name-text truncate">
+                      {{ truncateMealName(meal.strMeal, 15) }}
+                    </h3>
+                  </ion-card-header>
+                  <ion-toolbar class="gray-toolbar">
+                    <ion-buttons slot="end">
+                      <ion-button
+                        (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal)"
+                      >
+                        <ion-icon
+                          *ngIf="favoriteStatus[meal.idMeal]"
+                          name="heart"
+                          size="large"
+                          color="primary"
+                        ></ion-icon>
+                        <ion-icon
+                          *ngIf="!favoriteStatus[meal.idMeal]"
+                          name="heart-outline"
+                          size="large"
+                          color="primary"
+                        ></ion-icon>
+                      </ion-button>
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </swiper-slide>
+        </swiper-container>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

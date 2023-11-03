@@ -69,8 +69,6 @@ export class HomePage {
     this.showSearchResults = true;
     this.isLoading = false;
   }
-  
-  
 
   // Function to add an ingredient to the userIngredients array
   addUserIngredient(ingredient: string) {

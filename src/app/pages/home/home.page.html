@@ -24,7 +24,7 @@
 
 <ion-content>
   <div class="page-container">
-    <h1>What i have in my fridge</h1>
+    <h1>What do I have</h1>
 
     <div (clickOutside)="onClickedOutside()">
       <ion-grid>
@@ -86,7 +86,6 @@
               class="ion-text-center"
               style="padding-top: 10px"
             >
-              <ion-spinner name="circular"></ion-spinner>
             </div>
           </ion-card-content>
         </ion-card>
@@ -137,28 +136,43 @@
 
     <!-- Siws awesome skeleton Loading! -->
     <div *ngIf="isLoading">
-      <ion-list>
-        <ion-list-header>
-          <ion-skeleton-text [animated]="true" style="width: 80px"></ion-skeleton-text>
-        </ion-list-header>
-        <ion-item>
-          <ion-thumbnail slot="start">
-            <ion-skeleton-text [animated]="true"></ion-skeleton-text>
-          </ion-thumbnail>
-          <ion-label>
-            <h3>
-              <ion-skeleton-text [animated]="true" style="width: 80%;"></ion-skeleton-text>
-            </h3>
-            <p>
-              <ion-skeleton-text [animated]="true" style="width: 60%;"></ion-skeleton-text>
-            </p>
-            <p>
-              <ion-skeleton-text [animated]="true" style="width: 30%;"></ion-skeleton-text>
-            </p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
+      <ion-card class="loadcard">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4">
+              <ion-skeleton-text animated class="skeleton-image"></ion-skeleton-text>
+            </ion-col>
+            <ion-col size="8">
+              <ion-card-content>
+                <ion-skeleton-text animated class="skeleton-title"></ion-skeleton-text>
+              </ion-card-content>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-card-footer>
+          <ion-skeleton-text animated class="skeleton-heart"></ion-skeleton-text>
+        </ion-card-footer>
+      </ion-card>
+      
+      <ion-card class="loadcard">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="4">
+              <ion-skeleton-text animated class="skeleton-image"></ion-skeleton-text>
+            </ion-col>
+            <ion-col size="8">
+              <ion-card-content>
+                <ion-skeleton-text animated class="skeleton-title"></ion-skeleton-text>
+              </ion-card-content>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-card-footer>
+          <ion-skeleton-text animated class="skeleton-heart"></ion-skeleton-text>
+        </ion-card-footer>
+      </ion-card>
     </div>
+
 
     <div *ngIf="!showSearchResults && !isLoading">
       <ion-grid class="meal-dish-container">

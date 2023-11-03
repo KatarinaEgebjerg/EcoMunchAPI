@@ -66,6 +66,13 @@
         </ion-col>
       </ion-row>
 
+      <h3
+        class="ion-text-center"
+        *ngIf="!isLoadingFavorites && favorites.length === 0"
+      >
+        You have no favorite dishes yet
+      </h3>
+
       <ion-row>
         <div *ngFor="let favorite of favorites">
           <ion-card

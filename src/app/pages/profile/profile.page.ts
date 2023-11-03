@@ -28,6 +28,8 @@ export class ProfilePage {
   favorites: any[] = [];
   favoriteStatus: { [key: string]: boolean } = {}; 
   categories: any[] = [];
+  isLoadingFavorites: boolean = true;
+
 
   constructor(
     private authService: AuthService,
@@ -43,12 +45,14 @@ export class ProfilePage {
         await this.getFavorites();
       }
     });
+    console.log(this.favorites)
   }
 
   async getFavorites() {
     if (this.user) {
       this.favorites = await this.userService.getFavorites(this.user.uid);
       this.isFavorite();
+      this.isLoadingFavorites = false;
     }
   }
 

@@ -43,15 +43,20 @@ export class MealService {
       );
       const response: any = await lastValueFrom(response$);
       const meals: any[] = response['meals'];
-
+  
+      if (!meals) {
+        throw new Error('No meals found for the given ingredients');
+      }
+  
       const bestMatches = await this.getBestMatchRecipes(meals, ingredients);
-
+  
       return bestMatches;
-    } catch (error) {
-      console.log('Error during getRecipieByIngredients: ', error); // Log the error
-      throw new Error('Failed to fetch and filter recipes. Please try again.');
+    } catch (error: any) {
+      console.log('Error:', error.message);
+      throw error;
     }
   }
+  
 
   async getBestMatchRecipes(
     meals: any[],

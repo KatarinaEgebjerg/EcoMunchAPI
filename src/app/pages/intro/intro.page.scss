@@ -9,10 +9,22 @@ swiper-slide {
 
 ion-img {
     padding: 15%;
+    position: absolute;
+}
+
+h3,
+h1,
+p {
+    text-align: left;
+    stroke: black;
+    margin-left: 10%;
+    margin-right: 10%;
+    letter-spacing: 0.5mm;
 }
 
 .slider-text {
     padding-top: 20%;
+    position: absolute;
 }
 
 .navigator {
@@ -28,4 +40,23 @@ ion-img {
     padding-top: 50px;
     font-size: 20px;
     font-weight: 700;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+.get-started {
+    transform: translateY(400%);
+}
+
+.background {
+    background: url(../../../assets/images/foodCover.png) 0 0/100% 100% no-repeat;
+    overflow: hidden;
+}
+
+.background2 {
+    background: url(../../../assets/images/CoverGreen.png) 0 0/100% 100% no-repeat;
+}
+
+.background3 {
+    background: url(../../../assets/images/CoverDrop.png) 0 0/100% 100% no-repeat;
 }

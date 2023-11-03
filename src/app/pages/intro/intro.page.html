@@ -1,53 +1,73 @@
-<ion-content class="ion-padding">
+<ion-content>
+ 
+  <swiper-container #swiper (afterinit)="swiperReady()" [pagination]="true">
+    <swiper-slide class="slide-1 background">
+      <div class="slider-text ">
+        <h3>Welcome to</h3>
+        <h1 style="font-size: 60px !important">Ecomunch</h1>
 
-    <swiper-container #swiper (afterinit)="swiperReady()" [pagination]="true">
-        <swiper-slide><ion-img src="../../../assets/icon/Cooking.svg"></ion-img>
+        <p>
+          Welcome to EcoMunch, your eco-friendly kitchen companion. 
+          We're on a mission to reduce food waste 
+          and make sustainable cooking a breeze. 
+          With EcoMunch, you can find delicious 
+          recipes based on the ingredients you already own, 
+          all while helping the planet."
+        </p>
+      </div>
 
-            <div class="slider-text">
-                <h1>Easy exchange!</h1>
+      <div class="navigator">
+        <ion-button color="primary" fill="clear" (click)="start()"
+          >Skip</ion-button
+        >
+        <ion-button color="primary" fill="clear" (click)="next()"
+          >Next</ion-button
+        >
+      </div>
+    </swiper-slide>
 
-                <p>Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Nulla ultricies, erat vitae
-                    porta consequat.
-                </p>
-            </div>
+    <swiper-slide class="slide-2 background2">
+      <div class="slider-text">
+        <h1>Benefits</h1>
 
-            <div class="navigator">
-                <ion-button color="primary" fill="clear" (click)="start()">SKIP</ion-button>
-                <ion-button color="primary" fill="clear" (click)="next()">NEXT</ion-button>
-            </div>
-        </swiper-slide>
+        <p>
+          EcoMunch empowers you to cook with a conscience. 
+          Tell us what's in your kitchen, 
+          and we'll serve up recipes that not only 
+          tantalize your taste buds but also 
+          help reduce food waste. 
+          It's a win-win for you and the environment
+        </p>
+      </div>
 
-        <swiper-slide><ion-img src="../../../assets/icon/EatingTogether.svg"></ion-img>
+      <div class="navigator">
+        <ion-button color="primary" fill="clear" (click)="start()"
+          >Skip</ion-button
+        >
+        <ion-button color="primary" fill="clear" (click)="next()"
+          >Next</ion-button
+        >
+      </div>
+    </swiper-slide>
 
-            <div class="slider-text">
-                <h1>Easy exchange!</h1>
+    <swiper-slide class="slide-3 background3">
+      <div class="slider-text">
+        <h1>Get started</h1>
 
-                <p>Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Nulla ultricies, erat vitae
-                    porta consequat.
-                </p>
-            </div>
+        <p>
+          Ready to cook sustainably and save money? 
+          Dive into the world of EcoMunch! 
+          List your ingredients, 
+          and start whipping up eco-conscious meals in no time. 
+          Let's cook, save, and help the planet 
+          – one meal at a time!
+        </p>
+      </div>
 
-            <div class="navigator">
-                <ion-button color="primary" fill="clear" (click)="start()">SKIP</ion-button>
-                <ion-button color="primary" fill="clear" (click)="next()">NEXT</ion-button>
-            </div>
-        </swiper-slide>
+      <ion-button class="get-started" expand="block" (click)="start()"
+        >GET STARTED</ion-button
+      >
+    </swiper-slide>
+  </swiper-container>
 
-        <swiper-slide><ion-img src="../../../assets/icon/undraw_access_account_re_8spm.svg"></ion-img>
-
-            <div class="slider-text">
-                <h1>Easy exchange!</h1>
-
-                <p>Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit. Nulla ultricies, erat vitae
-                    porta consequat.
-                </p>
-            </div>
-
-
-            <ion-button class="get-started" expand="block" (click)="start()">GET STARTED</ion-button>
-        </swiper-slide>
-    </swiper-container>
 </ion-content>

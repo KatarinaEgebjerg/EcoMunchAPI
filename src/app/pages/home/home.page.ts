@@ -97,8 +97,8 @@ export class HomePage {
 
   clearIngredients() {
     this.userIngredients = [];
-    this.errorMessage = null;
     this.showSearchResults = false;
+    this.errorMessage = null;
   }
 
   async getFavorites() {

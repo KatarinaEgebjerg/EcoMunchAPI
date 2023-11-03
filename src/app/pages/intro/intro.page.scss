@@ -17,7 +17,9 @@ ion-img {
     position: absolute;
 }
 
-h3, h1, p {
+h3,
+h1,
+p {
     text-align: left;
     stroke: black;
     margin-left: 10%;
@@ -48,18 +50,12 @@ h3, h1, p {
 }
 
 .get-started {
-transform: translateY(375%);
-}
-
-ion-content.background{
-   --background: url(/src/assets/images/foodCover.png) 0 0/100% 100% no-repeat;
+    transform: translateY(375%);
 }
 
 ion-content {
-   .background{
-         background-image: url('/src/assets/images/foodCover.png');
-         -webkit-background-size: cover;
-         -moz-background-size: cover;
-          background-size: cover;
-    }
+    --background: url(../../../assets/images/foodCover.png) 0 0/100% 100% no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
 }

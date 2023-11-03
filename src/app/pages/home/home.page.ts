@@ -102,6 +102,7 @@ export class HomePage {
 
   clearIngredients() {
     this.userIngredients = [];
+    this.showSearchResults = false;
   }
 
   async getFavorites() {

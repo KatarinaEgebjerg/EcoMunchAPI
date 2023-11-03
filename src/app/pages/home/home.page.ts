@@ -10,6 +10,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -34,17 +35,18 @@ export class HomePage {
   isLoading: boolean = false;
   errorMessage: string | null = null;
   userIngredients: any[] = [];
-  
   categories: any[] = [];
-  
   recipeIngredients: any[] = [];
+  ingredients: string[] = []; // All available ingredients
+  filteredIngredients: string[] = []; // Ingredients that match the user's input
 
   constructor(
     private navCtrl: NavController,
     private mealService: MealService,
     private userService: UserService,
     private authService: AuthService,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
@@ -54,6 +56,9 @@ export class HomePage {
         await this.getFavorites();
       }
     });
+    this.http.get<{meals: {idIngredient: string, strIngredient: string}[]}>('../../../assets/ingredients.json').subscribe((data) => {
+      this.ingredients = data.meals.map(meal => meal.strIngredient);
+    });  
     this.latestmeal();
     this.randomMeals();
   }
@@ -74,9 +79,27 @@ export class HomePage {
     this.isLoading = false;
   }
 
+  getItems(ev: any) {
+    const val = ev.target.value;
+  
+    if (val && val.trim() !== '') {
+      this.filteredIngredients = this.ingredients.filter((item) => {
+        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      });
+    } else {
+      this.filteredIngredients = [];
+    }
+  }
+  
+  selectIngredient(ingredient: string) {
+    this.newIngredient = ingredient;
+    this.addUserIngredient(ingredient);
+    this.filteredIngredients = [];
+  }
+  
   // Function to add an ingredient to the userIngredients array
   addUserIngredient(ingredient: string) {
-    if (ingredient) {
+    if (ingredient && !this.userIngredients.includes(ingredient)) {
       this.userIngredients.push(ingredient);
       this.newIngredient = '';
     }
@@ -157,9 +180,13 @@ export class HomePage {
     toast.present();
   }
 
-  truncateMealName(mealName: string, maxNameLength: number, maxWordLength: number) {
+  truncateMealName(
+    mealName: string,
+    maxNameLength: number,
+    maxWordLength: number
+  ) {
     let words = mealName.split(' ');
-    words = words.map(word => {
+    words = words.map((word) => {
       if (word.length > maxWordLength) {
         return word.substring(0, maxWordLength) + '...';
       } else {
@@ -173,8 +200,6 @@ export class HomePage {
       return truncatedName;
     }
   }
-  
-  
 
   getCategoryIcon(strCategory: string) {
     if (strCategory === 'Beef') {
@@ -185,29 +210,28 @@ export class HomePage {
       return 'assets/icon/chicken.svg';
     } else if (strCategory === 'Dessert') {
       return 'assets/icon/dessert.svg';
-    }else if (strCategory === 'Goat') {
+    } else if (strCategory === 'Goat') {
       return 'assets/icon/goat.svg';
-    }else if (strCategory === 'Lamb') {
+    } else if (strCategory === 'Lamb') {
       return 'assets/icon/lamb.svg';
-    }else if (strCategory === 'Miscellaneous') {
+    } else if (strCategory === 'Miscellaneous') {
       return 'assets/icon/miscellaneous.svg';
-    }else if (strCategory === 'Pasta') {
+    } else if (strCategory === 'Pasta') {
       return 'assets/icon/pasta.svg';
-    }else if (strCategory === 'Pork') {
+    } else if (strCategory === 'Pork') {
       return 'assets/icon/pig.svg';
-    }else if (strCategory === 'Seafood') {
+    } else if (strCategory === 'Seafood') {
       return 'assets/icon/seafood.svg';
-    }else if (strCategory === 'Side') {
+    } else if (strCategory === 'Side') {
       return 'assets/icon/miscellaneous.svg';
-    }else if (strCategory === 'Starter') {
+    } else if (strCategory === 'Starter') {
       return 'assets/icon/miscellaneous.svg';
-    }else if (strCategory === 'Vegan') {
+    } else if (strCategory === 'Vegan') {
       return 'assets/icon/leaf.svg';
-    }else if (strCategory === 'Vegetarian') {
+    } else if (strCategory === 'Vegetarian') {
       return 'assets/icon/leaf.svg';
     }
-   
+
     return 'assets/icon/miscellaneous.svg';
   }
 }
-

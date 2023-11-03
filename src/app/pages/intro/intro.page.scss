@@ -7,11 +7,6 @@ swiper-slide {
     text-align: center;
 }
 
-.slide-1 {
-    --background: url('/src/assets/images/foodCover.png') no-repeat center/cover fixed;
-}
-
-
 ion-img {
     padding: 15%;
     position: absolute;
@@ -53,9 +48,25 @@ p {
     transform: translateY(375%);
 }
 
-ion-content {
+ion-content .background {
     --background: url(../../../assets/images/foodCover.png) 0 0/100% 100% no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
+    position: relative;
 }
+
+ion-content .background2 {
+    --background: url(../../../assets/images/CoverGreen.png) 0 0/100% 100% no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+ion-content .background3 {
+    --background: url(../../../assets/images/CoverDrop.png) 0 0/100% 100% no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+

@@ -1,7 +1,6 @@
 <ion-content class="ion-padding">
   <swiper-container #swiper (afterinit)="swiperReady()" [pagination]="true">
     <swiper-slide class="slide-1">
-
       <div class="slider-text">
         <h3>Welcome to</h3>
         <h1 style="font-size: xxx-large">Ecomunch</h1>
@@ -12,6 +11,8 @@
         </p>
       </div>
 
+      <ion-content padding class="background"></ion-content>
+
       <div class="navigator">
         <ion-button color="primary" fill="clear" (click)="start()"
           >Skip</ion-button
@@ -22,10 +23,7 @@
       </div>
     </swiper-slide>
 
-
-
-    <swiper-slide class="slide-2"
-      ><ion-img src="..."></ion-img>
+    <swiper-slide class="slide-2">
 
       <div class="slider-text">
         <h1>Benefits</h1>
@@ -35,6 +33,8 @@
           ultricies, erat vitae porta consequat.
         </p>
       </div>
+      
+      <ion-content padding class="background2"></ion-content>
 
       <div class="navigator">
         <ion-button color="primary" fill="clear" (click)="start()"
@@ -46,12 +46,7 @@
       </div>
     </swiper-slide>
 
-
-
-    <swiper-slide class="slide-3"
-      ><ion-img src="..."></ion-img>
-
-      
+    <swiper-slide class="slide-3">
 
       <div class="slider-text">
         <h1>Get started</h1>
@@ -62,10 +57,9 @@
         </p>
       </div>
 
-<!--
-      <ion-content padding class="background"></ion-content>
--->
       
+      <ion-content padding class="background3"></ion-content>
+
 
       <ion-button class="get-started" expand="block" (click)="start()"
         >GET STARTED</ion-button

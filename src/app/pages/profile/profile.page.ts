@@ -45,7 +45,6 @@ export class ProfilePage {
         await this.getFavorites();
       }
     });
-    console.log(this.favorites)
   }
 
   async getFavorites() {

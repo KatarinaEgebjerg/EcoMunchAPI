@@ -1,0 +1,45 @@
+<ion-toolbar color="white" [translucent]="true">
+  <ion-buttons slot="start">
+    <ion-button
+      (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal)"
+    >
+      <ion-icon
+        *ngIf="favoriteStatus[meal.idMeal]"
+        name="heart"
+        size="large"
+        color="primary"
+      ></ion-icon>
+      <ion-icon
+        *ngIf="!favoriteStatus[meal.idMeal]"
+        name="heart-outline"
+        size="large"
+        color="primary"
+      ></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-buttons slot="end">
+    <ion-button color="primary" (click)="closeModal()">
+      <ion-icon name="close-outline" size="large"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <swiper-container [speed]="1000">
+    <swiper-slide>
+      <ion-img class="logo" [src]="meal.strMealThumb"></ion-img>
+      <h1 class="ion-text-center" style="color: black">{{ meal.strMeal }}</h1>
+      <ul>
+        <li *ngFor="let ingredient of getIngredients(meal); let i = index">
+          <p>{{ ingredient }} - {{ getMeasruements(meal)[i] }}</p>
+        </li>
+      </ul>
+    </swiper-slide>
+
+    <swiper-slide class="ion-padding">
+      <ion-img class="logo" [src]="meal.strMealThumb"></ion-img>
+      <h1 class="ion-text-center" style="color: black">{{ meal.strMeal }}</h1>
+      <p [innerHTML]="formatInstructions(meal.strInstructions)"></p>
+    </swiper-slide>
+  </swiper-container>
+</ion-content>

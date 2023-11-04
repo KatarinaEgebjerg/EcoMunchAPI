@@ -1,6 +1,6 @@
 import { UserService } from './../../services/user-service/user.service';
 import { Component } from '@angular/core';
-import { NavController, ToastController } from '@ionic/angular';
+import { ModalController, NavController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { MealService } from 'src/app/services/meal-service/meal.service';
 import {
@@ -11,6 +11,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
+import { DishDetailsModalPage } from 'src/app/modals/dish-details-modal/dish-details-modal.page';
 
 @Component({
   selector: 'app-home',
@@ -46,7 +47,8 @@ export class HomePage {
     private userService: UserService,
     private authService: AuthService,
     private toastController: ToastController,
-    private http: HttpClient
+    private http: HttpClient,
+    private modalCtrl: ModalController
   ) {}
 
   ngOnInit() {
@@ -63,6 +65,23 @@ export class HomePage {
     this.randomMeals();
   }
 
+  async dishDetailsModal(meal: any) {
+    const modal = await this.modalCtrl.create({
+      component: DishDetailsModalPage,
+      cssClass: 'dish-detail-modal',
+      componentProps: {
+        'meal': meal
+      }
+    });
+  
+    modal.onDidDismiss().then(() => {
+      console.log('The dish details modal was dismissed');
+      this.getFavorites();
+    });
+  
+    await modal.present();
+  }
+  
   async searchMeals() {
     this.isLoading = true;
     this.showSearchResults = true;
@@ -97,7 +116,6 @@ export class HomePage {
     this.filteredIngredients = [];
   }
   
-  // Function to add an ingredient to the userIngredients array
   addUserIngredient(ingredient: string) {
     if (ingredient && !this.userIngredients.includes(ingredient)) {
       this.userIngredients.push(ingredient);

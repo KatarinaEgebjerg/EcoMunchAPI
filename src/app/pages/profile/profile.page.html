@@ -75,7 +75,7 @@
 
       <ion-row>
         <div *ngFor="let favorite of favorites">
-          <ion-card
+          <ion-card (click)="dishDetailsModal(favorite)"
             *ngIf="!favorite.removed"
             class="favorite-dish-card favorite-dish-card-height dish-bg-color"
             [@fadeOutIn]
@@ -106,7 +106,7 @@
                   </div>
                   <ion-buttons
                     slot="end"
-                    (click)="favoriteStatus[favorite.idMeal] ? removeFavorite(favorite) : addFavorite(favorite)"
+                    (click)="favoriteStatus[favorite.idMeal] ? removeFavorite(favorite) : addFavorite(favorite); $event.stopPropagation()"
                   >
                     <ion-button>
                       <ion-icon

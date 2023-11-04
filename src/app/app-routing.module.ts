@@ -42,7 +42,11 @@ const routes: Routes = [
   {
     path: 'update-user-modal',
     loadChildren: () => import('./modals/update-user-modal/update-user-modal.module').then( m => m.UpdateUserModalPageModule)
+  },  {
+    path: 'dish-details-modal',
+    loadChildren: () => import('./modals/dish-details-modal/dish-details-modal.module').then( m => m.DishDetailsModalPageModule)
   },
+
 ];
 
 @NgModule({

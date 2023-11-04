@@ -95,7 +95,7 @@
 
     <ion-row *ngIf="showSearchResults" class="meal-dish-container" [@fadeOutIn]>
       <div *ngFor="let meal of recipeIngredients">
-        <ion-card class="meal-dish-card-height dish-bg-color">
+        <ion-card class="meal-dish-card-height dish-bg-color" (click)="dishDetailsModal(meal)">
           <ion-row class="ion-align-items-center full-height">
             <ion-col>
               <ion-img
@@ -134,7 +134,7 @@
                 </div>
                 <ion-buttons>
                   <ion-button
-                    (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal)"
+                    (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal); $event.stopPropagation()"
                   >
                     <ion-icon
                       *ngIf="favoriteStatus[meal.idMeal]"
@@ -264,7 +264,7 @@
 
         <ion-row>
           <div *ngFor="let meal of latestMeals">
-            <ion-card
+            <ion-card (click)="dishDetailsModal(meal)"
               class="meal-dish-card meal-dish-card-height dish-bg-color"
             >
               <ion-row class="ion-align-items-center full-height">
@@ -293,7 +293,7 @@
                     </div>
                     <ion-buttons slot="end">
                       <ion-button
-                        (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal)"
+                        (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal); $event.stopPropagation()"
                       >
                         <ion-icon
                           *ngIf="favoriteStatus[meal.idMeal]"
@@ -330,6 +330,7 @@
           <swiper-slide *ngFor="let meal of randomMeal">
             <ion-card
               class="meal-dish-card meal-dish-card-height dish-bg-color"
+              (click)="dishDetailsModal(meal)"
             >
               <ion-row class="ion-align-items-center full-height">
                 <ion-col>
@@ -357,7 +358,7 @@
                     </div>
                     <ion-buttons slot="end">
                       <ion-button
-                        (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal)"
+                        (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal); $event.stopPropagation()"
                       >
                         <ion-icon
                           *ngIf="favoriteStatus[meal.idMeal]"

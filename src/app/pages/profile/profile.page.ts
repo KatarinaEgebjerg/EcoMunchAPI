@@ -11,6 +11,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { DishDetailsModalPage } from 'src/app/modals/dish-details-modal/dish-details-modal.page';
 
 @Component({
   selector: 'app-profile',
@@ -60,6 +61,23 @@ export class ProfilePage {
       component: LogoutConfirmationModalPage, 
       cssClass: 'my-modal',
     });
+    await modal.present();
+  }
+
+  async dishDetailsModal(meal: any) {
+    const modal = await this.modalCtrl.create({
+      component: DishDetailsModalPage,
+      cssClass: 'dish-detail-modal',
+      componentProps: {
+        'meal': meal
+      }
+    });
+  
+    modal.onDidDismiss().then(() => {
+      console.log('The dish details modal was dismissed');
+      this.getFavorites();
+    });
+  
     await modal.present();
   }
 

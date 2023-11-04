@@ -25,10 +25,12 @@
 </ion-toolbar>
 
 <ion-content>
-  <swiper-container [speed]="1000">
+  <swiper-container>
     <swiper-slide>
       <ion-img class="logo" [src]="meal.strMealThumb"></ion-img>
       <h1 class="ion-text-center" style="color: black">{{ meal.strMeal }}</h1>
+      <ion-icon name="arrow-forward-circle" class="swipe-arrow"></ion-icon>
+
       <ul>
         <li *ngFor="let ingredient of getIngredients(meal); let i = index">
           <p

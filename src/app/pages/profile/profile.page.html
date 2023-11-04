@@ -1,6 +1,9 @@
 <ion-content>
   <ion-header class="ion-no-border">
     <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="primary" defaultHref="/tabs/home" text="Home" class="custom-back-button"></ion-back-button>
+      </ion-buttons>
       <ion-buttons slot="end" size="large">
         <ion-button fill="clear" slot="end" (click)="logout()">
           Logout

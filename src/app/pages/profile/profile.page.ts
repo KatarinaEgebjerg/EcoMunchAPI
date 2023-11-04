@@ -74,7 +74,6 @@ export class ProfilePage {
     });
   
     modal.onDidDismiss().then(() => {
-      console.log('The dish details modal was dismissed');
       this.getFavorites();
     });
   

@@ -13,6 +13,7 @@ import { EventEmitter } from '@angular/core';
 })
 export class DishDetailsModalPage implements OnInit {
   @Input() meal: any;
+  @Input() userIngredients!: string[];
   favoriteStatus: { [key: string]: boolean } = {};
   user: any;
   favorites: any[] = [];
@@ -34,6 +35,15 @@ export class DishDetailsModalPage implements OnInit {
       }
     });
   }
+
+  getAvailableIngredients(meal: any) {
+    const ingredients = this.getIngredients(meal);
+   
+    
+    return ingredients.filter(ingredient => this.userIngredients.includes(ingredient));
+    
+  }
+  
 
   getIngredients(meal: any) {
     return this.mealService.getIngredients(meal);

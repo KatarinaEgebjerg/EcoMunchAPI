@@ -31,7 +31,16 @@
       <h1 class="ion-text-center" style="color: black">{{ meal.strMeal }}</h1>
       <ul>
         <li *ngFor="let ingredient of getIngredients(meal); let i = index">
-          <p>{{ ingredient }} - {{ getMeasruements(meal)[i] }}</p>
+          <p
+          
+          >
+            {{ ingredient }} - {{ getMeasruements(meal)[i] }}
+            <ion-icon
+              *ngIf="userIngredients.includes(ingredient)"
+              name="checkmark-outline"
+              style="font-size: 20px;"
+            ></ion-icon>
+          </p>
         </li>
       </ul>
     </swiper-slide>

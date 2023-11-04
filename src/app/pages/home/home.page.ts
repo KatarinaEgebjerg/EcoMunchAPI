@@ -70,12 +70,12 @@ export class HomePage {
       component: DishDetailsModalPage,
       cssClass: 'dish-detail-modal',
       componentProps: {
-        'meal': meal
+        'meal': meal,
+        'userIngredients': this.userIngredients
       }
     });
   
     modal.onDidDismiss().then(() => {
-      console.log('The dish details modal was dismissed');
       this.getFavorites();
     });
   

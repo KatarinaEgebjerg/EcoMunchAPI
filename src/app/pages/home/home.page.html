@@ -27,24 +27,24 @@
     <h1>What do I have</h1>
 
     <div (clickOutside)="onClickedOutside()">
-  
-            <ion-searchbar
-            class="ion-no-padding ion-no-margin ion-no-border"
-            placeholder="Filter by ingredients"
-            (ionFocus)="onSearchBarFocus()"
-            [(ngModel)]="newIngredient"
-            (ionInput)="getItems($event)"
-          ></ion-searchbar>
-          
-          <div *ngIf="filteredIngredients.length > 0">
-            <ion-list>
-              <ion-item *ngFor="let item of filteredIngredients" (click)="selectIngredient(item); $event.stopPropagation()">
-                {{ item }}
-              </ion-item>
-            </ion-list>
-          </div>
-          
-         
+      <ion-searchbar
+        class="ion-no-padding ion-no-margin ion-no-border"
+        placeholder="Filter by ingredients"
+        (ionFocus)="onSearchBarFocus()"
+        [(ngModel)]="newIngredient"
+        (ionInput)="getItems($event)"
+      ></ion-searchbar>
+
+      <div *ngIf="filteredIngredients.length > 0">
+        <ion-list>
+          <ion-item
+            *ngFor="let item of filteredIngredients"
+            (click)="selectIngredient(item); $event.stopPropagation()"
+          >
+            {{ item }}
+          </ion-item>
+        </ion-list>
+      </div>
 
       <div *ngIf="isSearchBarFocused" [@fadeOutIn]>
         <ion-card class="ion-no-margin gray-toolbar height">
@@ -95,7 +95,10 @@
 
     <ion-row *ngIf="showSearchResults" class="meal-dish-container" [@fadeOutIn]>
       <div *ngFor="let meal of recipeIngredients">
-        <ion-card class="meal-dish-card-height dish-bg-color" (click)="dishDetailsModal(meal)">
+        <ion-card
+          class="meal-dish-card-height dish-bg-color"
+          (click)="dishDetailsModal(meal)"
+        >
           <ion-row class="ion-align-items-center full-height">
             <ion-col>
               <ion-img
@@ -264,7 +267,8 @@
 
         <ion-row>
           <div *ngFor="let meal of latestMeals">
-            <ion-card (click)="dishDetailsModal(meal)"
+            <ion-card
+              (click)="dishDetailsModal(meal)"
               class="meal-dish-card meal-dish-card-height dish-bg-color"
             >
               <ion-row class="ion-align-items-center full-height">

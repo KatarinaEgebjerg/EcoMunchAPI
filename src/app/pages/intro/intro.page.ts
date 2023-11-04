@@ -21,7 +21,7 @@ export class IntroPage {
     // Wait for the component to render completely
     setTimeout(() => {
       this.swiper = this.swiperRef?.nativeElement.swiper;
-    }, 500); 
+    }, 1000); 
   }
   
   next() {

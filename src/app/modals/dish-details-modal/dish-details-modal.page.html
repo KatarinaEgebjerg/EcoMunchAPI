@@ -38,7 +38,7 @@
           >
             {{ ingredient }} - {{ getMeasruements(meal)[i] }}
             <ion-icon
-              *ngIf="userIngredients.includes(ingredient)"
+              *ngIf="userIngredients && userIngredients.includes(ingredient)"
               name="checkmark-outline"
               style="font-size: 20px;"
             ></ion-icon>

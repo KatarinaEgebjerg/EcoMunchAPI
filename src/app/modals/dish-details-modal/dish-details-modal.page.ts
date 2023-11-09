@@ -38,10 +38,7 @@ export class DishDetailsModalPage implements OnInit {
 
   getAvailableIngredients(meal: any) {
     const ingredients = this.getIngredients(meal);
-   
-    
     return ingredients.filter(ingredient => this.userIngredients.includes(ingredient));
-    
   }
   
 

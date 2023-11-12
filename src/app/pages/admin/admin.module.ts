@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MalthesLejelandPageRoutingModule } from './malthes-lejeland-routing.module';
+import { AdminPageRoutingModule } from './admin-routing.module';
 
-import { MalthesLejelandPage } from './malthes-lejeland.page';
+import { AdminPage } from './admin.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MalthesLejelandPageRoutingModule
+    AdminPageRoutingModule
   ],
-  declarations: [MalthesLejelandPage]
+  declarations: [AdminPage]
 })
-export class MalthesLejelandPageModule {}
+export class AdminPageModule {}

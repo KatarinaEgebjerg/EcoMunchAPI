@@ -105,6 +105,12 @@ ion-toolbar {
     height: 95%;
 }
 
+.admin-modal::part(content) {
+    width: 90%;
+    --border-radius: 10px;
+    height: 95%;
+}
+
 @font-face {
     font-family: 'Jost', serif;
     src: url('https://fonts.googleapis.com/css?family=Italiana|Jost&display=swap');

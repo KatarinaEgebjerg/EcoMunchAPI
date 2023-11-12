@@ -1,0 +1,39 @@
+<ion-content>
+  <div class="page-container">
+    <h2>Your meals</h2>
+    <ion-card (click)="update()">
+      <ion-img
+        src="/assets/images/ChickenAlfredoPasta.jpg"
+        class="dish-img"
+      ></ion-img>
+      <!-- <ion-icon name="heart-outline"></ion-icon> -->
+      <h3 class="ion-text-center">Chicken Alfredo Pasta</h3>
+      <div class="category">
+        <ion-label>Chicken</ion-label>
+        <ion-icon
+          style="margin-top: 15px"
+          src="/assets/icon/chicken.svg"
+        ></ion-icon>
+      </div>
+    </ion-card>
+
+    <ion-card (click)="update()">
+      <ion-img
+        src="/assets/images/ChickenAlfredoPasta.jpg"
+        class="dish-img"
+      ></ion-img>
+      <!-- <ion-icon name="heart-outline"></ion-icon> -->
+      <h3 class="ion-text-center">Vegan Lasagne With Carrots And Basil</h3>
+      <div class="category">
+        <ion-label>Vegan</ion-label>
+        <ion-icon
+          style="margin-top: 15px"
+          src="/assets/icon/leaf.svg"
+        ></ion-icon>
+      </div>
+    </ion-card>
+    
+  </div>
+</ion-content>
+
+<ion-button (click)="create()">Create</ion-button>

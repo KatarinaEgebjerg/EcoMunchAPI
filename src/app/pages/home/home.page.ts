@@ -66,6 +66,7 @@ export class HomePage {
   }
 
   async dishDetailsModal(meal: any) {
+    console.log(meal);
     const modal = await this.modalCtrl.create({
       component: DishDetailsModalPage,
       cssClass: 'dish-detail-modal',

@@ -42,22 +42,11 @@ const routes: Routes = [
   {
     path: 'update-user-modal',
     loadChildren: () => import('./modals/update-user-modal/update-user-modal.module').then( m => m.UpdateUserModalPageModule)
-  },  {
+  },
+  {
     path: 'dish-details-modal',
     loadChildren: () => import('./modals/dish-details-modal/dish-details-modal.module').then( m => m.DishDetailsModalPageModule)
-  },
-  {
-    path: 'admin',
-    loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule)
-  },
-  {
-    path: 'admin-add-recipe-modal',
-    loadChildren: () => import('./modals/admin-add-recipe-modal/admin-add-recipe-modal.module').then( m => m.AdminAddRecipeModalPageModule)
-  },
-  {
-    path: 'admin-update-recipe-modal',
-    loadChildren: () => import('./modals/admin-update-recipe-modal/admin-update-recipe-modal.module').then( m => m.AdminUpdateRecipeModalPageModule)
-  },
+  }
 
 ];
 

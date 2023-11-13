@@ -6,7 +6,6 @@ import {
   canActivate,
 } from '@angular/fire/auth-guard';
 import { IntroGuard } from './guards/intro.guard';
-import { AuthGuard } from './guards/auth.guard'; 
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToTabs = () => redirectLoggedInTo(['tabs']);
@@ -49,18 +48,12 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule), canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule)
   },
   {
     path: 'admin-create-recipe-modal',
     loadChildren: () => import('./modals/admin-create-recipe-modal/admin-create-recipe-modal.module').then( m => m.AdminCreateRecipeModalPageModule)
   },
-  {
-    path: 'password-entry-modal',
-    loadChildren: () => import('./modals/password-entry-modal/password-entry-modal.module').then( m => m.PasswordEntryModalPageModule)
-  },
-
-
 
 ];
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController} from '@ionic/angular';
 import { AdminCreateRecipeModalPage} from '../../modals/admin-create-recipe-modal/admin-create-recipe-modal.page';
 import { ModalService } from '../../services/modal-service/modal.service';
 
@@ -13,13 +13,10 @@ export class AdminPage implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private modalController: ModalController,
   ) { }
   
-  openPasswordModal() {
-    this.modalService.presentPasswordModal();
-  }
-
   ngOnInit() {
   }
 
@@ -32,5 +29,6 @@ export class AdminPage implements OnInit {
     });
     await modal.present();
   }
+ 
 
 }

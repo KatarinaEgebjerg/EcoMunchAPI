@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Recipe } from 'src/app/models/recipie.model';
+import { Recipe } from 'src/app/models/recipe.model';
 
-const baseUrl = 'http://localhost:8080/api/recipie';
+const baseUrl = 'http://localhost:8080/api/recipe';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,7 @@ export class NodeJsExpressService {
     return this.http.delete(baseUrl);
   }
 
-  findByTitle(title: any): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${baseUrl}?title=${title}`);
+  findByName(name: any): Observable<Recipe[]> { 
+    return this.http.get<Recipe[]>(`${baseUrl}?name=${name}`);
   }
 }

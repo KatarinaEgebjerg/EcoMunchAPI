@@ -1,0 +1,92 @@
+<ion-toolbar>
+  <ion-buttons slot="end">
+    <ion-button color="primary" (click)="closeModal()">
+      <ion-icon name="close-outline" size="large"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content style="background: gray">
+  <div class="logo" (click)="openGallery()">
+    <ion-icon *ngIf="!imageUrl" name="images" class="galleryIcon"></ion-icon>
+    <img [src]="imageUrl" *ngIf="imageUrl" class="logo" />
+  </div>
+
+  <div class="page-container">
+    <div class="input-container">
+      <ion-item class="ion-no-padding">
+        <ion-label position="floating">Name</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Enter name"
+          required="true"
+          clearInput="true"
+        ></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="input-container">
+      <ion-item class="ion-no-padding">
+        <ion-label position="floating">Category</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Enter category"
+          required="true"
+          clearInput="true"
+        ></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="input-container">
+      <ion-item class="ion-no-padding">
+        <ion-label position="floating">Ingredients & Measurements</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Enter ingredients & measurements"
+          required="true"
+          clearInput="true"
+          [(ngModel)]="ingredientInput"
+          (ionFocus)="onSearchBarFocus()"
+        ></ion-input>
+      </ion-item>
+
+      <div *ngIf="isSearchBarFocused" [@fadeOutIn]>
+        <ion-card class="ion-no-margin gray-toolbar height">
+          <ion-card-content>
+            <ion-chip
+              *ngFor="let ingredient of addedIngredients; let i = index"
+              [@fadeOutIn]
+            >
+              <ion-label>{{ingredient}}</ion-label>
+              <ion-icon name="close" (click)="removeIngredient(i)"></ion-icon>
+            </ion-chip>
+
+            <br />
+            <ion-button
+              expand="block"
+              class="add-button"
+              (click)="addIngredient()"
+            >
+              Add
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+
+    <ion-card class="ion-no-margin">
+      <ion-item>
+        <ion-textarea
+          label="Instructions"
+          labelPlacement="floating"
+          placeholder="Enter instructions"
+          rows="5"
+        ></ion-textarea>
+      </ion-item>
+    </ion-card>
+
+    <ion-button expand="block" (click)="addNewRecipe()"
+      >Add new recipe</ion-button
+    >
+  </div>
+</ion-content>

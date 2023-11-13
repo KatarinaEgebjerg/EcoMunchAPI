@@ -4,4 +4,5 @@ export class Recipe {
     name?: string;
     category?: string;
     ingredientsmeasurements?: string;
+    instructions?: string;
 }

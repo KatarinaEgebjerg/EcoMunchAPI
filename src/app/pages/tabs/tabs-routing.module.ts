@@ -12,8 +12,8 @@ const routes: Routes = [
         loadChildren: () => import('../home/home.module').then(m => m.HomePageModule)
       },
       {
-        path: 'malthes-lejeland',
-        loadChildren: () => import('../malthes-lejeland/malthes-lejeland.module').then(m => m.MalthesLejelandPageModule)
+        path: 'admin',
+        loadChildren: () => import('../admin/admin.module').then(m => m.AdminPageModule)
       },
       {
         path: '',

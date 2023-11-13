@@ -6,7 +6,7 @@ import {
   canActivate,
 } from '@angular/fire/auth-guard';
 import { IntroGuard } from './guards/intro.guard';
-
+import { AuthGuard } from './guards/auth.guard'; 
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToTabs = () => redirectLoggedInTo(['tabs']);
@@ -46,7 +46,21 @@ const routes: Routes = [
   {
     path: 'dish-details-modal',
     loadChildren: () => import('./modals/dish-details-modal/dish-details-modal.module').then( m => m.DishDetailsModalPageModule)
-  }
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule), canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin-create-recipe-modal',
+    loadChildren: () => import('./modals/admin-create-recipe-modal/admin-create-recipe-modal.module').then( m => m.AdminCreateRecipeModalPageModule)
+  },
+  {
+    path: 'password-entry-modal',
+    loadChildren: () => import('./modals/password-entry-modal/password-entry-modal.module').then( m => m.PasswordEntryModalPageModule)
+  },
+
+
 
 ];
 

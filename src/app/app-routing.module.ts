@@ -7,7 +7,6 @@ import {
 } from '@angular/fire/auth-guard';
 import { IntroGuard } from './guards/intro.guard';
 
-
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToTabs = () => redirectLoggedInTo(['tabs']);
 
@@ -46,7 +45,20 @@ const routes: Routes = [
   {
     path: 'dish-details-modal',
     loadChildren: () => import('./modals/dish-details-modal/dish-details-modal.module').then( m => m.DishDetailsModalPageModule)
-  }
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./pages/admin/admin.module').then( m => m.AdminPageModule)
+  },
+  {
+    path: 'admin-create-recipe-modal',
+    loadChildren: () => import('./modals/admin-create-recipe-modal/admin-create-recipe-modal.module').then( m => m.AdminCreateRecipeModalPageModule)
+  },
+  {
+    path: 'admin-edit-recipe-modal',
+    loadChildren: () => import('./modals/admin-edit-recipe-modal/admin-edit-recipe-modal.module').then( m => m.AdminEditRecipeModalPageModule)
+  },
+
 
 ];
 

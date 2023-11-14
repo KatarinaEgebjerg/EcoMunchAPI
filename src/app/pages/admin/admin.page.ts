@@ -12,6 +12,7 @@ import { AdminEditRecipeModalPage } from 'src/app/modals/admin-edit-recipe-modal
 })
 export class AdminPage implements OnInit {
   password: string = '';
+  tutorial: any | null = null;
 
   constructor(
     private modalCtrl: ModalController,

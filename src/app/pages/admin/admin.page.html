@@ -5,11 +5,11 @@
   <ion-list>
     <ion-item>
       <ion-avatar slot="start">
-        <img src="imageBaseUrl">
+        <img [src]="">
       </ion-avatar>
       <ion-label class="ion-text-wrap">
-        <h3>Recipe Title</h3>
-        <p>Recipe Category</p>
+        <h3>{{tutorial?.recipename}}</h3>
+        <p>{{tutorial.category}}</p>
       </ion-label>
       <ion-button (click)="adminEditRecipeModal()"><ion-icon name="create-outline"></ion-icon></ion-button>
       <ion-button><ion-icon name="trash-outline"></ion-icon></ion-button>

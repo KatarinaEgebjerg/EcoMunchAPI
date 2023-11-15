@@ -11,21 +11,32 @@
       </ion-card-header>
       <ion-item>
         <ion-button class="ion-text-center">Change Image</ion-button>
-        
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Recipe Name"></ion-input>
+        <ion-input placeholder="Recipe Name"  type="text" 
+        id="recipename"
+        [(ngModel)]="tutorial.recipename"
+        name="recipename"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Recipe Category"></ion-input>
+        <ion-input placeholder="Recipe Category" type="text"
+        id="category"
+        [(ngModel)]="tutorial.category"
+        name="category"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Recipe Description"></ion-input>
+        <ion-input placeholder="Ingredientmeasurements" type="text"
+        id="Ingredientmeasurements"
+        [(ngModel)]="tutorial.Ingredientmeasurements"
+        name="Ingredientmeasurements"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Ingredients"></ion-input>
+        <ion-input placeholder="Instructions" type="text"
+        id="Instructions"
+        [(ngModel)]="tutorial.Instructions"
+        name="Instructions"></ion-input>
       </ion-item>
-      <ion-button expand="block">Save Changes</ion-button>
+      <ion-button (click)="updateTutorial()" expand="block">Save Changes</ion-button>
     </ion-card>
   </div>
 </ion-content>

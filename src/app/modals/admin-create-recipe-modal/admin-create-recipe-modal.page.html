@@ -1,32 +1,57 @@
-<ion-header [translucent]="true">
-
-</ion-header>
+<ion-header [translucent]="true"> </ion-header>
 
 <ion-content>
-  <div class="submit-form">
+  <div *ngIf="!submitted">
     <ion-card>
       <ion-card-header>
-        <h3 class="dish-name-text truncate">
-          Add new Recipe
-        </h3>
+        <h3 class="dish-name-text truncate">Create Recipe</h3>
       </ion-card-header>
-      <ion-item>
-        <ion-button class="ion-text-center">Select Image</ion-button>
-        
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Recipe Name"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Recipe Category"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Recipe Description"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Ingredients"></ion-input>
-      </ion-item>
-      <ion-button expand="block" (click)="saveTutorial()">Create New Recipe</ion-button>
+      <div class="form-group">
+        <ion-label for="recipename">recipename</ion-label>
+        <ion-input
+          type="text"
+          class="form-control"
+          id="recipename"
+          required
+          [(ngModel)]="tutorial.recipename"
+          name="recipename"
+        />
+      </div>
+
+      <div class="form-group">
+        <ion-label for="category">Category</ion-label>
+        <ion-input
+          class="form-control"
+          id="category"
+          required
+          [(ngModel)]="tutorial.category"
+          name="category"
+        />
+      </div>
+      <div class="form-group">
+        <ion-label for="ingredientmeasurement">Ingredientmeasurement</ion-label>
+        <ion-input
+          class="form-control"
+          id="ingredientmeasurement"
+          required
+          [(ngModel)]="tutorial.ingredientmeasurement"
+          name="ingredientmeasurement"
+        />
+      </div>
+      <div class="form-group">
+        <ion-label for="instructions">Instructions</ion-label>
+        <ion-input
+          class="form-control"
+          id="instructions"
+          required
+          [(ngModel)]="tutorial.instructions"
+          name="instructions"
+        />
+      </div>
+
+      <ion-button (click)="saveTutorial()" class="btn btn-success"
+        >Add Recipe</ion-button
+      >
     </ion-card>
   </div>
 </ion-content>

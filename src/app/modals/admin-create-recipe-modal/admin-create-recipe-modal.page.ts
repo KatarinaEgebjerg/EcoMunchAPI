@@ -8,8 +8,10 @@ import { NodeJsExpressService } from 'src/app/services/node-js-express-service/n
 })
 export class AdminCreateRecipeModalPage implements OnInit {
   tutorial = {
-    title: '',
-    description: '',
+    recipename: '',
+    category: '',
+    ingredientmeasurement: '',
+    instructions:'',
     published: false
   };
   submitted = false;
@@ -20,8 +22,10 @@ export class AdminCreateRecipeModalPage implements OnInit {
   }
   saveTutorial() {
     const data = {
-      title: this.tutorial.title,
-      description: this.tutorial.description
+      recipename: this.tutorial.recipename,
+      category: this.tutorial.category,
+      ingredientmeasurement: this.tutorial.ingredientmeasurement,
+      instructions: this.tutorial.instructions
     };
 
     this.NodeJsExpressService.create(data)
@@ -38,8 +42,10 @@ export class AdminCreateRecipeModalPage implements OnInit {
   newTutorial() {
     this.submitted = false;
     this.tutorial = {
-      title: '',
-      description: '',
+      recipename: '',
+      category: '',
+      ingredientmeasurement: '',
+      instructions:'',
       published: false
     };
   }

@@ -4,6 +4,8 @@ import { AdminCreateRecipeModalPage} from '../../modals/admin-create-recipe-moda
 import { ModalService } from '../../services/modal-service/modal.service';
 import { environment } from 'src/environments/environment';
 import { AdminEditRecipeModalPage } from 'src/app/modals/admin-edit-recipe-modal/admin-edit-recipe-modal.page';
+import { NodeJsExpressService } from 'src/app/services/node-js-express-service/node-js-express.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -13,14 +15,20 @@ import { AdminEditRecipeModalPage } from 'src/app/modals/admin-edit-recipe-modal
 export class AdminPage implements OnInit {
   password: string = '';
   tutorial: any | null = null;
+  currentTutorial = null;
+  message = '';
 
   constructor(
     private modalCtrl: ModalController,
     private modalService: ModalService,
     private modalController: ModalController,
+    private NodeJsExpressService: NodeJsExpressService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
   
   ngOnInit() {
+    
   }
 
   async adminCreateRecipeModal() {
@@ -42,6 +50,17 @@ export class AdminPage implements OnInit {
     });
     await modal.present();
   }
- 
+  
+  deleteTutorial() {
+    this.NodeJsExpressService.delete(this.tutorial.id)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.router.navigate(['/admin']);
+        },
+        error => {
+          console.log(error);
+        });
 
+}
 }

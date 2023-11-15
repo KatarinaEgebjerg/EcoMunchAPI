@@ -9,13 +9,15 @@
       </ion-avatar>
       <ion-label class="ion-text-wrap">
         <h3>{{tutorial?.recipename}}</h3>
-        <p>{{tutorial.category}}</p>
+        <p>{{tutorial?.category}}</p>
       </ion-label>
       <ion-button (click)="adminEditRecipeModal()"><ion-icon name="create-outline"></ion-icon></ion-button>
-      <ion-button><ion-icon name="trash-outline"></ion-icon></ion-button>
+      <ion-button><ion-icon name="trash-outline" (click)="deleteTutorial()"></ion-icon></ion-button>
     </ion-item>
   </ion-list>
   <div class="ion-text-center ion-padding">
       <ion-button expand="block" (click)="adminCreateRecipeModal()">Add New Recipe</ion-button>
   </div>
+
+  
 </ion-content>

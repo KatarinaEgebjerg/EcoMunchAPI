@@ -7,7 +7,7 @@ import { NodeJsExpressService } from 'src/app/services/node-js-express-service/n
   styleUrls: ['./admin-create-recipe-modal.page.scss'],
 })
 export class AdminCreateRecipeModalPage implements OnInit {
-  tutorial = {
+  recipe = {
     recipename: '',
     category: '',
     ingredientmeasurement: '',
@@ -20,12 +20,12 @@ export class AdminCreateRecipeModalPage implements OnInit {
 
   ngOnInit() {
   }
-  saveTutorial() {
+  saveRecipe() {
     const data = {
-      recipename: this.tutorial.recipename,
-      category: this.tutorial.category,
-      ingredientmeasurement: this.tutorial.ingredientmeasurement,
-      instructions: this.tutorial.instructions
+      recipename: this.recipe.recipename,
+      category: this.recipe.category,
+      ingredientmeasurement: this.recipe.ingredientmeasurement,
+      instructions: this.recipe.instructions
     };
 
     this.NodeJsExpressService.create(data)
@@ -39,9 +39,9 @@ export class AdminCreateRecipeModalPage implements OnInit {
         });
   }
 
-  newTutorial() {
+  newRecipe() {
     this.submitted = false;
-    this.tutorial = {
+    this.recipe = {
       recipename: '',
       category: '',
       ingredientmeasurement: '',

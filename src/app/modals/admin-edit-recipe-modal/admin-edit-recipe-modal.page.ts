@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NodeJsExpressService } from 'src/app/services/node-js-express-service/node-js-express.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from 'src/app/models/recipe.model';
+import { ModalController} from '@ionic/angular';
 
 @Component({
   selector: 'app-admin-edit-recipe-modal',
@@ -9,28 +10,34 @@ import { Recipe } from 'src/app/models/recipe.model';
   styleUrls: ['./admin-edit-recipe-modal.page.scss'],
 })
 export class AdminEditRecipeModalPage implements OnInit {
-  recipe: any | null = null;
+  @Input() recipe: any;
+  editedRecipe: any; 
+
+
   message = '';
 
   constructor(
     private NodeJsExpressService: NodeJsExpressService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modalCtrl: ModalController,
     
   ) { }
 
   ngOnInit() {
-    this.message = '';
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id !== null) {
-      this.getRecipe(id);
-    } else {
-      // Handle the case where 'id' is null, e.g., show an error message or redirect
-    }
+//  this.editedRecipe = { ...this.recipe }
+
+    console.log("Test", this.recipe)
+    // const id = this.route.snapshot.paramMap.get('id');
+    // if (id !== null) {
+    //   this.getRecipe(id);
+    // } else {
+    //   // Handle the case where 'id' is null, e.g., show an error message or redirect
+    // }
   }
   
-  getRecipe(id:string) {
-    this.NodeJsExpressService.get(id)
+  getRecipe(recipeid: any) {
+    this.NodeJsExpressService.get(recipeid)
       .subscribe(
         (data: Recipe) => { 
           const recipeData = data;
@@ -40,26 +47,6 @@ export class AdminEditRecipeModalPage implements OnInit {
           console.log(error);
         }
       );
-  }
-
-  updatePublished(status: boolean) {
-    const data = {
-      recipename: this.recipe.recipename,
-      category: this.recipe.category,
-      ingredientmeasurement: this.recipe.ingredientmeasurement,
-      instructions: this.recipe.instructions,
-      published: status
-    };
-
-    this.NodeJsExpressService.update(this.recipe.id, data)
-      .subscribe(
-        response => {
-          this.recipe.published = status;
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        });
   }
 
   updateRecipe() {
@@ -72,6 +59,7 @@ export class AdminEditRecipeModalPage implements OnInit {
         error => {
           console.log(error);
         });
+        this.modalCtrl.dismiss(this.recipe)
   }
 
 }

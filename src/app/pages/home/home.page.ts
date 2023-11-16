@@ -12,6 +12,7 @@ import {
 } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { DishDetailsModalPage } from 'src/app/modals/dish-details-modal/dish-details-modal.page';
+import { NodeJsExpressService } from 'src/app/services/node-js-express-service/node-js-express.service';
 
 @Component({
   selector: 'app-home',
@@ -40,6 +41,7 @@ export class HomePage {
   recipeIngredients: any[] = [];
   ingredients: string[] = []; // All available ingredients
   filteredIngredients: string[] = []; // Ingredients that match the user's input
+  recipe: any;
 
   constructor(
     private navCtrl: NavController,
@@ -48,7 +50,8 @@ export class HomePage {
     private authService: AuthService,
     private toastController: ToastController,
     private http: HttpClient,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private NodeJsExpressService: NodeJsExpressService,
   ) {}
 
   ngOnInit() {
@@ -63,15 +66,15 @@ export class HomePage {
     });  
     this.latestmeal();
     this.randomMeals();
+    this.retrieveRecipe();
   }
 
-  async dishDetailsModal(meal: any) {
+  async dishDetailsModal(recipe: any) {
     const modal = await this.modalCtrl.create({
       component: DishDetailsModalPage,
       cssClass: 'dish-detail-modal',
       componentProps: {
-        'meal': meal,
-        'userIngredients': this.userIngredients
+        'recipe': recipe,
       }
     });
   
@@ -252,4 +255,17 @@ export class HomePage {
 
     return 'assets/icon/miscellaneous.svg';
   }
+
+  retrieveRecipe() {
+    this.NodeJsExpressService.getAll()
+      .subscribe(
+        data => {
+          this.recipe = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
 }

@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { MealService } from 'src/app/services/meal-service/meal.service';
 import { UserService } from 'src/app/services/user-service/user.service';
 import { EventEmitter } from '@angular/core';
+import { NodeJsExpressService } from 'src/app/services/node-js-express-service/node-js-express.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./dish-details-modal.page.scss'],
 })
 export class DishDetailsModalPage implements OnInit {
-  @Input() meal: any;
+  @Input() recipe: any;
   @Input() userIngredients!: string[];
   favoriteStatus: { [key: string]: boolean } = {};
   user: any;
@@ -24,10 +25,12 @@ export class DishDetailsModalPage implements OnInit {
     private modalCtrl: ModalController,
     private userService: UserService,
     private toastController: ToastController,
-    private authService: AuthService
+    private authService: AuthService,
+    private NodeJsExpressService: NodeJsExpressService,
   ) {}
 
   ngOnInit() {
+    console.log(this.recipe)
     this.authService.currentUser.subscribe(async (user) => {
       this.user = user;
       if (user) {
@@ -41,7 +44,6 @@ export class DishDetailsModalPage implements OnInit {
     return ingredients.filter(ingredient => this.userIngredients.includes(ingredient));
   }
   
-
   getIngredients(meal: any) {
     return this.mealService.getIngredients(meal);
   }
@@ -129,7 +131,7 @@ export class DishDetailsModalPage implements OnInit {
     return 'assets/icon/miscellaneous.svg';
   }
 
-  formatInstructions(instructions: string) {
-    return instructions.replace(/\. /g, '.<br><br>');
-  }
+  // formatInstructions(instructions: string) {
+  //   return instructions.replace(/\. /g, '.<br><br>');
+  // }
 }

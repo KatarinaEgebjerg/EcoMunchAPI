@@ -15,17 +15,13 @@ import { Recipe } from 'src/app/models/recipe.model';
 })
 export class AdminPage implements OnInit {
   password: string = '';
-  recipe: any;
-  currentTutorial = null;
+  recipe: Recipe[] = [];
   message = '';
 
   constructor(
     private modalCtrl: ModalController,
-    private modalService: ModalService,
-    private modalController: ModalController,
     private NodeJsExpressService: NodeJsExpressService,
     private router: Router,
-    private route: ActivatedRoute,
   ) { }
   
   ngOnInit() {
@@ -55,11 +51,14 @@ export class AdminPage implements OnInit {
     await modal.present();
   }
 
-  async adminEditRecipeModal() {
+  async adminEditRecipeModal(recipe: any) {
     const modal = await this.modalCtrl.create({
       component: AdminEditRecipeModalPage,
       cssClass: 'admin-edit-recipe-modal',
       breakpoints: [0, 0.3, 0.65, 0.8],
+      componentProps: {
+        recipe: recipe
+      },
       initialBreakpoint: 0.65,
     });
     await modal.present();

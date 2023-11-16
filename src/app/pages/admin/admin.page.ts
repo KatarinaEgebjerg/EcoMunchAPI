@@ -15,7 +15,7 @@ import { Recipe } from 'src/app/models/recipe.model';
 })
 export class AdminPage implements OnInit {
   password: string = '';
-  recipe: any;
+  recipe: any | null = null;
   currentTutorial = null;
   message = '';
 
@@ -65,8 +65,8 @@ export class AdminPage implements OnInit {
     await modal.present();
   }
   
-  deleteRecipe(recipeid: any) {
-    this.NodeJsExpressService.delete(recipeid)
+  deleteRecipe() {
+    this.NodeJsExpressService.delete(this.recipe.id)
       .subscribe(
         response => {
           console.log(response);

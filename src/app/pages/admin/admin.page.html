@@ -1,26 +1,23 @@
-<ion-header [translucent]="true"> </ion-header>
+<ion-header [translucent]="true">
+</ion-header>
 
 <ion-content *ngIf="recipe">
-  <ion-list *ngFor=" let r of recipe">
+  <ion-list>
     <ion-item>
       <ion-avatar slot="start">
-        <img [src]="" />
+        <img [src]="">
       </ion-avatar>
       <ion-label class="ion-text-wrap">
-        <h3>{{r.recipename}}</h3>
-        <p>{{r.category}}</p>
+        <h3>{{recipe.recipename}}</h3>
+        <p>{{recipe.category}}</p>
       </ion-label>
-      <ion-button (click)="adminEditRecipeModal()"
-        ><ion-icon name="create-outline"></ion-icon
-      ></ion-button>
-      <ion-button (click)="deleteRecipe(r.id)"
-        ><ion-icon name="trash-outline"></ion-icon
-      ></ion-button>
+      <ion-button (click)="adminEditRecipeModal()"><ion-icon name="create-outline"></ion-icon></ion-button>
+      <ion-button><ion-icon name="trash-outline" (click)="deleteRecipe()"></ion-icon></ion-button>
     </ion-item>
   </ion-list>
   <div class="ion-text-center ion-padding">
-    <ion-button expand="block" (click)="adminCreateRecipeModal()"
-      >Add New Recipe</ion-button
-    >
+      <ion-button expand="block" (click)="adminCreateRecipeModal()">Add New Recipe</ion-button>
   </div>
+
+  
 </ion-content>

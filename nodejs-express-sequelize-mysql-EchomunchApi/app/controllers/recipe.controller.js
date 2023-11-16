@@ -56,7 +56,7 @@ exports.findAll = (req, res) => {
 exports.findOne = (req, res) => {
     const id = req.params.id;
 
-    Recipe.findByPk(id)
+    Tutorial.findByPk(id)
       .then(data => {
         res.send(data);
       })
@@ -98,7 +98,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const id = req.params.id;
 
-    Recipe.destroy({
+    Tutorial.destroy({
       where: { id: id }
     })
       .then(num => {
@@ -123,7 +123,7 @@ exports.delete = (req, res) => {
 
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
-    Recipe.destroy({
+    Tutorial.destroy({
         where: {},
         truncate: false
       })
@@ -141,7 +141,7 @@ exports.deleteAll = (req, res) => {
 
 // Find all published Tutorials
 exports.findAllPublished = (req, res) => {
-    Recipe.findAll({ where: { published: true } })
+    Tutorial.findAll({ where: { published: true } })
     .then(data => {
       res.send(data);
     })

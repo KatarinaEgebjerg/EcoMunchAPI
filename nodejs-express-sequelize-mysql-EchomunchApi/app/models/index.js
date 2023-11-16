@@ -10,6 +10,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.recipes = require("./recipe.model.js")(sequelize, Sequelize);
+db.tutorials = require("./recipe.model.js")(sequelize, Sequelize);
 
 module.exports = db;

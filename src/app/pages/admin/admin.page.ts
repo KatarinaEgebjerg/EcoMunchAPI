@@ -28,8 +28,21 @@ export class AdminPage implements OnInit {
   ) { }
   
   ngOnInit() {
-    
+    this.retrieveTutorial
   }
+
+  retrieveTutorial() {
+    this.NodeJsExpressService.getAll()
+      .subscribe(
+        data => {
+          this.tutorial = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
 
   async adminCreateRecipeModal() {
     const modal = await this.modalCtrl.create({
@@ -63,4 +76,6 @@ export class AdminPage implements OnInit {
         });
 
 }
+
+
 }

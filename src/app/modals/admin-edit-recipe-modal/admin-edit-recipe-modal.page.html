@@ -15,28 +15,28 @@
       <ion-item>
         <ion-input placeholder="Recipe Name"  type="text" 
         id="recipename"
-        [(ngModel)]="tutorial.recipename"
+        [(ngModel)]="recipe.recipename"
         name="recipename"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input placeholder="Recipe Category" type="text"
         id="category"
-        [(ngModel)]="tutorial.category"
+        [(ngModel)]="recipe.category"
         name="category"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input placeholder="Ingredientmeasurements" type="text"
         id="Ingredientmeasurements"
-        [(ngModel)]="tutorial.Ingredientmeasurements"
+        [(ngModel)]="recipe.Ingredientmeasurements"
         name="Ingredientmeasurements"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input placeholder="Instructions" type="text"
         id="Instructions"
-        [(ngModel)]="tutorial.Instructions"
+        [(ngModel)]="recipe.Instructions"
         name="Instructions"></ion-input>
       </ion-item>
-      <ion-button (click)="updateTutorial()" expand="block">Save Changes</ion-button>
+      <ion-button (click)="updateRecipe()" expand="block">Save Changes</ion-button>
     </ion-card>
   </div>
 </ion-content>

@@ -1,5 +1,5 @@
 const db = require("../models");
-const Tutorial = db.tutorials;
+const Recipe = db.recipes;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Tutorial
@@ -13,7 +13,7 @@ exports.create = (req, res) => {
   }
 
   // Create a Tutorial
-  const tutorial = {
+  const recipe = {
     recipename: req.body.recipename,
     category: req.body.category,
     ingredientmeasurements: req.body.ingredientmeasurements,
@@ -22,7 +22,7 @@ exports.create = (req, res) => {
   };
 
   // Save Tutorial in the database
-  Tutorial.create(tutorial)
+  Recipe.create(recipe)
     .then(data => {
       res.send(data);
     })
@@ -39,7 +39,7 @@ exports.findAll = (req, res) => {
     const recipename = req.query.recipename;
     var condition = recipename ? { recipename: { [Op.like]: `%${recipename}%` } } : null;
   
-    Tutorial.findAll({ where: condition })
+    Recipe.findAll({ where: condition })
       .then(data => {
         res.send(data);
       })
@@ -72,7 +72,7 @@ exports.findOne = (req, res) => {
 exports.update = (req, res) => {
     const id = req.params.id;
 
-    Tutorial.update(req.body, {
+    Recipe.update(req.body, {
       where: { id: id }
     })
       .then(num => {

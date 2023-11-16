@@ -13,7 +13,7 @@
           class="form-control"
           id="recipename"
           required
-          [(ngModel)]="tutorial.recipename"
+          [(ngModel)]="recipe.recipename"
           name="recipename"
         />
       </div>
@@ -24,7 +24,7 @@
           class="form-control"
           id="category"
           required
-          [(ngModel)]="tutorial.category"
+          [(ngModel)]="recipe.category"
           name="category"
         />
       </div>
@@ -34,7 +34,7 @@
           class="form-control"
           id="ingredientmeasurement"
           required
-          [(ngModel)]="tutorial.ingredientmeasurement"
+          [(ngModel)]="recipe.ingredientmeasurement"
           name="ingredientmeasurement"
         />
       </div>
@@ -44,12 +44,12 @@
           class="form-control"
           id="instructions"
           required
-          [(ngModel)]="tutorial.instructions"
+          [(ngModel)]="recipe.instructions"
           name="instructions"
         />
       </div>
 
-      <ion-button (click)="saveTutorial()" class="btn btn-success"
+      <ion-button (click)="saveRecipe()" class="btn btn-success"
         >Add Recipe</ion-button
       >
     </ion-card>

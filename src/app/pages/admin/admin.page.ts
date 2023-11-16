@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { AdminEditRecipeModalPage } from 'src/app/modals/admin-edit-recipe-modal/admin-edit-recipe-modal.page';
 import { NodeJsExpressService } from 'src/app/services/node-js-express-service/node-js-express.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Recipe } from 'src/app/models/recipe.model';
 
 @Component({
   selector: 'app-admin',
@@ -14,7 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class AdminPage implements OnInit {
   password: string = '';
-  tutorial: any | null = null;
+  recipe: any | null = null;
   currentTutorial = null;
   message = '';
 
@@ -28,8 +29,21 @@ export class AdminPage implements OnInit {
   ) { }
   
   ngOnInit() {
-    
+    this.retrieveRecipe();
   }
+
+  retrieveRecipe() {
+    this.NodeJsExpressService.getAll()
+      .subscribe(
+        data => {
+          this.recipe = data;
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
 
   async adminCreateRecipeModal() {
     const modal = await this.modalCtrl.create({
@@ -51,8 +65,8 @@ export class AdminPage implements OnInit {
     await modal.present();
   }
   
-  deleteTutorial() {
-    this.NodeJsExpressService.delete(this.tutorial.id)
+  deleteRecipe() {
+    this.NodeJsExpressService.delete(this.recipe.id)
       .subscribe(
         response => {
           console.log(response);
@@ -63,4 +77,6 @@ export class AdminPage implements OnInit {
         });
 
 }
+
+
 }

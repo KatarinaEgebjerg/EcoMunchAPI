@@ -1,18 +1,18 @@
 <ion-header [translucent]="true">
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="recipe">
   <ion-list>
     <ion-item>
       <ion-avatar slot="start">
         <img [src]="">
       </ion-avatar>
       <ion-label class="ion-text-wrap">
-        <h3>{{tutorial?.recipename}}</h3>
-        <p>{{tutorial?.category}}</p>
+        <h3>{{recipe.recipename}}</h3>
+        <p>{{recipe.category}}</p>
       </ion-label>
       <ion-button (click)="adminEditRecipeModal()"><ion-icon name="create-outline"></ion-icon></ion-button>
-      <ion-button><ion-icon name="trash-outline" (click)="deleteTutorial()"></ion-icon></ion-button>
+      <ion-button><ion-icon name="trash-outline" (click)="deleteRecipe()"></ion-icon></ion-button>
     </ion-item>
   </ion-list>
   <div class="ion-text-center ion-padding">

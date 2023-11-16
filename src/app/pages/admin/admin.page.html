@@ -10,7 +10,7 @@
         <h3>{{r.recipename}}</h3>
         <p>{{r.category}}</p>
       </ion-label>
-      <ion-button (click)="adminEditRecipeModal()"
+      <ion-button (click)="adminEditRecipeModal(r)"
         ><ion-icon name="create-outline"></ion-icon
       ></ion-button>
       <ion-button (click)="deleteRecipe(r.id)"

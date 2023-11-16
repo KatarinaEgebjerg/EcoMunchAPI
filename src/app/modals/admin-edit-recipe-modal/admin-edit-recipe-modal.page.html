@@ -10,9 +10,6 @@
         </h3>
       </ion-card-header>
       <ion-item>
-        <ion-button class="ion-text-center">Change Image</ion-button>
-      </ion-item>
-      <ion-item>
         <ion-input placeholder="Recipe Name"  type="text" 
         id="recipename"
         [(ngModel)]="recipe.recipename"
@@ -27,16 +24,16 @@
       <ion-item>
         <ion-input placeholder="Ingredientmeasurements" type="text"
         id="Ingredientmeasurements"
-        [(ngModel)]="recipe.Ingredientmeasurements"
+        [(ngModel)]="recipe.ingredientmeasurements"
         name="Ingredientmeasurements"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input placeholder="Instructions" type="text"
         id="Instructions"
-        [(ngModel)]="recipe.Instructions"
+        [(ngModel)]="recipe.instructions"
         name="Instructions"></ion-input>
       </ion-item>
-      <ion-button (click)="updateRecipe()" expand="block">Save Changes</ion-button>
+      <ion-button (click)="updateRecipe()" expand="block">Update Recipe</ion-button>
     </ion-card>
   </div>
 </ion-content>

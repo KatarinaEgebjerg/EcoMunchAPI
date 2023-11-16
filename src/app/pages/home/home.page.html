@@ -320,7 +320,7 @@
           </div>
         </ion-row>
       </ion-grid>
-
+     
       <ion-grid class="meal-dish-container">
         <ion-row class="ion-justify-content-center">
           <ion-col size="12" class="dish-title-padding">
@@ -331,51 +331,31 @@
         </ion-row>
 
         <swiper-container [autoplay]="{ delay: 30000 }" [speed]="1000">
-          <swiper-slide *ngFor="let meal of randomMeal">
+          <swiper-slide *ngFor="let r of recipe">
             <ion-card
               class="meal-dish-card meal-dish-card-height dish-bg-color"
-              (click)="dishDetailsModal(meal)"
+              (click)="dishDetailsModal(r)"
             >
               <ion-row class="ion-align-items-center full-height">
-                <ion-col>
-                  <ion-img
-                    [src]="meal.strMealThumb"
-                    alt="{{ meal.strMeal }}"
-                    class="rounded-dish-img"
-                  />
-                </ion-col>
                 <ion-col class="ion-text-center">
                   <ion-card-header>
                     <h3 class="dish-name-text truncate">
-                      {{ truncateMealName(meal.strMeal, 15, 9) }}
+                      {{ r.recipename }}
                     </h3>
                   </ion-card-header>
                   <ion-toolbar class="gray-toolbar">
                     <div>
                       <ion-icon
                         style="margin-top: 15px"
-                        [src]="getCategoryIcon(meal.strCategory)"
+                        [src]="getCategoryIcon(r.category)"
                       ></ion-icon>
                       <p class="dish-name-text" style="margin-top: 0px">
-                        {{ meal.strCategory }}
+                        {{ r.category }}
                       </p>
                     </div>
                     <ion-buttons slot="end">
                       <ion-button
-                        (click)="favoriteStatus[meal.idMeal] ? removeFavorite(meal) : addFavorite(meal); $event.stopPropagation()"
                       >
-                        <ion-icon
-                          *ngIf="favoriteStatus[meal.idMeal]"
-                          name="heart"
-                          size="large"
-                          color="primary"
-                        ></ion-icon>
-                        <ion-icon
-                          *ngIf="!favoriteStatus[meal.idMeal]"
-                          name="heart-outline"
-                          size="large"
-                          color="primary"
-                        ></ion-icon>
                       </ion-button>
                     </ion-buttons>
                   </ion-toolbar>
